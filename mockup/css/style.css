@@ -643,12 +643,12 @@ img { max-width: 100%; display: block; }
 .works-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto;
     gap: 24px;
 }
 
 .work-card-large {
-    grid-row: 1 / 3;
+    grid-row: 1 / 4;
     display: flex;
     flex-direction: column;
 }
