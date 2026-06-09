@@ -1,19 +1,10 @@
 # ============================================
-# WordPress Core (不追踪核心文件)
+# WordPress Core
+# wp-admin/ wp-includes/ and root php files are tracked
 # ============================================
-/wp-admin/
-/wp-includes/
-/wp-*.php
-/index.php
-/license.txt
-/readme.html
-/xmlrpc.php
-
-# 保留 wp-config 模板（不是 wp-config.php 本身）
-!wp-config-sample.php
 
 # ============================================
-# wp-content 部分追踪
+# wp-content partial tracking
 # ============================================
 /wp-content/uploads/*
 !/wp-content/uploads/.gitkeep
@@ -23,16 +14,16 @@
 /wp-content/backups/
 /wp-content/blogs.dir/
 
-# 第三方插件不追踪（通过文档记录插件清单）
+# Third-party plugins (track via docs/plugins.md)
 /wp-content/plugins/*
 !/wp-content/plugins/.gitkeep
-# 自研插件需手动 git add -f
+# For custom plugins: git add -f wp-content/plugins/your-plugin
 
-# 第三方主题不追踪
+# Default themes (keep only custom themes)
 /wp-content/themes/twenty*/
 
 # ============================================
-# 敏感文件
+# Sensitive files
 # ============================================
 wp-config.php
 .htaccess
@@ -43,7 +34,7 @@ wp-config.php
 .env.*
 
 # ============================================
-# 操作系统和 IDE
+# OS and IDE
 # ============================================
 .DS_Store
 Thumbs.db
@@ -54,7 +45,7 @@ Thumbs.db
 *~
 
 # ============================================
-# 宝塔面板生成的文件
+# BT Panel generated files
 # ============================================
 .user.ini
 .well-known/
