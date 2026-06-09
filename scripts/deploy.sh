@@ -28,8 +28,10 @@ tar -xzf "$TAR_FILE"
 
 # 2. 同步核心文件（不覆盖 wp-content 和 wp-config.php）
 echo "[2/5] 同步核心文件..."
-rsync -av --exclude='wp-content' --exclude='wp-config-sample.php' \
-    /tmp/wordpress/ "${SITE_ROOT}/"
+# 删除 wp-content 和 wp-config-sample.php，避免覆盖项目自定义内容
+rm -rf /tmp/wordpress/wp-content
+rm -f /tmp/wordpress/wp-config-sample.php
+cp -rf /tmp/wordpress/* /tmp/wordpress/.* "${SITE_ROOT}/" 2>/dev/null || cp -rf /tmp/wordpress/* "${SITE_ROOT}/"
 
 # 3. 检查 wp-config.php 是否存在
 echo "[3/5] 检查配置文件..."
