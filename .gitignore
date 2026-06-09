@@ -1,0 +1,60 @@
+# ============================================
+# WordPress Core (不追踪核心文件)
+# ============================================
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/index.php
+/license.txt
+/readme.html
+/xmlrpc.php
+
+# 保留 wp-config 模板（不是 wp-config.php 本身）
+!wp-config-sample.php
+
+# ============================================
+# wp-content 部分追踪
+# ============================================
+/wp-content/uploads/*
+!/wp-content/uploads/.gitkeep
+
+/wp-content/upgrade/
+/wp-content/cache/
+/wp-content/backups/
+/wp-content/blogs.dir/
+
+# 第三方插件不追踪（通过文档记录插件清单）
+/wp-content/plugins/*
+!/wp-content/plugins/.gitkeep
+# 自研插件需手动 git add -f
+
+# 第三方主题不追踪
+/wp-content/themes/twenty*/
+
+# ============================================
+# 敏感文件
+# ============================================
+wp-config.php
+.htaccess
+*.sql
+*.sql.gz
+*.log
+.env
+.env.*
+
+# ============================================
+# 操作系统和 IDE
+# ============================================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ============================================
+# 宝塔面板生成的文件
+# ============================================
+.user.ini
+.well-known/
