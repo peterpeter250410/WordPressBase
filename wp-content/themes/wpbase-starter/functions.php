@@ -299,6 +299,70 @@ function eikou_customizer($wp_customize) {
 }
 add_action('customize_register', 'eikou_customizer');
 
+/* ─── Customizer: Hero Slideshow ─── */
+function eikou_hero_customizer($wp_customize) {
+    $wp_customize->add_section('eikou_hero_slides', [
+        'title'    => 'ヒーロースライドショー',
+        'priority' => 25,
+    ]);
+
+    for ($i = 1; $i <= 5; $i++) {
+        // Slide image
+        $wp_customize->add_setting("eikou_hero_slide_{$i}", [
+            'default'           => '',
+            'sanitize_callback' => 'esc_url_raw',
+        ]);
+        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "eikou_hero_slide_{$i}", [
+            'label'   => "スライド {$i} 画像",
+            'section' => 'eikou_hero_slides',
+        ]));
+
+        // Slide link (optional)
+        $wp_customize->add_setting("eikou_hero_slide_{$i}_link", [
+            'default'           => '',
+            'sanitize_callback' => 'esc_url_raw',
+        ]);
+        $wp_customize->add_control("eikou_hero_slide_{$i}_link", [
+            'label'   => "スライド {$i} リンクURL",
+            'section' => 'eikou_hero_slides',
+            'type'    => 'url',
+        ]);
+    }
+}
+add_action('customize_register', 'eikou_hero_customizer');
+
+/**
+ * Get hero slides array
+ */
+function eikou_get_hero_slides() {
+    $slides = [];
+    $defaults = [
+        'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80',
+        'https://images.unsplash.com/photo-1511578314322-379afb476865?w=1920&q=80',
+        'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80',
+        'https://images.unsplash.com/photo-1531058020387-3be344556be6?w=1920&q=80',
+    ];
+
+    for ($i = 1; $i <= 5; $i++) {
+        $img = get_theme_mod("eikou_hero_slide_{$i}", '');
+        if ($img) {
+            $slides[] = [
+                'image' => $img,
+                'link'  => get_theme_mod("eikou_hero_slide_{$i}_link", ''),
+            ];
+        }
+    }
+
+    // Fallback to defaults if no slides configured
+    if (empty($slides)) {
+        foreach ($defaults as $url) {
+            $slides[] = ['image' => $url, 'link' => ''];
+        }
+    }
+
+    return $slides;
+}
+
 /* ─── Helper: Get Theme Mod ─── */
 function eikou_get($key, $default = '') {
     return get_theme_mod($key, $default);

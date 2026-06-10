@@ -6,12 +6,12 @@ get_header();
 ?>
 
 <!-- ========== HERO - Apple-style image crossfade ========== -->
+<?php $hero_slides = eikou_get_hero_slides(); ?>
 <section class="hero">
     <div class="hero-slideshow">
-        <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80')"></div>
-        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1511578314322-379afb476865?w=1920&q=80')"></div>
-        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80')"></div>
-        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1531058020387-3be344556be6?w=1920&q=80')"></div>
+        <?php foreach ($hero_slides as $idx => $slide) : ?>
+        <div class="hero-slide<?php echo $idx === 0 ? ' active' : ''; ?>" style="background-image: url('<?php echo esc_url($slide['image']); ?>')"></div>
+        <?php endforeach; ?>
         <div class="hero-overlay"></div>
     </div>
     <div class="container hero-content">
@@ -48,10 +48,9 @@ get_header();
         <div class="scroll-line"></div>
     </div>
     <div class="hero-indicators">
-        <button class="indicator active" data-slide="0"></button>
-        <button class="indicator" data-slide="1"></button>
-        <button class="indicator" data-slide="2"></button>
-        <button class="indicator" data-slide="3"></button>
+        <?php foreach ($hero_slides as $idx => $slide) : ?>
+        <button class="indicator<?php echo $idx === 0 ? ' active' : ''; ?>" data-slide="<?php echo $idx; ?>"></button>
+        <?php endforeach; ?>
     </div>
 </section>
 
