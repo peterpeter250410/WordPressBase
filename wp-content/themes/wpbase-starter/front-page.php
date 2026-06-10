@@ -164,6 +164,8 @@ get_header();
                 <div class="work-image">
                     <?php if (has_post_thumbnail()) : ?>
                         <?php the_post_thumbnail(($i === 0) ? 'work-large' : 'work-thumb'); ?>
+                    <?php else : ?>
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=<?php echo ($i === 0) ? '1000' : '600'; ?>&q=80" alt="<?php the_title_attribute(); ?>">
                     <?php endif; ?>
                 </div>
                 <div class="work-info">

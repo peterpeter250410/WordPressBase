@@ -59,9 +59,13 @@ get_header();
             ?>
             <div class="work-card" data-category="<?php echo esc_attr($cat_slug); ?>">
                 <div class="work-image">
+                    <a href="<?php the_permalink(); ?>">
                     <?php if (has_post_thumbnail()) : ?>
-                        <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('work-thumb'); ?></a>
+                        <?php the_post_thumbnail('work-thumb'); ?>
+                    <?php else : ?>
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="<?php the_title_attribute(); ?>">
                     <?php endif; ?>
+                    </a>
                 </div>
                 <div class="work-info">
                     <?php if ($cat_name) : ?>
