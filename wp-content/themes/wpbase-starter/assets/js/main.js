@@ -10,7 +10,7 @@
     const indicators = document.querySelectorAll('.hero-indicators .indicator');
     let currentSlide = 0;
     let slideInterval;
-    const SLIDE_DURATION = 5000; // 5 seconds per slide
+    const SLIDE_DURATION = 3000; // 3 seconds per slide
 
     function goToSlide(index) {
         // Remove prev class from all
@@ -61,9 +61,18 @@
         });
     });
 
-    // Start auto slideshow
+    // Start auto slideshow with initial fade-in
     if (slides.length > 0) {
-        startSlideshow();
+        // Remove active from first slide, then re-add after a frame to trigger CSS transition
+        slides[0].classList.remove('active');
+        if (indicators.length > 0) indicators[0].classList.remove('active');
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                slides[0].classList.add('active');
+                if (indicators.length > 0) indicators[0].classList.add('active');
+                startSlideshow();
+            });
+        });
     }
 
     // ========== Language Dropdown ==========
