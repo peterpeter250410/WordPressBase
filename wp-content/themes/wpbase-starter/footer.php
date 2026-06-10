@@ -73,24 +73,3 @@
 <?php wp_footer(); ?>
 </body>
 </html>
-<?php
-function eikou_footer_nav_fallback() {
-    ?>
-    <ul>
-        <li><a href="<?php echo esc_url(home_url('/')); ?>">ホーム</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('about'))); ?>">荣光について</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('services'))); ?>">サービス</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('works'))); ?>">成功事例</a></li>
-    </ul>
-    <?php
-}
-
-function eikou_footer_other_fallback() {
-    ?>
-    <ul>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('video'))); ?>">動画センター</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('partners'))); ?>">パートナー</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('contact'))); ?>">お問い合わせ</a></li>
-    </ul>
-    <?php
-}

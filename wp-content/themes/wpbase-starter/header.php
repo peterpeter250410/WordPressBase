@@ -47,19 +47,3 @@
         </button>
     </div>
 </header>
-<?php
-/**
- * Fallback menu if no menu assigned
- */
-function eikou_fallback_menu() {
-    ?>
-    <ul>
-        <li><a href="<?php echo esc_url(home_url('/')); ?>"<?php if (is_front_page()) echo ' class="active"'; ?>>ホーム</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('services'))); ?>"<?php if (is_page('services')) echo ' class="active"'; ?>>サービス</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('works'))); ?>"<?php if (is_page('works')) echo ' class="active"'; ?>>成功事例</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('video'))); ?>"<?php if (is_page('video')) echo ' class="active"'; ?>>動画</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('partners'))); ?>"<?php if (is_page('partners')) echo ' class="active"'; ?>>パートナー</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('contact'))); ?>"<?php if (is_page('contact')) echo ' class="active"'; ?>>お問い合わせ</a></li>
-    </ul>
-    <?php
-}
