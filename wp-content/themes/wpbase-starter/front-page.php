@@ -25,8 +25,8 @@ get_header();
             日本市場におけるブランド体験をトータルプロデュース
         </p>
         <div class="hero-actions">
-            <a href="<?php echo esc_url(get_permalink(get_page_by_path('services'))); ?>" class="btn btn-primary">サービスを見る</a>
-            <a href="<?php echo esc_url(get_permalink(get_page_by_path('works'))); ?>" class="btn btn-outline">実績を見る</a>
+            <a href="<?php echo esc_url(eikou_page_url('services')); ?>" class="btn btn-primary">サービスを見る</a>
+            <a href="<?php echo esc_url(eikou_page_url('works')); ?>" class="btn btn-outline">実績を見る</a>
         </div>
         <div class="hero-stats">
             <div class="stat-item">
@@ -77,7 +77,7 @@ get_header();
                         <li>施工管理</li>
                         <li>運営サポート</li>
                     </ul>
-                    <a href="<?php echo esc_url(get_permalink(get_page_by_path('services'))); ?>" class="service-link">詳しく見る →</a>
+                    <a href="<?php echo esc_url(eikou_page_url('services')); ?>" class="service-link">詳しく見る →</a>
                 </div>
             </div>
             <div class="business-item business-item-reverse">
@@ -94,7 +94,7 @@ get_header();
                         <li>会場設営</li>
                         <li>映像制作</li>
                     </ul>
-                    <a href="<?php echo esc_url(get_permalink(get_page_by_path('services'))); ?>" class="service-link">詳しく見る →</a>
+                    <a href="<?php echo esc_url(eikou_page_url('services')); ?>" class="service-link">詳しく見る →</a>
                 </div>
             </div>
             <div class="business-item">
@@ -111,7 +111,7 @@ get_header();
                         <li>内装施工</li>
                         <li>LED演出</li>
                     </ul>
-                    <a href="<?php echo esc_url(get_permalink(get_page_by_path('services'))); ?>" class="service-link">詳しく見る →</a>
+                    <a href="<?php echo esc_url(eikou_page_url('services')); ?>" class="service-link">詳しく見る →</a>
                 </div>
             </div>
             <div class="business-item business-item-reverse">
@@ -128,7 +128,7 @@ get_header();
                         <li>システム構築</li>
                         <li>AI導入</li>
                     </ul>
-                    <a href="<?php echo esc_url(get_permalink(get_page_by_path('services'))); ?>" class="service-link">詳しく見る →</a>
+                    <a href="<?php echo esc_url(eikou_page_url('services')); ?>" class="service-link">詳しく見る →</a>
                 </div>
             </div>
         </div>
@@ -228,7 +228,7 @@ get_header();
             <?php endif; ?>
         </div>
         <div class="section-action">
-            <a href="<?php echo esc_url(get_permalink(get_page_by_path('works'))); ?>" class="btn btn-outline">すべての実績を見る</a>
+            <a href="<?php echo esc_url(eikou_page_url('works')); ?>" class="btn btn-outline">すべての実績を見る</a>
         </div>
     </div>
 </section>
@@ -317,7 +317,7 @@ get_header();
             <?php endif; ?>
         </div>
         <div class="section-action">
-            <a href="<?php echo esc_url(get_permalink(get_page_by_path('video'))); ?>" class="btn btn-outline">すべての動画を見る</a>
+            <a href="<?php echo esc_url(eikou_page_url('video')); ?>" class="btn btn-outline">すべての動画を見る</a>
         </div>
     </div>
 </section>
@@ -406,7 +406,7 @@ get_header();
             </div>
         </div>
         <div class="section-action">
-            <a href="<?php echo esc_url(get_permalink(get_page_by_path('partners'))); ?>" class="btn btn-outline">パートナー一覧を見る</a>
+            <a href="<?php echo esc_url(eikou_page_url('partners')); ?>" class="btn btn-outline">パートナー一覧を見る</a>
         </div>
     </div>
 </section>

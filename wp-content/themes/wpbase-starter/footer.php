@@ -6,7 +6,7 @@
         <h2>プロジェクトのご相談は<br>お気軽にお問い合わせください</h2>
         <p>展示会出展、イベント企画、空間デザイン、Web制作、AIソリューションなど、<br>お客様のニーズに合わせた最適なプランをご提案いたします。</p>
         <div class="cta-actions">
-            <a href="<?php echo esc_url(get_permalink(get_page_by_path('contact'))); ?>" class="btn btn-primary btn-lg">お問い合わせ</a>
+            <a href="<?php echo esc_url(eikou_page_url('contact')); ?>" class="btn btn-primary btn-lg">お問い合わせ</a>
             <a href="tel:+81-3-XXXX-XXXX" class="btn btn-ghost"><?php echo esc_html(eikou_get('eikou_tel', '03-XXXX-XXXX')); ?></a>
         </div>
     </div>

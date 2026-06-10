@@ -36,7 +36,7 @@ $cat_name = ($cats && !is_wp_error($cats)) ? $cats[0]->name : '';
             <?php the_content(); ?>
         </div>
         <div class="section-action" style="margin-top: 60px;">
-            <a href="<?php echo esc_url(get_permalink(get_page_by_path('works'))); ?>" class="btn btn-outline">← すべての事例に戻る</a>
+            <a href="<?php echo esc_url(eikou_page_url('works')); ?>" class="btn btn-outline">← すべての事例に戻る</a>
         </div>
     </div>
 </section>

@@ -140,7 +140,7 @@ get_header();
         <h2>パートナーシップのご相談</h2>
         <p>新規プロジェクトのご相談や、パートナーシップについてのお問い合わせを承っております。</p>
         <div class="cta-actions">
-            <a href="<?php echo esc_url(get_permalink(get_page_by_path('contact'))); ?>" class="btn btn-primary btn-lg">お問い合わせ</a>
+            <a href="<?php echo esc_url(eikou_page_url('contact')); ?>" class="btn btn-primary btn-lg">お問い合わせ</a>
             <a href="tel:+81-3-XXXX-XXXX" class="btn btn-ghost"><?php echo esc_html(eikou_get('eikou_tel', '03-XXXX-XXXX')); ?></a>
         </div>
     </div>

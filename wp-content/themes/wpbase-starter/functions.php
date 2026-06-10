@@ -368,16 +368,26 @@ function eikou_get($key, $default = '') {
     return get_theme_mod($key, $default);
 }
 
+/* ─── Helper: Get Page URL by Slug ─── */
+function eikou_page_url($slug) {
+    $page = get_page_by_path($slug);
+    if ($page) {
+        return get_permalink($page);
+    }
+    // Fallback: try home_url with slug
+    return home_url('/' . $slug . '/');
+}
+
 /* ─── Menu Fallback Callbacks ─── */
 function eikou_fallback_menu() {
     ?>
     <ul>
         <li><a href="<?php echo esc_url(home_url('/')); ?>"<?php if (is_front_page()) echo ' class="active"'; ?>>ホーム</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('services'))); ?>"<?php if (is_page('services')) echo ' class="active"'; ?>>サービス</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('works'))); ?>"<?php if (is_page('works')) echo ' class="active"'; ?>>成功事例</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('video'))); ?>"<?php if (is_page('video')) echo ' class="active"'; ?>>動画</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('partners'))); ?>"<?php if (is_page('partners')) echo ' class="active"'; ?>>パートナー</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('contact'))); ?>"<?php if (is_page('contact')) echo ' class="active"'; ?>>お問い合わせ</a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('services')); ?>"<?php if (is_page('services')) echo ' class="active"'; ?>>サービス</a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('works')); ?>"<?php if (is_page('works')) echo ' class="active"'; ?>>成功事例</a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('video')); ?>"<?php if (is_page('video')) echo ' class="active"'; ?>>動画</a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('partners')); ?>"<?php if (is_page('partners')) echo ' class="active"'; ?>>パートナー</a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('contact')); ?>"<?php if (is_page('contact')) echo ' class="active"'; ?>>お問い合わせ</a></li>
     </ul>
     <?php
 }
@@ -386,9 +396,9 @@ function eikou_footer_nav_fallback() {
     ?>
     <ul>
         <li><a href="<?php echo esc_url(home_url('/')); ?>">ホーム</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('about'))); ?>">荣光について</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('services'))); ?>">サービス</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('works'))); ?>">成功事例</a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('about')); ?>">荣光について</a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('services')); ?>">サービス</a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('works')); ?>">成功事例</a></li>
     </ul>
     <?php
 }
@@ -396,9 +406,9 @@ function eikou_footer_nav_fallback() {
 function eikou_footer_other_fallback() {
     ?>
     <ul>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('video'))); ?>">動画センター</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('partners'))); ?>">パートナー</a></li>
-        <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('contact'))); ?>">お問い合わせ</a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('video')); ?>">動画センター</a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('partners')); ?>">パートナー</a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('contact')); ?>">お問い合わせ</a></li>
     </ul>
     <?php
 }

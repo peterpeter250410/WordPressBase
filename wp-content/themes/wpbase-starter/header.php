@@ -40,7 +40,7 @@
                     <li><a href="#">English</a></li>
                 </ul>
             </div>
-            <a href="<?php echo esc_url(get_permalink(get_page_by_path('contact'))); ?>" class="btn-contact">Contact</a>
+            <a href="<?php echo esc_url(eikou_page_url('contact')); ?>" class="btn-contact">Contact</a>
         </div>
         <button class="mobile-menu-btn" aria-label="Menu">
             <span></span><span></span><span></span>
