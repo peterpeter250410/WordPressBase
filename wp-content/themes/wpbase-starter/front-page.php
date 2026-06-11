@@ -60,77 +60,81 @@ get_header();
         <div class="section-header">
             <span class="section-tag">Core Business</span>
             <h2 class="section-title">主要事業</h2>
-            <p class="section-desc">展示空間からデジタルソリューションまで、ワンストップでブランド体験を創出</p>
+            <p class="section-desc">6つの事業領域で、お客様のビジネスをトータルサポート</p>
         </div>
-        <div class="business-showcase">
-            <div class="business-item">
-                <div class="business-image">
-                    <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&q=80" alt="Exhibition">
-                    <div class="business-image-overlay"></div>
+        <div class="service-grid-home">
+            <a href="<?php echo esc_url(eikou_page_url('service-exhibition')); ?>" class="service-card-home scroll-reveal">
+                <div class="service-card-image">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Exhibition">
+                    <div class="service-card-overlay"></div>
                 </div>
-                <div class="business-info">
-                    <span class="business-number">01</span>
-                    <h3>展示会・展覧会</h3>
-                    <p>国際展示会のブースデザイン・設計・施工・運営までワンストップで対応。東京ビッグサイト、幕張メッセなど主要会場での豊富な実績。</p>
-                    <ul class="business-tags">
-                        <li>ブースデザイン</li>
-                        <li>施工管理</li>
-                        <li>運営サポート</li>
-                    </ul>
-                    <a href="<?php echo esc_url(eikou_page_url('services')); ?>" class="service-link">詳しく見る →</a>
+                <div class="service-card-content">
+                    <span class="service-card-number">01</span>
+                    <h3>展示会・イベント</h3>
+                    <p>ブースデザイン・施工・運営をワンストップで</p>
+                    <span class="service-card-link">詳しく見る →</span>
                 </div>
-            </div>
-            <div class="business-item business-item-reverse">
-                <div class="business-image">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80" alt="Brand Event">
-                    <div class="business-image-overlay"></div>
+            </a>
+            <a href="<?php echo esc_url(eikou_page_url('service-brand-event')); ?>" class="service-card-home scroll-reveal">
+                <div class="service-card-image">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&q=80" alt="Brand Event">
+                    <div class="service-card-overlay"></div>
                 </div>
-                <div class="business-info">
-                    <span class="business-number">02</span>
-                    <h3>ブランドイベント・発表会</h3>
-                    <p>製品発表会、プレスカンファレンス、プロモーションイベント、ロードショーの企画から実施まで。ブランドの世界観を体験として具現化します。</p>
-                    <ul class="business-tags">
-                        <li>企画・演出</li>
-                        <li>会場設営</li>
-                        <li>映像制作</li>
-                    </ul>
-                    <a href="<?php echo esc_url(eikou_page_url('services')); ?>" class="service-link">詳しく見る →</a>
+                <div class="service-card-content">
+                    <span class="service-card-number">02</span>
+                    <h3>ブランドイベント</h3>
+                    <p>発表会・ロードショー・ポップアップストア</p>
+                    <span class="service-card-link">詳しく見る →</span>
                 </div>
-            </div>
-            <div class="business-item">
-                <div class="business-image">
-                    <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80" alt="Commercial Space">
-                    <div class="business-image-overlay"></div>
+            </a>
+            <a href="<?php echo esc_url(eikou_page_url('service-digital')); ?>" class="service-card-home scroll-reveal">
+                <div class="service-card-image">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Digital">
+                    <div class="service-card-overlay"></div>
                 </div>
-                <div class="business-info">
-                    <span class="business-number">03</span>
-                    <h3>商業空間・ショールーム</h3>
-                    <p>企業ショールーム、ポップアップストア、フラッグシップショップの空間デザイン・施工。ブランド体験を最大化する空間を創出します。</p>
-                    <ul class="business-tags">
-                        <li>空間デザイン</li>
-                        <li>内装施工</li>
-                        <li>LED演出</li>
-                    </ul>
-                    <a href="<?php echo esc_url(eikou_page_url('services')); ?>" class="service-link">詳しく見る →</a>
+                <div class="service-card-content">
+                    <span class="service-card-number">03</span>
+                    <h3>デジタル・Web</h3>
+                    <p>Webサイト制作・最適化・アプリ開発</p>
+                    <span class="service-card-link">詳しく見る →</span>
                 </div>
-            </div>
-            <div class="business-item business-item-reverse">
-                <div class="business-image">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Digital AI">
-                    <div class="business-image-overlay"></div>
+            </a>
+            <a href="<?php echo esc_url(eikou_page_url('service-ai')); ?>" class="service-card-home scroll-reveal">
+                <div class="service-card-image">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80" alt="AI">
+                    <div class="service-card-overlay"></div>
                 </div>
-                <div class="business-info">
-                    <span class="business-number">04</span>
-                    <h3>デジタル・AI ソリューション</h3>
-                    <p>Webサイト構築、業務システム開発、AIソリューション導入支援。テクノロジーの力でビジネスの可能性を拡張します。</p>
-                    <ul class="business-tags">
-                        <li>Web開発</li>
-                        <li>システム構築</li>
-                        <li>AI導入</li>
-                    </ul>
-                    <a href="<?php echo esc_url(eikou_page_url('services')); ?>" class="service-link">詳しく見る →</a>
+                <div class="service-card-content">
+                    <span class="service-card-number">04</span>
+                    <h3>AIソリューション</h3>
+                    <p>チャットボット・AI建模・自動化システム</p>
+                    <span class="service-card-link">詳しく見る →</span>
                 </div>
-            </div>
+            </a>
+            <a href="<?php echo esc_url(eikou_page_url('service-branding')); ?>" class="service-card-home scroll-reveal">
+                <div class="service-card-image">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80" alt="Branding">
+                    <div class="service-card-overlay"></div>
+                </div>
+                <div class="service-card-content">
+                    <span class="service-card-number">05</span>
+                    <h3>ブランディング・デザイン</h3>
+                    <p>パッケージ・販促ツール・宣伝デザイン</p>
+                    <span class="service-card-link">詳しく見る →</span>
+                </div>
+            </a>
+            <a href="<?php echo esc_url(eikou_page_url('service-media')); ?>" class="service-card-home scroll-reveal">
+                <div class="service-card-image">
+                    <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&q=80" alt="Media">
+                    <div class="service-card-overlay"></div>
+                </div>
+                <div class="service-card-content">
+                    <span class="service-card-number">06</span>
+                    <h3>メディア・映像</h3>
+                    <p>動画制作・メディア運営・サイン看板</p>
+                    <span class="service-card-link">詳しく見る →</span>
+                </div>
+            </a>
         </div>
     </div>
 </section>

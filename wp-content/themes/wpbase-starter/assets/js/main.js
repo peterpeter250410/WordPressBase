@@ -127,7 +127,7 @@
 
     // ========== Scroll reveal animation ==========
     var revealElements = document.querySelectorAll(
-        '.section-header, .business-item, .work-card, .video-card, .reason-item, .partner-logo'
+        '.section-header, .business-item, .work-card, .video-card, .reason-item, .partner-logo, .scroll-reveal, .service-card-home, .service-hub-card'
     );
 
     var observer = new IntersectionObserver(function (entries) {
@@ -146,5 +146,56 @@
         el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
         observer.observe(el);
     });
+
+    // ========== Video Modal ==========
+    var videoModal = document.getElementById('videoModal');
+    var videoPlayer = document.getElementById('videoPlayer');
+
+    if (videoModal && videoPlayer) {
+        // Open modal on video card click
+        document.querySelectorAll('.video-card[data-video-url]').forEach(function (card) {
+            card.addEventListener('click', function () {
+                var url = this.getAttribute('data-video-url');
+                if (!url) return;
+                var source = videoPlayer.querySelector('source');
+                source.src = url;
+                videoPlayer.load();
+                videoModal.classList.add('active');
+                videoPlayer.play();
+            });
+        });
+
+        // Close modal
+        var closeBtn = videoModal.querySelector('.video-modal-close');
+        var backdrop = videoModal.querySelector('.video-modal-backdrop');
+
+        function closeVideoModal() {
+            videoModal.classList.remove('active');
+            videoPlayer.pause();
+            videoPlayer.querySelector('source').src = '';
+            videoPlayer.load();
+        }
+
+        if (closeBtn) closeBtn.addEventListener('click', closeVideoModal);
+        if (backdrop) backdrop.addEventListener('click', closeVideoModal);
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                closeVideoModal();
+            }
+        });
+    }
+
+    // ========== Mobile Menu Toggle ==========
+    var mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    var mainNav = document.querySelector('.main-nav');
+
+    if (mobileMenuBtn && mainNav) {
+        mobileMenuBtn.addEventListener('click', function () {
+            mainNav.classList.toggle('open');
+            mobileMenuBtn.classList.toggle('active');
+        });
+    }
 
 })();

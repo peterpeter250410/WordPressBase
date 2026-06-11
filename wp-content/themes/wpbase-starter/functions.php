@@ -383,8 +383,18 @@ function eikou_fallback_menu() {
     ?>
     <ul>
         <li><a href="<?php echo esc_url(home_url('/')); ?>"<?php if (is_front_page()) echo ' class="active"'; ?>>ホーム</a></li>
-        <li><a href="<?php echo esc_url(eikou_page_url('services')); ?>"<?php if (is_page('services')) echo ' class="active"'; ?>>サービス</a></li>
-        <li><a href="<?php echo esc_url(eikou_page_url('works')); ?>"<?php if (is_page('works')) echo ' class="active"'; ?>>成功事例</a></li>
+        <li>
+            <a href="<?php echo esc_url(eikou_page_url('services')); ?>"<?php if (is_page('services') || (is_page() && strpos(get_post_field('post_name'), 'service-') === 0)) echo ' class="active"'; ?>>サービス</a>
+            <ul class="submenu">
+                <li><a href="<?php echo esc_url(eikou_page_url('service-exhibition')); ?>">展示会・イベント</a></li>
+                <li><a href="<?php echo esc_url(eikou_page_url('service-brand-event')); ?>">ブランドイベント</a></li>
+                <li><a href="<?php echo esc_url(eikou_page_url('service-digital')); ?>">デジタル・Web</a></li>
+                <li><a href="<?php echo esc_url(eikou_page_url('service-ai')); ?>">AIソリューション</a></li>
+                <li><a href="<?php echo esc_url(eikou_page_url('service-branding')); ?>">ブランディング・デザイン</a></li>
+                <li><a href="<?php echo esc_url(eikou_page_url('service-media')); ?>">メディア・映像</a></li>
+            </ul>
+        </li>
+        <li><a href="<?php echo esc_url(eikou_page_url('works')); ?>"<?php if (is_page('works') || is_singular('work')) echo ' class="active"'; ?>>成功事例</a></li>
         <li><a href="<?php echo esc_url(eikou_page_url('video')); ?>"<?php if (is_page('video')) echo ' class="active"'; ?>>動画</a></li>
         <li><a href="<?php echo esc_url(eikou_page_url('partners')); ?>"<?php if (is_page('partners')) echo ' class="active"'; ?>>パートナー</a></li>
         <li><a href="<?php echo esc_url(eikou_page_url('contact')); ?>"<?php if (is_page('contact')) echo ' class="active"'; ?>>お問い合わせ</a></li>
@@ -399,6 +409,8 @@ function eikou_footer_nav_fallback() {
         <li><a href="<?php echo esc_url(eikou_page_url('about')); ?>">荣光について</a></li>
         <li><a href="<?php echo esc_url(eikou_page_url('services')); ?>">サービス</a></li>
         <li><a href="<?php echo esc_url(eikou_page_url('works')); ?>">成功事例</a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('service-exhibition')); ?>">展示会・イベント</a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('service-brand-event')); ?>">ブランドイベント</a></li>
     </ul>
     <?php
 }
@@ -406,6 +418,8 @@ function eikou_footer_nav_fallback() {
 function eikou_footer_other_fallback() {
     ?>
     <ul>
+        <li><a href="<?php echo esc_url(eikou_page_url('service-digital')); ?>">デジタル・Web</a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('service-ai')); ?>">AIソリューション</a></li>
         <li><a href="<?php echo esc_url(eikou_page_url('video')); ?>">動画センター</a></li>
         <li><a href="<?php echo esc_url(eikou_page_url('partners')); ?>">パートナー</a></li>
         <li><a href="<?php echo esc_url(eikou_page_url('contact')); ?>">お問い合わせ</a></li>
