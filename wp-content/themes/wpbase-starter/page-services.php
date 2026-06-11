@@ -4,6 +4,63 @@
  * Slug: services
  */
 get_header();
+
+$service_categories = [
+    [
+        'slug'  => 'service-exhibition',
+        'number' => '01',
+        'en'    => 'Exhibition & Events',
+        'title' => '展示会・イベント',
+        'desc'  => '展示会ブースの企画・設計・施工から運営まで、ワンストップで対応いたします。',
+        'count' => 7,
+        'image' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80',
+    ],
+    [
+        'slug'  => 'service-brand-event',
+        'number' => '02',
+        'en'    => 'Brand Events',
+        'title' => 'ブランドイベント',
+        'desc'  => '企業発表会・ロードショー・ポップアップストアなど、ブランド体験を創出します。',
+        'count' => 5,
+        'image' => 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80',
+    ],
+    [
+        'slug'  => 'service-digital',
+        'number' => '03',
+        'en'    => 'Digital & Web',
+        'title' => 'デジタル・Web',
+        'desc'  => 'Webサイト制作・最適化・アプリ開発で、デジタルプレゼンスを強化します。',
+        'count' => 3,
+        'image' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+    ],
+    [
+        'slug'  => 'service-ai',
+        'number' => '04',
+        'en'    => 'AI Solutions',
+        'title' => 'AIソリューション',
+        'desc'  => 'AIチャットボット・自動化システム導入で、業務効率と顧客体験を革新します。',
+        'count' => 3,
+        'image' => 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
+    ],
+    [
+        'slug'  => 'service-branding',
+        'number' => '05',
+        'en'    => 'Branding & Design',
+        'title' => 'ブランディング・デザイン',
+        'desc'  => 'ブランド戦略の立案からパッケージ・販促ツールまで、統一されたデザインを提供します。',
+        'count' => 3,
+        'image' => 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
+    ],
+    [
+        'slug'  => 'service-media',
+        'number' => '06',
+        'en'    => 'Media & Production',
+        'title' => 'メディア・映像',
+        'desc'  => '動画制作・メディア運営・サイン看板まで、あらゆるメディアニーズに対応します。',
+        'count' => 3,
+        'image' => 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80',
+    ],
+];
 ?>
 
 <!-- ========== PAGE HERO ========== -->
@@ -13,110 +70,34 @@ get_header();
     <div class="container page-hero-content">
         <span class="section-tag">Services</span>
         <h1>サービス</h1>
-        <p>企画からデジタルまで、ワンストップソリューション</p>
+        <p>6つの事業領域で、お客様のビジネスをトータルサポート</p>
     </div>
 </section>
 
-<!-- ========== SERVICE DETAIL SECTIONS ========== -->
+<!-- ========== SERVICE CATEGORIES HUB ========== -->
 <section class="section">
     <div class="container">
-        <div class="business-showcase">
-            <div class="business-item">
-                <div class="business-image">
-                    <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&q=80" alt="Exhibition">
-                    <div class="business-image-overlay"></div>
+        <div class="section-header">
+            <span class="section-tag">Our Services</span>
+            <h2 class="section-title">サービス一覧</h2>
+            <p class="section-desc">展示空間の企画・施工からデジタル・AIソリューションまで、24のサービスでビジネスの成長を支援します</p>
+        </div>
+        <div class="service-hub-grid">
+            <?php foreach ($service_categories as $cat) : ?>
+            <a href="<?php echo esc_url(eikou_page_url($cat['slug'])); ?>" class="service-hub-card scroll-reveal">
+                <div class="service-hub-image">
+                    <img src="<?php echo esc_url($cat['image']); ?>" alt="<?php echo esc_attr($cat['title']); ?>">
+                    <div class="service-hub-overlay"></div>
                 </div>
-                <div class="business-info">
-                    <span class="business-number">01</span>
-                    <h3>展示会・展覧会</h3>
-                    <p>国際展示会のブースデザイン・設計・施工・運営までワンストップで対応。東京ビッグサイト、幕張メッセなど主要会場での豊富な実績を持ちます。</p>
-                    <h4 class="service-sub-title">サービス内容</h4>
-                    <ul class="service-detail-list">
-                        <li>ブースデザイン・設計</li>
-                        <li>施工・設営・撤去</li>
-                        <li>照明・映像・音響演出</li>
-                        <li>運営スタッフ手配</li>
-                        <li>来場者管理システム</li>
-                    </ul>
-                    <ul class="business-tags">
-                        <li>ブースデザイン</li>
-                        <li>施工管理</li>
-                        <li>運営サポート</li>
-                    </ul>
+                <div class="service-hub-info">
+                    <span class="business-number"><?php echo esc_html($cat['number']); ?></span>
+                    <span class="section-tag"><?php echo esc_html($cat['en']); ?></span>
+                    <h3><?php echo esc_html($cat['title']); ?></h3>
+                    <p><?php echo esc_html($cat['desc']); ?></p>
+                    <span class="service-count"><?php echo esc_html($cat['count']); ?> サービス →</span>
                 </div>
-            </div>
-            <div class="business-item business-item-reverse">
-                <div class="business-image">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80" alt="Brand Event">
-                    <div class="business-image-overlay"></div>
-                </div>
-                <div class="business-info">
-                    <span class="business-number">02</span>
-                    <h3>ブランドイベント・発表会</h3>
-                    <p>製品発表会、プレスカンファレンス、プロモーションイベント、ロードショーの企画から実施まで。ブランドの世界観を体験として具現化します。</p>
-                    <h4 class="service-sub-title">サービス内容</h4>
-                    <ul class="service-detail-list">
-                        <li>イベント企画・演出</li>
-                        <li>会場選定・設営</li>
-                        <li>映像・グラフィック制作</li>
-                        <li>MC・モデル手配</li>
-                        <li>メディア対応サポート</li>
-                    </ul>
-                    <ul class="business-tags">
-                        <li>企画・演出</li>
-                        <li>会場設営</li>
-                        <li>映像制作</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="business-item">
-                <div class="business-image">
-                    <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&q=80" alt="Commercial Space">
-                    <div class="business-image-overlay"></div>
-                </div>
-                <div class="business-info">
-                    <span class="business-number">03</span>
-                    <h3>商業空間・ショールーム</h3>
-                    <p>企業ショールーム、ポップアップストア、フラッグシップショップの空間デザイン・施工。ブランド体験を最大化する空間を創出します。</p>
-                    <h4 class="service-sub-title">サービス内容</h4>
-                    <ul class="service-detail-list">
-                        <li>空間コンセプト設計</li>
-                        <li>内装デザイン・施工</li>
-                        <li>LED・インタラクティブ演出</li>
-                        <li>什器・ディスプレイ制作</li>
-                        <li>メンテナンス・管理</li>
-                    </ul>
-                    <ul class="business-tags">
-                        <li>空間デザイン</li>
-                        <li>内装施工</li>
-                        <li>LED演出</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="business-item business-item-reverse">
-                <div class="business-image">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Digital AI">
-                    <div class="business-image-overlay"></div>
-                </div>
-                <div class="business-info">
-                    <span class="business-number">04</span>
-                    <h3>デジタル・AI ソリューション</h3>
-                    <p>Webサイト構築、業務システム開発、AIソリューション導入支援。テクノロジーの力でビジネスの可能性を拡張します。</p>
-                    <h4 class="service-sub-title">サービス内容</h4>
-                    <ul class="service-detail-list">
-                        <li>Webサイト企画・制作</li>
-                        <li>ECサイト構築</li>
-                        <li>業務システム開発</li>
-                        <li>AI導入コンサルティング</li>
-                        <li>データ分析・活用支援</li>
-                    </ul>
-                    <ul class="business-tags">
-                        <li>Web開発</li>
-                        <li>システム構築</li>
-                        <li>AI導入</li>
-                    </ul>
-                </div>
-            </div>
+            </a>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
@@ -130,32 +111,32 @@ get_header();
             <p class="section-desc">お問い合わせからプロジェクト完了まで、6つのステップで進行します</p>
         </div>
         <div class="workflow-grid">
-            <div class="workflow-step">
+            <div class="workflow-step scroll-reveal">
                 <div class="workflow-number">01</div>
                 <h3>ヒアリング</h3>
                 <p>ご要望・予算・スケジュールを丁寧にヒアリングし、プロジェクトの方向性を確認します。</p>
             </div>
-            <div class="workflow-step">
+            <div class="workflow-step scroll-reveal">
                 <div class="workflow-number">02</div>
                 <h3>企画・提案</h3>
                 <p>コンセプト設計、デザイン案、見積もりをご提案。複数プランからお選びいただけます。</p>
             </div>
-            <div class="workflow-step">
+            <div class="workflow-step scroll-reveal">
                 <div class="workflow-number">03</div>
                 <h3>デザイン</h3>
                 <p>3Dパース、CGシミュレーション等で完成イメージを可視化。細部まで確認いただけます。</p>
             </div>
-            <div class="workflow-step">
+            <div class="workflow-step scroll-reveal">
                 <div class="workflow-number">04</div>
                 <h3>制作・施工</h3>
                 <p>自社工場での制作と現場施工を一貫管理。品質とスケジュールを厳密にコントロールします。</p>
             </div>
-            <div class="workflow-step">
+            <div class="workflow-step scroll-reveal">
                 <div class="workflow-number">05</div>
                 <h3>運営・実施</h3>
                 <p>イベント当日の運営サポート、トラブル対応、来場者対応まで万全の体制で臨みます。</p>
             </div>
-            <div class="workflow-step">
+            <div class="workflow-step scroll-reveal">
                 <div class="workflow-number">06</div>
                 <h3>撤去・報告</h3>
                 <p>撤去作業、効果測定レポートの作成。次回プロジェクトへの改善提案も行います。</p>

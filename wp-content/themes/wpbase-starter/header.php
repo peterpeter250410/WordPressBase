@@ -13,9 +13,11 @@
 <header class="site-header">
     <div class="container header-inner">
         <a href="<?php echo esc_url(home_url('/')); ?>" class="logo">
-            <span class="logo-en">EIKOU</span>
-            <span class="logo-divider"></span>
-            <span class="logo-jp">荣光</span>
+            <?php if (has_custom_logo()) : ?>
+                <?php the_custom_logo(); ?>
+            <?php else : ?>
+                <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo-eikou.png'); ?>" alt="EIKOU" class="logo-image">
+            <?php endif; ?>
         </a>
         <nav class="main-nav">
             <?php

@@ -19,9 +19,7 @@
         <div class="footer-top">
             <div class="footer-brand">
                 <div class="footer-logo">
-                    <span class="logo-en">EIKOU</span>
-                    <span class="logo-divider"></span>
-                    <span class="logo-jp">荣光</span>
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo-eikou.png'); ?>" alt="EIKOU" class="logo-image">
                 </div>
                 <p class="footer-tagline">光で、空間を未来へ導く</p>
                 <p class="footer-company"><?php echo esc_html(eikou_get('eikou_company_name', '荣光株式会社｜EIKOU Co., Ltd.')); ?></p>
