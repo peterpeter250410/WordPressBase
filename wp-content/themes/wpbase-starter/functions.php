@@ -584,7 +584,7 @@ function eikou_get_service_items() {
             'number' => '01', 'category' => 'service-brand-event', 'category_name' => 'ブランドイベント',
             'title' => '企業発表会・ブランドイベント・ロードショーの企画実行',
             'title_en' => 'Launch Events & Roadshows',
-            'hero_image' => 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&q=80',
+            'hero_image' => $img_base . 'gokin-presentation.jpg',
             'description' => '新製品発表会、プレスカンファレンス、プロモーションイベント、全国巡回ロードショーなど、企業のブランドメッセージを効果的に伝えるイベントを企画・実行します。コンセプト設計からシナリオ作成、会場選定、演出プラン、当日運営まで一括対応。メディア露出の最大化と、参加者に深い印象を残すブランド体験を創出します。',
             'features' => ['イベントコンセプト企画・シナリオ設計', 'プレスカンファレンス・メディア向けイベント', '全国巡回ロードショーの企画運営', 'ステージ演出・映像・照明・音響プロデュース', 'MC・モデル・通訳スタッフの手配', 'メディア対応・プレスリリース配信サポート'],
             'points' => [
@@ -598,7 +598,7 @@ function eikou_get_service_items() {
             'number' => '02', 'category' => 'service-brand-event', 'category_name' => 'ブランドイベント',
             'title' => 'ポップアップストア・商業空間・ブランド展示空間の施工',
             'title_en' => 'Pop-up Stores & Brand Spaces',
-            'hero_image' => 'https://images.unsplash.com/photo-1531058020387-3be344556be6?w=1200&q=80',
+            'hero_image' => $img_base . 'hithium-performance.jpg',
             'description' => '期間限定のポップアップストアや常設のブランド展示空間を、コンセプト設計から施工・撤去まで一貫してサポートします。ブランドの世界観を空間全体で表現し、来場者に記憶に残る体験を創出。SNS映えする空間演出からインタラクティブな体験設計まで、現代の消費者に響くブランド空間を実現します。',
             'features' => ['ポップアップストアの空間デザイン・施工', 'ショールーム・展示スペースの内装設計', '什器・ディスプレイ・照明の一括手配', 'SNS映えする空間演出・フォトスポット設計', 'デジタルサイネージ・インタラクティブ展示', '期間限定スペースの短期施工・撤去'],
             'points' => [
@@ -612,7 +612,7 @@ function eikou_get_service_items() {
             'number' => '03', 'category' => 'service-brand-event', 'category_name' => 'ブランドイベント',
             'title' => '企業ブランドプロモーション・マーケティング活動の実施',
             'title_en' => 'Brand Promotion & Marketing',
-            'hero_image' => 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80',
+            'hero_image' => $img_base . 'gokin-audience.jpg',
             'description' => 'ブランド認知の向上や顧客エンゲージメントの強化を目的としたプロモーション施策を企画・実施します。オフラインイベントとデジタル施策を組み合わせた統合マーケティングアプローチで、ターゲット層への効果的なアプローチを実現します。',
             'features' => ['ブランドプロモーション戦略の立案', 'サンプリング・体験型イベントの企画運営', 'インフルエンサー・KOLとの連携企画', 'オンライン×オフライン統合キャンペーン', 'キャンペーンの効果測定・ROI分析', 'CRMデータ連携によるターゲティング'],
             'points' => [
@@ -755,7 +755,7 @@ function eikou_get_service_items() {
             'number' => '02', 'category' => 'service-branding', 'category_name' => 'ブランディング・デザイン',
             'title' => 'ブランド・製品プロモーション',
             'title_en' => 'Brand & Product Promotion',
-            'hero_image' => 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80',
+            'hero_image' => $img_base . 'hithium-ceremony.jpg',
             'description' => 'ブランドや製品の認知拡大・販売促進のための統合プロモーション戦略を立案・実行します。POP制作、ノベルティ企画、キャンペーン設計など、オフライン施策とデジタル施策を組み合わせ、ターゲット層への効果的なアプローチを実現します。',
             'features' => ['ブランドプロモーション戦略の立案', 'キャンペーン企画・クリエイティブ制作', 'POP・店頭販促ツールのデザイン制作', 'ノベルティグッズの企画・制作', '新商品ローンチキャンペーンの設計', 'プロモーション効果の測定・改善提案'],
             'points' => [
@@ -784,7 +784,7 @@ function eikou_get_service_items() {
             'number' => '01', 'category' => 'service-media', 'category_name' => 'メディア・映像',
             'title' => 'メディア運営・プロモーション',
             'title_en' => 'Media Operations & Promotion',
-            'hero_image' => 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&q=80',
+            'hero_image' => $img_base . 'hithium-mc.jpg',
             'description' => '企業のSNSアカウント、Webメディア、メールマガジンなどの運営を代行します。コンテンツ企画・制作・投稿スケジュール管理・効果分析まで、一貫したメディア運営で継続的なブランド露出と顧客エンゲージメントの向上を実現します。',
             'features' => ['SNSアカウント運用代行（Instagram・X・WeChat・RED等）', 'コンテンツ企画・ライティング・デザイン', '投稿スケジュール管理・自動投稿設定', 'エンゲージメント分析・月次レポート作成', 'インフルエンサーマーケティング施策', 'クロスボーダーSNS運用（日本・中国・東南アジア）'],
             'points' => [
@@ -798,7 +798,7 @@ function eikou_get_service_items() {
             'number' => '02', 'category' => 'service-media', 'category_name' => 'メディア・映像',
             'title' => '動画・アニメーション制作',
             'title_en' => 'Video & Animation Production',
-            'hero_image' => 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&q=80',
+            'hero_image' => $img_base . 'hithium-stage.jpg',
             'description' => '企業PR動画、製品紹介映像、イベント記録、SNS向けショート動画、モーショングラフィックス、3Dアニメーションなど、多様な映像コンテンツを企画・制作します。企画構成・撮影・編集・ナレーション収録・音楽選曲まで一貫対応。',
             'features' => ['企業PR・ブランド動画の企画制作', '製品紹介・使い方説明動画', 'イベント記録・ダイジェスト映像', 'モーショングラフィックス・3Dアニメーション', 'SNS向けショート動画・リール制作', 'ドローン空撮・タイムラプス撮影'],
             'points' => [
