@@ -5,6 +5,7 @@
  */
 get_header();
 
+$img_base = content_url('/uploads/services/');
 $service_categories = [
     [
         'slug'  => 'service-exhibition',
@@ -13,7 +14,7 @@ $service_categories = [
         'title' => '展示会・イベント',
         'desc'  => '展示会ブースの企画・設計・施工から運営まで、ワンストップで対応いたします。',
         'count' => 7,
-        'image' => 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80',
+        'image' => $img_base . 'catl-booth.jpg',
     ],
     [
         'slug'  => 'service-brand-event',
@@ -22,7 +23,7 @@ $service_categories = [
         'title' => 'ブランドイベント',
         'desc'  => '企業発表会・ロードショー・ポップアップストアなど、ブランド体験を創出します。',
         'count' => 5,
-        'image' => 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80',
+        'image' => $img_base . 'gokin-presentation.jpg',
     ],
     [
         'slug'  => 'service-digital',
@@ -58,14 +59,14 @@ $service_categories = [
         'title' => 'メディア・映像',
         'desc'  => '動画制作・メディア運営・サイン看板まで、あらゆるメディアニーズに対応します。',
         'count' => 3,
-        'image' => 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80',
+        'image' => $img_base . 'hithium-mc.jpg',
     ],
 ];
 ?>
 
 <!-- ========== PAGE HERO ========== -->
 <section class="page-hero">
-    <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=1920&q=80')"></div>
+    <div class="page-hero-bg" style="background-image: url('<?php echo esc_url(content_url('/uploads/services/catl-venue.jpg')); ?>')"></div>
     <div class="page-hero-overlay"></div>
     <div class="container page-hero-content">
         <span class="section-tag">Services</span>

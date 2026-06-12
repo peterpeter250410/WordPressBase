@@ -75,6 +75,7 @@ foreach ($files as $file) {
         unlink($file);
     }
 
+    clearstatcache(true, $output_file);
     $new_size = filesize($output_file);
 
     imagedestroy($src);
