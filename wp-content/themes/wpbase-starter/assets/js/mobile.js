@@ -41,7 +41,7 @@
         overlayLinks.forEach(function (link) {
             // Skip parent links that have submenus
             var parentLi = link.parentElement;
-            if (parentLi && parentLi.querySelector('.sub-menu')) {
+            if (parentLi && parentLi.querySelector('.submenu')) {
                 return;
             }
             link.addEventListener('click', function () {
@@ -56,7 +56,7 @@
     if (overlay) {
         var menuItems = overlay.querySelectorAll('.mobile-menu-nav > ul > li');
         menuItems.forEach(function (li) {
-            var submenu = li.querySelector('.sub-menu');
+            var submenu = li.querySelector('.submenu');
             if (submenu) {
                 var link = li.querySelector(':scope > a');
                 submenu.style.maxHeight = '0';

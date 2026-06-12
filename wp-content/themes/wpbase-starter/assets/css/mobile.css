@@ -35,6 +35,7 @@
 
 .is-mobile .mobile-menu-btn {
     display: block;
+    position: relative;
     z-index: 10001;
 }
 
@@ -157,17 +158,17 @@
 }
 
 /* Submenu accordion */
-.mobile-menu-nav .sub-menu {
+.mobile-menu-nav .submenu {
     list-style: none;
     padding: 0 0 12px 0;
     margin: 0;
 }
 
-.mobile-menu-nav .sub-menu li {
+.mobile-menu-nav .submenu li {
     border-bottom: none;
 }
 
-.mobile-menu-nav .sub-menu li a {
+.mobile-menu-nav .submenu li a {
     display: block;
     padding: 10px 0;
     font-size: 14px;
@@ -175,7 +176,7 @@
     text-decoration: none;
 }
 
-.mobile-menu-nav .sub-menu li a:hover {
+.mobile-menu-nav .submenu li a:hover {
     color: var(--color-gold);
 }
 
