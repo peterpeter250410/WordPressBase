@@ -4,6 +4,9 @@
  * Slug: service-digital
  */
 get_header();
+
+$all_items = eikou_get_service_items();
+$items = array_filter($all_items, function($v) { return $v['category'] === 'service-digital'; });
 ?>
 
 <!-- ========== PAGE HERO ========== -->
@@ -13,7 +16,7 @@ get_header();
     <div class="container page-hero-content">
         <span class="section-tag">Digital & Web</span>
         <h1>デジタル・Web</h1>
-        <p>Webサイト制作・最適化・アプリ開発で、デジタルプレゼンスを強化</p>
+        <p>Webサイト制作からアプリ開発まで、デジタルプレゼンスを強化します</p>
     </div>
 </section>
 
@@ -21,12 +24,12 @@ get_header();
 <section class="section">
     <div class="container">
         <div class="service-category-intro scroll-reveal">
-            <p>企業のデジタルプレゼンスを強化するための包括的なWebソリューションを提供します。コーポレートサイトやランディングページの制作から、SEO・デジタルマーケティングによる集客施策、モバイルアプリの開発まで。最新のテクノロジーとデザインで、お客様のビジネスをオンラインでも成功へ導きます。</p>
+            <p>企業のデジタル戦略を総合的にサポートします。コーポレートサイト・ECサイトの企画制作、SEO・広告運用によるWebマーケティング、iOS/Androidアプリの開発まで、ビジネス成長を加速するデジタルソリューションを提供。最新技術とデータドリブンのアプローチで、オンラインでの成果を最大化します。</p>
         </div>
     </div>
 </section>
 
-<!-- ========== 3 SUB-SERVICES ========== -->
+<!-- ========== SUB-SERVICES ========== -->
 <section class="section" style="background: var(--color-bg-alt);">
     <div class="container">
         <div class="section-header">
@@ -34,61 +37,24 @@ get_header();
             <h2 class="section-title">サービス内容</h2>
         </div>
         <div class="service-detail-grid">
-
-            <div class="service-detail-card scroll-reveal">
-                <div class="service-detail-number">01</div>
-                <h3>Webサイトのデザイン・開発</h3>
-                <p>企業の個性とブランド価値を反映したWebサイトを、企画・デザイン・開発・公開まで一貫して対応します。レスポンシブデザイン、CMS構築、ECサイト開発など、あらゆるWeb制作ニーズに対応可能です。</p>
+            <?php foreach ($items as $slug => $item) : ?>
+            <a href="<?php echo esc_url(eikou_page_url($slug)); ?>" class="service-detail-card service-detail-card-link scroll-reveal">
+                <div class="service-detail-number"><?php echo esc_html($item['number']); ?></div>
+                <h3><?php echo esc_html($item['title']); ?></h3>
+                <p><?php echo mb_substr($item['description'], 0, 120) . '...'; ?></p>
                 <ul class="service-detail-list">
-                    <li>コーポレートサイト・ブランドサイトの企画制作</li>
-                    <li>WordPress・ヘッドレスCMSによるサイト構築</li>
-                    <li>ECサイト・予約システムの開発</li>
-                    <li>レスポンシブ・モバイルファーストデザイン</li>
-                    <li>多言語サイト対応（日本語・中国語・英語）</li>
+                    <?php foreach (array_slice($item['features'], 0, 4) as $f) : ?>
+                        <li><?php echo esc_html($f); ?></li>
+                    <?php endforeach; ?>
                 </ul>
                 <ul class="business-tags">
-                    <li>Web制作</li>
-                    <li>CMS構築</li>
-                    <li>EC開発</li>
+                    <?php foreach (array_slice($item['tags'], 0, 3) as $tag) : ?>
+                        <li><?php echo esc_html($tag); ?></li>
+                    <?php endforeach; ?>
                 </ul>
-            </div>
-
-            <div class="service-detail-card scroll-reveal">
-                <div class="service-detail-number">02</div>
-                <h3>Webサイト最適化・デジタルマーケティング</h3>
-                <p>既存Webサイトのパフォーマンス向上と、検索エンジン・SNS・広告を活用した集客施策を提供します。データに基づいた戦略立案で、Webサイトからのコンバージョンを最大化します。</p>
-                <ul class="service-detail-list">
-                    <li>SEO対策（内部施策・コンテンツ最適化）</li>
-                    <li>Google広告・SNS広告の運用代行</li>
-                    <li>アクセス解析・コンバージョン改善</li>
-                    <li>ページ表示速度・Core Web Vitals最適化</li>
-                    <li>コンテンツマーケティング戦略の立案・実行</li>
-                </ul>
-                <ul class="business-tags">
-                    <li>SEO対策</li>
-                    <li>広告運用</li>
-                    <li>アクセス解析</li>
-                </ul>
-            </div>
-
-            <div class="service-detail-card scroll-reveal">
-                <div class="service-detail-number">03</div>
-                <h3>アプリケーション開発</h3>
-                <p>iOS・Androidネイティブアプリからクロスプラットフォームアプリ、業務用Webアプリケーションまで、多様なアプリ開発に対応します。ユーザビリティを重視したUI/UX設計と、堅牢なバックエンド構築を両立します。</p>
-                <ul class="service-detail-list">
-                    <li>iOS/Androidネイティブアプリ開発</li>
-                    <li>React Native・Flutterによるクロスプラットフォーム開発</li>
-                    <li>業務効率化Webアプリケーション開発</li>
-                    <li>API設計・バックエンドシステム構築</li>
-                    <li>アプリ公開・運用保守サポート</li>
-                </ul>
-                <ul class="business-tags">
-                    <li>アプリ開発</li>
-                    <li>UI/UX</li>
-                    <li>クロスプラットフォーム</li>
-                </ul>
-            </div>
-
+                <span class="service-detail-more">詳細を見る →</span>
+            </a>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>

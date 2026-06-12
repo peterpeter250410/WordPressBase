@@ -4,6 +4,9 @@
  * Slug: service-branding
  */
 get_header();
+
+$all_items = eikou_get_service_items();
+$items = array_filter($all_items, function($v) { return $v['category'] === 'service-branding'; });
 ?>
 
 <!-- ========== PAGE HERO ========== -->
@@ -13,7 +16,7 @@ get_header();
     <div class="container page-hero-content">
         <span class="section-tag">Branding & Design</span>
         <h1>ブランディング・デザイン</h1>
-        <p>ブランド戦略からデザイン制作まで、統一されたブランド体験を構築</p>
+        <p>ブランド価値を高めるビジュアルデザインとクリエイティブを提供します</p>
     </div>
 </section>
 
@@ -21,12 +24,12 @@ get_header();
 <section class="section">
     <div class="container">
         <div class="service-category-intro scroll-reveal">
-            <p>企業のブランド価値を最大化するためのデザインサービスを提供します。ロゴ・VI設計、パッケージデザイン、販促ツール制作から、ブランド戦略の立案・実行まで。一貫したブランドアイデンティティで、お客様の製品・サービスの魅力を効果的に伝えます。</p>
+            <p>企業のブランドアイデンティティを構築し、あらゆる接点で一貫したブランド体験を創出します。パッケージデザイン、VI（ビジュアルアイデンティティ）設計、販促プロモーション、ポスター・カタログなどの印刷物デザインまで、ブランド価値を最大化するクリエイティブソリューションを提供します。</p>
         </div>
     </div>
 </section>
 
-<!-- ========== 3 SUB-SERVICES ========== -->
+<!-- ========== SUB-SERVICES ========== -->
 <section class="section" style="background: var(--color-bg-alt);">
     <div class="container">
         <div class="section-header">
@@ -34,61 +37,24 @@ get_header();
             <h2 class="section-title">サービス内容</h2>
         </div>
         <div class="service-detail-grid">
-
-            <div class="service-detail-card scroll-reveal">
-                <div class="service-detail-number">01</div>
-                <h3>ブランドパッケージ・デザイン</h3>
-                <p>製品パッケージ、ギフトボックス、ショッピングバッグなど、ブランドの世界観を反映したパッケージデザインを制作します。素材選定から印刷仕様の監修まで、高品質なパッケージの実現をサポートします。</p>
+            <?php foreach ($items as $slug => $item) : ?>
+            <a href="<?php echo esc_url(eikou_page_url($slug)); ?>" class="service-detail-card service-detail-card-link scroll-reveal">
+                <div class="service-detail-number"><?php echo esc_html($item['number']); ?></div>
+                <h3><?php echo esc_html($item['title']); ?></h3>
+                <p><?php echo mb_substr($item['description'], 0, 120) . '...'; ?></p>
                 <ul class="service-detail-list">
-                    <li>商品パッケージのコンセプト設計・デザイン</li>
-                    <li>ギフトパッケージ・限定パッケージの企画</li>
-                    <li>素材・印刷仕様の選定アドバイス</li>
-                    <li>パッケージプロトタイプの制作・検証</li>
-                    <li>サステナブルパッケージの提案</li>
+                    <?php foreach (array_slice($item['features'], 0, 4) as $f) : ?>
+                        <li><?php echo esc_html($f); ?></li>
+                    <?php endforeach; ?>
                 </ul>
                 <ul class="business-tags">
-                    <li>パッケージ</li>
-                    <li>デザイン</li>
-                    <li>印刷</li>
+                    <?php foreach (array_slice($item['tags'], 0, 3) as $tag) : ?>
+                        <li><?php echo esc_html($tag); ?></li>
+                    <?php endforeach; ?>
                 </ul>
-            </div>
-
-            <div class="service-detail-card scroll-reveal">
-                <div class="service-detail-number">02</div>
-                <h3>ブランド・製品プロモーション</h3>
-                <p>ブランドや製品の認知拡大・販売促進のための統合プロモーション戦略を立案・実行します。オフライン施策とデジタル施策を組み合わせ、ターゲット層への効果的なアプローチを実現します。</p>
-                <ul class="service-detail-list">
-                    <li>ブランドプロモーション戦略の立案</li>
-                    <li>キャンペーン企画・クリエイティブ制作</li>
-                    <li>POP・店頭販促ツールのデザイン・制作</li>
-                    <li>ノベルティグッズの企画・制作</li>
-                    <li>プロモーション効果の測定・改善提案</li>
-                </ul>
-                <ul class="business-tags">
-                    <li>プロモーション</li>
-                    <li>販促</li>
-                    <li>キャンペーン</li>
-                </ul>
-            </div>
-
-            <div class="service-detail-card scroll-reveal">
-                <div class="service-detail-number">03</div>
-                <h3>ポスター・パンフレットデザイン</h3>
-                <p>展示会・イベント・店頭で使用するポスター、パンフレット、カタログなどの販促印刷物をデザイン・制作します。ブランドガイドラインに沿った統一感のあるデザインで、メッセージを効果的に伝えます。</p>
-                <ul class="service-detail-list">
-                    <li>ポスター・バナーのデザイン制作</li>
-                    <li>会社案内・製品カタログの企画編集</li>
-                    <li>パンフレット・リーフレットのデザイン</li>
-                    <li>名刺・封筒・レターヘッドの統一デザイン</li>
-                    <li>印刷入稿データの作成・品質管理</li>
-                </ul>
-                <ul class="business-tags">
-                    <li>印刷物</li>
-                    <li>カタログ</li>
-                    <li>グラフィック</li>
-                </ul>
-            </div>
-
+                <span class="service-detail-more">詳細を見る →</span>
+            </a>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>

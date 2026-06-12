@@ -1778,6 +1778,28 @@ img { max-width: 100%; display: block; }
 .service-detail-card:hover {
     border-color: var(--color-gold);
 }
+a.service-detail-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+a.service-detail-card-link:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.service-detail-more {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--color-gold);
+    font-family: var(--font-en);
+    letter-spacing: 0.03em;
+    transition: transform 0.2s;
+}
+a.service-detail-card-link:hover .service-detail-more {
+    transform: translateX(4px);
+}
 .service-detail-card .service-detail-number {
     font-family: var(--font-en);
     font-size: 48px;
@@ -1993,4 +2015,145 @@ img { max-width: 100%; display: block; }
         padding: 0;
         min-width: auto;
     }
+}
+
+/* ========== SERVICE ITEM DETAIL PAGE ========== */
+.page-hero-breadcrumb {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    margin-top: 12px;
+}
+.page-hero-breadcrumb a {
+    color: var(--color-gold);
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+.page-hero-breadcrumb a:hover {
+    opacity: 0.7;
+}
+.page-hero-breadcrumb span {
+    margin: 0 2px;
+}
+.service-item-overview {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+.service-item-number-bg {
+    font-family: var(--font-en);
+    font-size: 160px;
+    font-weight: 800;
+    color: rgba(201, 168, 76, 0.06);
+    line-height: 1;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 0;
+}
+.service-item-desc {
+    position: relative;
+    z-index: 1;
+    font-size: 15px;
+    color: var(--color-text-muted);
+    line-height: 2.2;
+    margin-bottom: 24px;
+}
+.service-item-overview .business-tags {
+    position: relative;
+    z-index: 1;
+    justify-content: center;
+}
+.service-features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.service-feature-item {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 28px 24px;
+    transition: all 0.4s;
+}
+.service-feature-item:hover {
+    border-color: var(--color-gold);
+}
+.service-feature-num {
+    font-family: var(--font-en);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-gold);
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: 12px;
+}
+.service-feature-item p {
+    font-size: 14px;
+    color: var(--color-text);
+    line-height: 1.8;
+}
+.service-points-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+.service-point-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 36px 28px;
+    text-align: center;
+    transition: all 0.4s;
+}
+.service-point-card:hover {
+    border-color: var(--color-gold);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.service-point-num {
+    font-family: var(--font-en);
+    font-size: 36px;
+    font-weight: 700;
+    color: rgba(201, 168, 76, 0.15);
+    line-height: 1;
+    margin-bottom: 16px;
+}
+.service-point-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--color-gold);
+}
+.service-point-card p {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.9;
+}
+.btn-outline {
+    display: inline-block;
+    padding: 14px 36px;
+    border: 1px solid var(--color-gold);
+    color: var(--color-gold);
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+.btn-outline:hover {
+    background: var(--color-gold);
+    color: var(--color-bg);
+}
+
+/* Service item detail responsive */
+@media (max-width: 1024px) {
+    .service-features-grid { grid-template-columns: repeat(2, 1fr); }
+    .service-points-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .service-features-grid { grid-template-columns: 1fr; }
+    .service-points-grid { grid-template-columns: 1fr; }
+    .service-item-number-bg { font-size: 100px; }
 }

@@ -44,7 +44,34 @@ foreach ($service_pages as $sp) {
     }
 }
 
-// ========== 2. 创建10个视频 CPT 条目 ==========
+// ========== 2. 创建24个服务详情页面 ==========
+$service_items = eikou_get_service_items();
+foreach ($service_items as $slug => $item) {
+    $existing = get_page_by_path($slug);
+    if ($existing) {
+        $results[] = "✓ 服务页面「{$item['title']}」已存在 (ID: {$existing->ID})";
+        continue;
+    }
+
+    $page_id = wp_insert_post([
+        'post_title'   => $item['title'],
+        'post_name'    => $slug,
+        'post_content' => '',
+        'post_status'  => 'publish',
+        'post_type'    => 'page',
+        'page_template' => 'page-service-item.php',
+    ]);
+
+    if (is_wp_error($page_id)) {
+        $results[] = "✗ 创建服务页面「{$item['title']}」失败: " . $page_id->get_error_message();
+    } else {
+        // 设置页面模板
+        update_post_meta($page_id, '_wp_page_template', 'page-service-item.php');
+        $results[] = "✓ 创建服务页面「{$item['title']}」成功 (ID: {$page_id}, slug: {$slug})";
+    }
+}
+
+// ========== 3. 创建10个视频 CPT 条目 ==========
 $video_base_url = content_url('/uploads/videos/');
 
 $video_entries = [
@@ -129,26 +156,37 @@ $results[] = "✓ 固定链接已刷新";
 <body>
     <h1>EIKOU サービス & 動画 セットアップ</h1>
     <div class="stats">
-        <strong>処理項目:</strong> <?php echo count($service_pages); ?> 个服务页面 + <?php echo count($video_entries); ?> 个动画条目
+        <strong>処理項目:</strong> <?php echo count($service_pages); ?> 个分类页面 + <?php echo count($service_items); ?> 个服务详情页 + <?php echo count($video_entries); ?> 个动画条目
     </div>
 
-    <h2>📄 服务页面</h2>
+    <h2>📁 服务分类页面 (6)</h2>
     <?php
-    $page_results = array_slice($results, 0, count($service_pages));
-    foreach ($page_results as $r) : ?>
+    $offset = 0;
+    $cat_results = array_slice($results, $offset, count($service_pages));
+    $offset += count($service_pages);
+    foreach ($cat_results as $r) : ?>
         <div class="result"><?php echo esc_html($r); ?></div>
     <?php endforeach; ?>
 
-    <h2>🎬 动画条目</h2>
+    <h2>📄 服务详情页面 (24)</h2>
     <?php
-    $video_results = array_slice($results, count($service_pages), count($video_entries));
+    $item_results = array_slice($results, $offset, count($service_items));
+    $offset += count($service_items);
+    foreach ($item_results as $r) : ?>
+        <div class="result"><?php echo esc_html($r); ?></div>
+    <?php endforeach; ?>
+
+    <h2>🎬 动画条目 (10)</h2>
+    <?php
+    $video_results = array_slice($results, $offset, count($video_entries));
+    $offset += count($video_entries);
     foreach ($video_results as $r) : ?>
         <div class="result"><?php echo esc_html($r); ?></div>
     <?php endforeach; ?>
 
     <h2>⚙ 系统设置</h2>
     <?php
-    $system_results = array_slice($results, count($service_pages) + count($video_entries));
+    $system_results = array_slice($results, $offset);
     foreach ($system_results as $r) : ?>
         <div class="result"><?php echo esc_html($r); ?></div>
     <?php endforeach; ?>
