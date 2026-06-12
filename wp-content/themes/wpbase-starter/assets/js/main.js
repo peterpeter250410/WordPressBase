@@ -191,7 +191,7 @@
     var mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     var mainNav = document.querySelector('.main-nav');
 
-    if (mobileMenuBtn && mainNav) {
+    if (mobileMenuBtn && mainNav && !document.body.classList.contains('is-mobile')) {
         mobileMenuBtn.addEventListener('click', function () {
             mainNav.classList.toggle('open');
             mobileMenuBtn.classList.toggle('active');

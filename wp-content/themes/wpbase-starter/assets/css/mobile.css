@@ -1,0 +1,795 @@
+/* ============================================
+   EIKOU Mobile H5 Stylesheet
+   Only loaded on mobile devices via PHP detection
+   All rules scoped under .is-mobile
+   ============================================ */
+
+/* ---------- Safe Area & Base ---------- */
+.is-mobile {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+    -webkit-text-size-adjust: 100%;
+    --header-height: 56px;
+}
+
+.is-mobile .container {
+    padding: 0 16px;
+}
+
+/* ---------- Compact Header ---------- */
+.is-mobile .site-header {
+    height: 56px;
+}
+
+.is-mobile .header-inner {
+    height: 56px;
+}
+
+.is-mobile .logo-image {
+    height: 28px;
+}
+
+.is-mobile .main-nav,
+.is-mobile .header-right {
+    display: none;
+}
+
+.is-mobile .mobile-menu-btn {
+    display: block;
+    z-index: 10001;
+}
+
+/* Hamburger → X animation */
+.is-mobile .mobile-menu-btn.active span:nth-child(1) {
+    top: 50%;
+    transform: rotate(45deg);
+}
+
+.is-mobile .mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.is-mobile .mobile-menu-btn.active span:nth-child(3) {
+    top: 50%;
+    transform: rotate(-45deg);
+}
+
+/* ---------- Bottom Tab Bar ---------- */
+.mobile-tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(60px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: rgba(10, 10, 15, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    z-index: 9999;
+    transition: transform 0.3s ease;
+}
+
+.tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    flex: 1;
+    height: 60px;
+    color: var(--color-text-dim);
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.tab-item svg {
+    width: 22px;
+    height: 22px;
+    transition: stroke 0.2s;
+}
+
+.tab-item.active {
+    color: var(--color-gold);
+}
+
+.tab-item.active svg {
+    stroke: var(--color-gold);
+}
+
+/* ---------- Full-screen Menu Overlay ---------- */
+.mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 15, 0.98);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mobile-menu-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu-overlay-inner {
+    width: 100%;
+    max-width: 300px;
+    padding: 80px 20px 100px;
+    text-align: center;
+}
+
+.mobile-menu-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-menu-nav > ul > li {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.mobile-menu-nav > ul > li > a {
+    display: block;
+    padding: 16px 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.mobile-menu-nav > ul > li > a:hover,
+.mobile-menu-nav > ul > li.current-menu-item > a {
+    color: var(--color-gold);
+}
+
+/* Submenu accordion */
+.mobile-menu-nav .sub-menu {
+    list-style: none;
+    padding: 0 0 12px 0;
+    margin: 0;
+}
+
+.mobile-menu-nav .sub-menu li {
+    border-bottom: none;
+}
+
+.mobile-menu-nav .sub-menu li a {
+    display: block;
+    padding: 10px 0;
+    font-size: 14px;
+    color: var(--color-text-muted);
+    text-decoration: none;
+}
+
+.mobile-menu-nav .sub-menu li a:hover {
+    color: var(--color-gold);
+}
+
+/* Contact buttons in overlay */
+.mobile-menu-contact {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mobile-menu-contact .btn {
+    width: 100%;
+    justify-content: center;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Language switcher in overlay */
+.mobile-menu-lang {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+}
+
+.mobile-menu-lang a {
+    font-size: 13px;
+    color: var(--color-text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.mobile-menu-lang a.active {
+    color: var(--color-gold);
+}
+
+/* ---------- Hero (Homepage) ---------- */
+.is-mobile .hero {
+    min-height: 85vh;
+    padding-top: 56px;
+}
+
+.is-mobile .hero-content {
+    padding: 40px 0;
+}
+
+.is-mobile .hero-badge {
+    font-size: 10px;
+    padding: 5px 12px;
+    margin-bottom: 20px;
+}
+
+.is-mobile .hero-title {
+    font-size: 28px;
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.is-mobile .hero-subtitle {
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.is-mobile .hero-subtitle br {
+    display: none;
+}
+
+.is-mobile .hero-stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.is-mobile .hero-stats .stat-number {
+    font-size: 24px;
+}
+
+.is-mobile .hero-stats .stat-label {
+    font-size: 11px;
+}
+
+.is-mobile .hero-actions {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.is-mobile .hero-actions .btn {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 14px;
+}
+
+.is-mobile .hero-scroll {
+    display: none;
+}
+
+.is-mobile .hero-indicators {
+    bottom: 16px;
+}
+
+.is-mobile .hero-indicators .indicator {
+    width: 6px;
+    height: 6px;
+}
+
+/* ---------- Page Hero (Sub Pages) ---------- */
+.is-mobile .page-hero {
+    height: 200px;
+    margin-top: 0;
+}
+
+.is-mobile .page-hero-content {
+    padding-top: 56px;
+}
+
+.is-mobile .page-hero-content h1 {
+    font-size: 22px;
+}
+
+.is-mobile .page-hero-content p {
+    font-size: 12px;
+}
+
+.is-mobile .section-tag {
+    font-size: 10px;
+}
+
+/* ---------- Section Spacing ---------- */
+.is-mobile .section {
+    padding: 48px 0;
+}
+
+.is-mobile .section-header {
+    margin-bottom: 32px;
+}
+
+.is-mobile .section-tag-text {
+    font-size: 10px;
+}
+
+.is-mobile .section-title {
+    font-size: 22px;
+}
+
+.is-mobile .section-desc {
+    font-size: 13px;
+}
+
+.is-mobile .section-desc br {
+    display: none;
+}
+
+/* ---------- Service Cards (Homepage 6 cards) ---------- */
+.is-mobile .service-grid-home {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.is-mobile .service-card-home {
+    padding: 16px 12px;
+}
+
+.is-mobile .service-card-home .service-card-icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 10px;
+}
+
+.is-mobile .service-card-content h3 {
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.is-mobile .service-card-content p {
+    display: none;
+}
+
+.is-mobile .service-card-link {
+    font-size: 11px;
+    margin-top: 8px;
+}
+
+/* ---------- Business Items (Homepage Featured) ---------- */
+.is-mobile .business-item {
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.is-mobile .business-image img {
+    height: 200px;
+}
+
+.is-mobile .business-content h3 {
+    font-size: 20px;
+}
+
+.is-mobile .business-number {
+    font-size: 48px;
+}
+
+.is-mobile .business-tags {
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.is-mobile .business-tag {
+    font-size: 11px;
+    padding: 4px 10px;
+}
+
+/* ---------- Works Grid ---------- */
+.is-mobile .works-grid,
+.is-mobile .works-grid-full {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.is-mobile .work-card-large {
+    grid-column: 1 / -1;
+}
+
+.is-mobile .work-card-large .work-image img {
+    min-height: 200px;
+}
+
+.is-mobile .work-info {
+    padding: 12px;
+}
+
+.is-mobile .work-info h3 {
+    font-size: 13px;
+}
+
+.is-mobile .work-meta {
+    font-size: 11px;
+}
+
+/* ---------- Works Filter (horizontal scroll) ---------- */
+.is-mobile .works-filter {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    padding-bottom: 8px;
+    gap: 8px;
+    scrollbar-width: none;
+}
+
+.is-mobile .works-filter::-webkit-scrollbar {
+    display: none;
+}
+
+.is-mobile .filter-btn {
+    flex-shrink: 0;
+    min-height: 40px;
+    padding: 8px 16px;
+    font-size: 12px;
+}
+
+/* ---------- Video Grid ---------- */
+.is-mobile .video-grid,
+.is-mobile .video-grid-full {
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.is-mobile .video-card-main {
+    grid-row: auto;
+}
+
+.is-mobile .video-card-main .video-thumb img {
+    height: 200px;
+}
+
+.is-mobile .video-thumb img {
+    height: 180px;
+}
+
+.is-mobile .video-info h3 {
+    font-size: 14px;
+}
+
+/* ---------- Video Modal ---------- */
+.is-mobile .video-modal-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 8px;
+    margin: auto;
+}
+
+.is-mobile .video-modal-content video {
+    width: 100%;
+    max-height: 40vh;
+    border-radius: 8px;
+}
+
+.is-mobile .video-modal-close {
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    font-size: 24px;
+}
+
+@media (orientation: landscape) {
+    .is-mobile .video-modal-content video {
+        max-height: 85vh;
+    }
+}
+
+/* ---------- Reasons Grid ---------- */
+.is-mobile .reasons-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.is-mobile .reason-item {
+    padding: 24px 20px;
+}
+
+.is-mobile .reason-number {
+    font-size: 32px;
+}
+
+.is-mobile .reason-item h3 {
+    font-size: 16px;
+}
+
+/* ---------- Partner Marquee ---------- */
+.is-mobile .marquee-track {
+    animation-duration: 20s;
+}
+
+.is-mobile .marquee-item {
+    width: 100px;
+    height: 50px;
+    margin: 0 16px;
+}
+
+/* ---------- Service Hub Grid (services overview) ---------- */
+.is-mobile .service-hub-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.is-mobile .service-hub-card {
+    padding: 20px 16px;
+}
+
+.is-mobile .service-hub-card h3 {
+    font-size: 16px;
+}
+
+/* ---------- Service Detail Grid (category pages) ---------- */
+.is-mobile .service-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.is-mobile a.service-detail-card-link {
+    display: block;
+}
+
+/* ---------- Service Item Detail Page ---------- */
+.is-mobile .service-item-number-bg {
+    font-size: 80px;
+    top: -20px;
+}
+
+.is-mobile .service-item-desc {
+    font-size: 14px;
+    line-height: 2;
+}
+
+.is-mobile .service-features-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.is-mobile .service-feature-item {
+    padding: 20px 16px;
+}
+
+.is-mobile .service-feature-num {
+    font-size: 22px;
+}
+
+.is-mobile .service-feature-item p {
+    font-size: 13px;
+}
+
+.is-mobile .service-points-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.is-mobile .service-point-card {
+    padding: 24px 20px;
+}
+
+.is-mobile .service-point-num {
+    font-size: 28px;
+}
+
+.is-mobile .service-point-card h3 {
+    font-size: 15px;
+}
+
+.is-mobile .service-point-card p {
+    font-size: 12px;
+}
+
+/* ---------- Related Works Grid ---------- */
+.is-mobile .related-works-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+/* ---------- Breadcrumb ---------- */
+.is-mobile .page-hero-breadcrumb {
+    font-size: 11px;
+    margin-top: 8px;
+}
+
+/* ---------- Workflow Grid ---------- */
+.is-mobile .workflow-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.is-mobile .workflow-step {
+    padding: 20px 16px;
+}
+
+/* ---------- About Page ---------- */
+.is-mobile .about-intro {
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+.is-mobile .about-intro-image img {
+    height: 200px;
+}
+
+.is-mobile .mv-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.is-mobile .numbers-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.is-mobile .number-item .number {
+    font-size: 36px;
+}
+
+.is-mobile .info-table td,
+.is-mobile .info-table th {
+    padding: 12px 8px;
+    font-size: 13px;
+}
+
+.is-mobile .info-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ---------- Partners Page ---------- */
+.is-mobile .partners-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.is-mobile .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.is-mobile .testimonial-card {
+    padding: 24px 20px;
+}
+
+/* ---------- Contact Page ---------- */
+.is-mobile .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+}
+
+.is-mobile .form-row {
+    grid-template-columns: 1fr;
+}
+
+.is-mobile .form-group input,
+.is-mobile .form-group select,
+.is-mobile .form-group textarea {
+    padding: 14px 16px;
+    font-size: 16px; /* Prevents iOS auto-zoom on focus */
+}
+
+.is-mobile .form-group label {
+    font-size: 13px;
+}
+
+.is-mobile .contact-info-card {
+    padding: 24px 16px;
+}
+
+.is-mobile .contact-submit-btn {
+    width: 100%;
+}
+
+/* ---------- CTA Section ---------- */
+.is-mobile .cta-content h2 {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.is-mobile .cta-content p {
+    font-size: 13px;
+}
+
+.is-mobile .cta-content p br {
+    display: none;
+}
+
+.is-mobile .cta-actions {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+}
+
+.is-mobile .cta-actions .btn {
+    width: 100%;
+}
+
+/* ---------- Footer Simplification ---------- */
+.is-mobile .footer-top {
+    flex-direction: column;
+    gap: 24px;
+}
+
+.is-mobile .footer-nav {
+    display: none; /* Bottom tab + hamburger menu handle navigation */
+}
+
+.is-mobile .footer-brand {
+    text-align: center;
+}
+
+.is-mobile .footer-logo {
+    justify-content: center;
+}
+
+.is-mobile .footer-tagline {
+    font-size: 13px;
+}
+
+.is-mobile .footer-company {
+    font-size: 12px;
+}
+
+.is-mobile .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+}
+
+.is-mobile .footer-bottom p {
+    font-size: 11px;
+}
+
+.is-mobile .footer-links {
+    gap: 16px;
+}
+
+.is-mobile .footer-links a {
+    font-size: 11px;
+}
+
+/* ---------- 404 Page ---------- */
+.is-mobile .error-404 h1 {
+    font-size: 80px;
+}
+
+/* ---------- Touch-friendly Globals ---------- */
+.is-mobile .btn {
+    min-height: 44px; /* Apple HIG minimum touch target */
+}
+
+.is-mobile a.service-detail-card-link,
+.is-mobile .work-card,
+.is-mobile .video-card {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Disable hover effects on touch */
+@media (hover: none) {
+    .is-mobile .service-feature-item:hover,
+    .is-mobile .service-point-card:hover,
+    .is-mobile .service-hub-card:hover,
+    .is-mobile .work-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+/* ---------- Submenu in main nav (hidden on mobile, overlay handles it) ---------- */
+.is-mobile .main-nav ul li .submenu {
+    display: none;
+}

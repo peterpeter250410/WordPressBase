@@ -68,6 +68,46 @@
     </div>
 </footer>
 
+<?php if (function_exists('eikou_is_mobile_device') && eikou_is_mobile_device()) : ?>
+<!-- Mobile Bottom Tab Bar -->
+<nav class="mobile-tab-bar" id="mobileTabBar">
+    <a href="<?php echo esc_url(home_url('/')); ?>" class="tab-item" data-tab="home">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span>ホーム</span>
+    </a>
+    <a href="<?php echo esc_url(eikou_page_url('services')); ?>" class="tab-item" data-tab="services">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+        <span>サービス</span>
+    </a>
+    <a href="<?php echo esc_url(eikou_page_url('works')); ?>" class="tab-item" data-tab="works">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+        </svg>
+        <span>実績</span>
+    </a>
+    <a href="<?php echo esc_url(eikou_page_url('video')); ?>" class="tab-item" data-tab="videos">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+        </svg>
+        <span>動画</span>
+    </a>
+    <a href="<?php echo esc_url(eikou_page_url('contact')); ?>" class="tab-item" data-tab="contact">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        <span>お問い合わせ</span>
+    </a>
+</nav>
+<?php endif; ?>
+
 <?php wp_footer(); ?>
 </body>
 </html>

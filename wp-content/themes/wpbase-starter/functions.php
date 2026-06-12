@@ -57,8 +57,66 @@ function eikou_scripts() {
         get_template_directory_uri() . '/assets/js/main.js',
         [], '2.0.0', true
     );
+
+
+    // Mobile-specific assets
+    if (eikou_is_mobile_device()) {
+        wp_enqueue_style('eikou-mobile',
+            get_template_directory_uri() . '/assets/css/mobile.css',
+            ['eikou-style'], '1.0.0'
+        );
+        wp_enqueue_script('eikou-mobile',
+            get_template_directory_uri() . '/assets/js/mobile.js',
+            ['eikou-main'], '1.0.0', true
+        );
+
+        // Pass current tab state to JS
+        $current_tab = 'home';
+        if (is_page('services') || (is_page() && strpos(get_post_field('post_name'), 'service-') === 0)) {
+            $current_tab = 'services';
+        } elseif (is_page('works') || is_singular('work')) {
+            $current_tab = 'works';
+        } elseif (is_page('video')) {
+            $current_tab = 'videos';
+        } elseif (is_page('contact')) {
+            $current_tab = 'contact';
+        }
+        wp_localize_script('eikou-mobile', 'eikouMobile', [
+            'currentTab' => $current_tab,
+        ]);
+    }
 }
 add_action('wp_enqueue_scripts', 'eikou_scripts');
+
+/* ─── Mobile Device Detection ─── */
+function eikou_is_mobile_device() {
+    if (function_exists('wp_is_mobile') && wp_is_mobile()) {
+        // wp_is_mobile() includes tablets; refine by checking for 'Mobile' keyword
+        $ua = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+        // Tablets (iPad) typically don't have 'Mobile' in UA (except iPhone)
+        // We want phones only for H5 layout
+        $mobile_keywords = ['iPhone', 'iPod', 'Android', 'webOS', 'BlackBerry',
+                            'Windows Phone', 'Opera Mini', 'IEMobile'];
+        foreach ($mobile_keywords as $keyword) {
+            if (stripos($ua, $keyword) !== false) {
+                // Android tablets have 'Android' but not 'Mobile'
+                if ($keyword === 'Android' && stripos($ua, 'Mobile') === false) {
+                    return false; // Android tablet
+                }
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function eikou_mobile_body_class($classes) {
+    if (eikou_is_mobile_device()) {
+        $classes[] = 'is-mobile';
+    }
+    return $classes;
+}
+add_filter('body_class', 'eikou_mobile_body_class');
 
 /* ─── Custom Post Type: Work (成功事例) ─── */
 function eikou_register_work_cpt() {
