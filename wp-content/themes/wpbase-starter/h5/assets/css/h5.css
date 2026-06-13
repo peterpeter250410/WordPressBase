@@ -1,0 +1,1437 @@
+/* ============================================
+   EIKOU H5 - Mobile-Only Styles
+   All classes use h5- prefix
+   Depends on: base.css (variables, reset, buttons)
+   ============================================ */
+
+/* ---------- Layout ---------- */
+.h5-container {
+    width: 100%;
+    padding: 0 16px;
+}
+
+.h5-section {
+    padding: 48px 0;
+}
+
+.h5-section-alt {
+    background: var(--color-bg-alt);
+}
+
+.h5-section-header {
+    margin-bottom: 28px;
+}
+
+.h5-section-title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-top: 8px;
+}
+
+.h5-section-action {
+    text-align: center;
+    margin-top: 32px;
+}
+
+.h5-tag {
+    display: inline-block;
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    background: rgba(201, 168, 76, 0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+/* ---------- Header ---------- */
+.h5-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background: rgba(10, 10, 15, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.h5-header.scrolled {
+    background: rgba(10, 10, 15, 0.98);
+}
+
+.h5-header-logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.h5-header-logo img,
+.h5-header-logo .custom-logo {
+    height: 60px;
+    width: auto;
+}
+
+.h5-logo-image {
+    height: 60px;
+    width: auto;
+}
+
+/* Hamburger Button */
+.h5-hamburger {
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.h5-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-text);
+    transition: all 0.3s ease;
+    border-radius: 1px;
+}
+
+.h5-hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+
+.h5-hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.h5-hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* ---------- Full-Screen Menu Overlay ---------- */
+.h5-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 15, 0.97);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.h5-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.h5-menu-inner {
+    padding: 88px 24px 120px;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.h5-menu-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.h5-menu-nav > ul > li {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.h5-menu-nav > ul > li > a {
+    display: block;
+    padding: 16px 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-text);
+    transition: color 0.3s;
+}
+
+.h5-menu-nav > ul > li > a:hover,
+.h5-menu-nav > ul > li > a:active {
+    color: var(--color-gold);
+}
+
+/* Sub-menu accordion */
+.h5-menu-nav .sub-menu,
+.h5-menu-nav .submenu {
+    display: none;
+    padding: 0 0 12px 16px;
+}
+
+.h5-menu-nav .sub-menu.open,
+.h5-menu-nav .submenu.open {
+    display: block;
+}
+
+.h5-menu-nav .sub-menu li a,
+.h5-menu-nav .submenu li a {
+    display: block;
+    padding: 10px 0;
+    font-size: 15px;
+    color: var(--color-text-muted);
+}
+
+.h5-menu-nav .menu-item-has-children > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.h5-menu-nav .menu-item-has-children > a::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--color-text-muted);
+    border-bottom: 2px solid var(--color-text-muted);
+    transform: rotate(45deg);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+    margin-left: 12px;
+}
+
+.h5-menu-nav .menu-item-has-children.open > a::after {
+    transform: rotate(-135deg);
+}
+
+.h5-menu-contact {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.h5-menu-contact .btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+}
+
+.h5-menu-lang {
+    margin-top: 24px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.h5-menu-lang a {
+    font-size: 13px;
+    color: var(--color-text-muted);
+}
+
+.h5-menu-lang a.active {
+    color: var(--color-gold);
+}
+
+/* ---------- Hero Carousel (Front Page) ---------- */
+.h5-hero {
+    padding-top: 72px;
+    background: var(--color-bg);
+}
+
+.h5-hero-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0;
+}
+
+.h5-hero-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.h5-hero-card {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 0;
+}
+
+.h5-hero-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.h5-hero-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 10, 15, 0.7) 0%, transparent 60%);
+    display: flex;
+    align-items: flex-end;
+    padding: 20px 16px;
+}
+
+.h5-hero-card-content {
+    color: var(--color-white);
+}
+
+.h5-hero-badge {
+    display: inline-block;
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    background: rgba(201, 168, 76, 0.15);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+}
+
+.h5-hero-card-content h2 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.h5-gold {
+    color: var(--color-gold);
+}
+
+/* Hero Dots */
+.h5-hero-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 0;
+}
+
+.h5-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--color-text-dim);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.h5-dot.active {
+    width: 24px;
+    background: var(--color-gold);
+}
+
+/* Hero Info */
+.h5-hero-info {
+    padding: 0 16px 24px;
+}
+
+.h5-hero-desc {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.h5-hero-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.h5-hero-actions .btn {
+    flex: 1;
+    padding: 12px 8px;
+    font-size: 13px;
+}
+
+/* Hero Stats */
+.h5-hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    background: var(--color-bg-card);
+    border-radius: 12px;
+    padding: 16px 8px;
+}
+
+.h5-stat {
+    text-align: center;
+}
+
+.h5-stat-num {
+    display: block;
+    font-family: var(--font-en);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--color-gold);
+    line-height: 1.2;
+}
+
+.h5-stat-num small {
+    font-size: 16px;
+}
+
+.h5-stat-label {
+    display: block;
+    font-size: 11px;
+    color: var(--color-text-muted);
+    margin-top: 2px;
+}
+
+/* ---------- Page Hero (Sub-pages) ---------- */
+.h5-page-hero {
+    position: relative;
+    height: 240px;
+    margin-top: 72px;
+    overflow: hidden;
+}
+
+.h5-page-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.h5-page-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 10, 15, 0.85) 0%, rgba(10, 10, 15, 0.4) 100%);
+}
+
+.h5-page-hero-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 24px;
+}
+
+.h5-page-hero-content h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-top: 8px;
+    color: var(--color-white);
+}
+
+.h5-page-hero-content p {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    margin-top: 4px;
+}
+
+/* ---------- Service Grid (Front Page) ---------- */
+.h5-service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.h5-service-card {
+    display: block;
+    background: var(--color-bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.h5-service-card:active {
+    transform: scale(0.97);
+}
+
+.h5-service-img {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+}
+
+.h5-service-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.h5-service-info {
+    padding: 12px;
+}
+
+.h5-service-num {
+    font-family: var(--font-en);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-gold);
+    letter-spacing: 0.1em;
+}
+
+.h5-service-info h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 2px;
+    line-height: 1.4;
+}
+
+/* ---------- Service Hub (Services Page) ---------- */
+.h5-service-hub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.h5-service-hub-card {
+    display: flex;
+    background: var(--color-bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.h5-service-hub-card:active {
+    transform: scale(0.98);
+}
+
+.h5-service-hub-img {
+    width: 120px;
+    flex-shrink: 0;
+}
+
+.h5-service-hub-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.h5-service-hub-info {
+    padding: 14px;
+    flex: 1;
+    min-width: 0;
+}
+
+.h5-service-hub-info h3 {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-top: 2px;
+}
+
+.h5-service-hub-info p {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-top: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.h5-service-count {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--color-gold);
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+/* ---------- Workflow (Services Page) ---------- */
+.h5-workflow-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.h5-workflow-step {
+    display: flex;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.h5-workflow-step:last-child {
+    border-bottom: none;
+}
+
+.h5-workflow-num {
+    font-family: var(--font-en);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-gold);
+    flex-shrink: 0;
+    width: 36px;
+}
+
+.h5-workflow-body h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.h5-workflow-body p {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+}
+
+/* ---------- Service Detail List (Category Pages) ---------- */
+.h5-detail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.h5-detail-card {
+    display: flex;
+    gap: 14px;
+    padding: 16px;
+    background: var(--color-bg-card);
+    border-radius: 12px;
+    transition: transform 0.3s;
+}
+
+.h5-detail-card:active {
+    transform: scale(0.98);
+}
+
+.h5-detail-num {
+    font-family: var(--font-en);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-gold);
+    flex-shrink: 0;
+    width: 32px;
+}
+
+.h5-detail-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.h5-detail-body h3 {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.h5-detail-body p {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-top: 4px;
+}
+
+.h5-detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.h5-detail-tags span {
+    font-size: 11px;
+    color: var(--color-text-muted);
+    background: var(--color-bg-alt);
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.h5-detail-more {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--color-gold);
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+/* ---------- Service Item Detail ---------- */
+.h5-breadcrumb {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    margin-top: 6px;
+}
+
+.h5-breadcrumb a {
+    color: var(--color-text-muted);
+    text-decoration: underline;
+}
+
+.h5-item-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--color-text);
+}
+
+.h5-item-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.h5-item-tags span {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    background: var(--color-bg-card);
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--color-border);
+}
+
+.h5-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.h5-feature-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px;
+    background: var(--color-bg-card);
+    border-radius: 10px;
+}
+
+.h5-feature-num {
+    font-family: var(--font-en);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-gold);
+    flex-shrink: 0;
+}
+
+.h5-feature-item p {
+    font-size: 14px;
+    color: var(--color-text);
+    line-height: 1.7;
+}
+
+.h5-points-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.h5-point-card {
+    padding: 20px;
+    background: var(--color-bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+}
+
+.h5-point-num {
+    font-family: var(--font-en);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-gold);
+}
+
+.h5-point-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.h5-point-card p {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-top: 6px;
+}
+
+/* ---------- Intro Text ---------- */
+.h5-intro-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--color-text-muted);
+}
+
+.h5-empty-text {
+    font-size: 14px;
+    color: var(--color-text-dim);
+    text-align: center;
+    padding: 32px 0;
+}
+
+/* ---------- Works Grid ---------- */
+.h5-works-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.h5-work-card {
+    display: block;
+    background: var(--color-bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.h5-work-card:active {
+    transform: scale(0.97);
+}
+
+.h5-work-img {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+}
+
+.h5-work-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.h5-work-info {
+    padding: 10px 12px 14px;
+}
+
+.h5-work-cat {
+    display: inline-block;
+    font-size: 11px;
+    color: var(--color-gold);
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.h5-work-info h3 {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ---------- Filter (Works Page) ---------- */
+.h5-filter-scroll {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 16px;
+    margin-bottom: 8px;
+}
+
+.h5-filter-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.h5-filter-btn {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: var(--font-jp);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.h5-filter-btn.active {
+    color: var(--color-bg);
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+}
+
+/* ---------- Video List ---------- */
+.h5-video-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.h5-video-card {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.h5-video-thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--color-bg-card);
+}
+
+.h5-video-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.h5-video-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.85;
+    transition: opacity 0.3s;
+}
+
+.h5-video-card:active .h5-video-play {
+    opacity: 1;
+}
+
+.h5-video-duration {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    font-family: var(--font-en);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-white);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.h5-video-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+/* Video Modal */
+.h5-video-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.h5-video-modal.active {
+    display: flex;
+}
+
+.h5-video-modal-bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.h5-video-modal-body {
+    position: relative;
+    width: 100%;
+    max-width: 100vw;
+    padding: 0 8px;
+}
+
+.h5-video-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 8px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    color: var(--color-white);
+    font-size: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.h5-video-modal-body video {
+    width: 100%;
+    border-radius: 8px;
+    background: #000;
+}
+
+/* ---------- Reasons (Why EIKOU) ---------- */
+.h5-reasons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.h5-reason-card {
+    padding: 20px;
+    background: var(--color-bg-card);
+    border-radius: 12px;
+    border-left: 3px solid var(--color-gold);
+}
+
+.h5-reason-num {
+    font-family: var(--font-en);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-gold);
+    letter-spacing: 0.1em;
+}
+
+.h5-reason-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.h5-reason-card p {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-top: 6px;
+}
+
+/* ---------- Partners Grid ---------- */
+.h5-partners-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.h5-partner-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    background: var(--color-bg-card);
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+}
+
+.h5-partner-item span {
+    font-family: var(--font-en);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+}
+
+/* ---------- Testimonials ---------- */
+.h5-testimonials-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.h5-testimonial-card {
+    padding: 20px;
+    background: var(--color-bg-card);
+    border-radius: 12px;
+}
+
+.h5-quote {
+    font-family: Georgia, serif;
+    font-size: 36px;
+    color: var(--color-gold);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.h5-testimonial-card p {
+    font-size: 14px;
+    color: var(--color-text);
+    line-height: 1.8;
+}
+
+.h5-testimonial-author {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+}
+
+.h5-testimonial-author strong {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.h5-testimonial-author span {
+    font-size: 12px;
+    color: var(--color-text-muted);
+}
+
+/* ---------- About Page ---------- */
+.h5-about-intro {
+    text-align: left;
+}
+
+.h5-about-img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.h5-about-intro p {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-top: 12px;
+}
+
+/* Mission & Vision */
+.h5-mv-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.h5-mv-card {
+    padding: 24px 20px;
+    background: var(--color-bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+}
+
+.h5-mv-card h3 {
+    font-family: var(--font-en);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+}
+
+.h5-mv-main {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    color: var(--color-white);
+}
+
+.h5-mv-card p:last-child {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+}
+
+/* Numbers */
+.h5-numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.h5-number-item {
+    text-align: center;
+    padding: 20px 12px;
+    background: var(--color-bg-card);
+    border-radius: 12px;
+}
+
+.h5-number-val {
+    display: block;
+    font-family: var(--font-en);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--color-gold);
+    line-height: 1.2;
+}
+
+.h5-number-val small {
+    font-size: 18px;
+}
+
+.h5-number-label {
+    display: block;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    margin-top: 4px;
+}
+
+/* Company Table */
+.h5-company-table {
+    overflow-x: auto;
+}
+
+.h5-company-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.h5-company-table th,
+.h5-company-table td {
+    padding: 14px 12px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+    vertical-align: top;
+}
+
+.h5-company-table th {
+    width: 90px;
+    color: var(--color-gold);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.h5-company-table td {
+    color: var(--color-text);
+    line-height: 1.7;
+}
+
+/* ---------- Contact Page ---------- */
+.h5-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.h5-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: var(--color-bg-card);
+    border-radius: 10px;
+}
+
+.h5-contact-item a,
+.h5-contact-item span {
+    font-size: 14px;
+    color: var(--color-text);
+}
+
+.h5-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.h5-form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--color-text);
+}
+
+.h5-form-group input,
+.h5-form-group select,
+.h5-form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 16px;
+    font-family: var(--font-jp);
+    color: var(--color-text);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.h5-form-group input:focus,
+.h5-form-group select:focus,
+.h5-form-group textarea:focus {
+    border-color: var(--color-gold);
+}
+
+.h5-form-group input::placeholder,
+.h5-form-group textarea::placeholder {
+    color: var(--color-text-dim);
+}
+
+.h5-form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238a8a9a' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+}
+
+.h5-submit-btn {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+}
+
+/* ---------- Work Detail ---------- */
+.h5-work-detail-content {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--color-text);
+}
+
+.h5-work-detail-content p {
+    margin-bottom: 16px;
+}
+
+.h5-work-detail-content img {
+    border-radius: 8px;
+    margin: 16px 0;
+}
+
+.h5-work-detail-content h2,
+.h5-work-detail-content h3 {
+    margin-top: 28px;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+/* ---------- CTA Section ---------- */
+.h5-cta {
+    text-align: center;
+    padding: 48px 0;
+    background: var(--color-bg-alt);
+}
+
+.h5-cta h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.h5-cta p {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    margin-top: 12px;
+    line-height: 1.7;
+}
+
+.h5-cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.h5-cta-actions .btn {
+    width: 100%;
+    padding: 14px;
+}
+
+/* ---------- Footer ---------- */
+.h5-footer {
+    padding: 40px 0 100px;
+    border-top: 1px solid var(--color-border);
+}
+
+.h5-footer-brand {
+    text-align: center;
+}
+
+.h5-footer-logo {
+    height: 48px;
+    margin: 0 auto;
+}
+
+.h5-footer-tagline {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    margin-top: 8px;
+}
+
+.h5-footer-company {
+    font-size: 11px;
+    color: var(--color-text-dim);
+    margin-top: 4px;
+}
+
+.h5-footer-bottom {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+}
+
+.h5-footer-bottom p {
+    font-size: 11px;
+    color: var(--color-text-dim);
+}
+
+.h5-footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 12px;
+}
+
+.h5-footer-links a {
+    font-size: 12px;
+    color: var(--color-text-muted);
+}
+
+/* ---------- Bottom Tab Bar ---------- */
+.h5-tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgba(10, 10, 15, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--color-border);
+    z-index: 900;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    transition: transform 0.3s ease;
+}
+
+.h5-tab-bar.hidden {
+    transform: translateY(100%);
+}
+
+.h5-tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    font-size: 10px;
+    color: var(--color-text-dim);
+    -webkit-tap-highlight-color: transparent;
+    transition: color 0.3s;
+}
+
+.h5-tab-item svg {
+    width: 22px;
+    height: 22px;
+}
+
+.h5-tab-item.active {
+    color: var(--color-gold);
+}
+
+/* ---------- Body Lock (menu open) ---------- */
+body.h5-menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+/* ---------- Utility ---------- */
+.h5-scroll-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.h5-scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

@@ -14,7 +14,7 @@ if (!$item) {
     // Fallback: 404-style message
     ?>
     <section class="page-hero">
-        <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80')"></div>
+        <div class="page-hero-bg" style="background-image: url('<?php echo esc_url(eikou_mobile_img_url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80')); ?>')"></div>
         <div class="page-hero-overlay"></div>
         <div class="container page-hero-content">
             <h1>サービスが見つかりません</h1>
@@ -28,7 +28,7 @@ if (!$item) {
 
 <!-- ========== PAGE HERO ========== -->
 <section class="page-hero">
-    <div class="page-hero-bg" style="background-image: url('<?php echo esc_url($item['hero_image']); ?>')"></div>
+    <div class="page-hero-bg" style="background-image: url('<?php echo esc_url(eikou_mobile_img_url($item['hero_image'])); ?>')"></div>
     <div class="page-hero-overlay"></div>
     <div class="container page-hero-content">
         <span class="section-tag"><?php echo esc_html($item['title_en']); ?></span>

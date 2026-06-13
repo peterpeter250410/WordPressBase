@@ -25,6 +25,8 @@ function eikou_setup() {
     add_image_size('work-large', 1000, 700, true);
     add_image_size('work-thumb', 600, 400, true);
     add_image_size('video-thumb', 600, 340, true);
+    add_image_size('h5-thumb', 400, 267, true);
+    add_image_size('h5-hero', 800, 450, true);
 
     // Navigation menus
     register_nav_menus([
@@ -37,37 +39,25 @@ add_action('after_setup_theme', 'eikou_setup');
 
 /* ─── Enqueue Styles & Scripts ─── */
 function eikou_scripts() {
-    // Google Fonts
+    // Google Fonts (shared)
     wp_enqueue_style('eikou-google-fonts',
         'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap',
         [], null
     );
 
-    // Main stylesheet
-    wp_enqueue_style('eikou-style',
-        get_template_directory_uri() . '/assets/css/eikou.css',
-        ['eikou-google-fonts'], '2.0.0'
-    );
-
-    // Theme stylesheet (metadata only)
-    wp_enqueue_style('eikou-theme', get_stylesheet_uri(), ['eikou-style'], '2.0.0');
-
-    // Main script
-    wp_enqueue_script('eikou-main',
-        get_template_directory_uri() . '/assets/js/main.js',
-        [], '2.0.0', true
-    );
-
-
-    // Mobile-specific assets
     if (eikou_is_mobile_device()) {
-        wp_enqueue_style('eikou-mobile',
-            get_template_directory_uri() . '/assets/css/mobile.css',
-            ['eikou-style'], '1.0.0'
+        // ── H5 path: base.css + h5.css + h5.js ──
+        wp_enqueue_style('eikou-base',
+            get_template_directory_uri() . '/assets/css/base.css',
+            ['eikou-google-fonts'], '2.0.0'
         );
-        wp_enqueue_script('eikou-mobile',
-            get_template_directory_uri() . '/assets/js/mobile.js',
-            ['eikou-main'], '1.0.0', true
+        wp_enqueue_style('eikou-h5',
+            get_template_directory_uri() . '/h5/assets/css/h5.css',
+            ['eikou-base'], '1.0.0'
+        );
+        wp_enqueue_script('eikou-h5',
+            get_template_directory_uri() . '/h5/assets/js/h5.js',
+            [], '1.0.0', true
         );
 
         // Pass current tab state to JS
@@ -81,12 +71,41 @@ function eikou_scripts() {
         } elseif (is_page('contact')) {
             $current_tab = 'contact';
         }
-        wp_localize_script('eikou-mobile', 'eikouMobile', [
+        wp_localize_script('eikou-h5', 'eikouMobile', [
             'currentTab' => $current_tab,
         ]);
+    } else {
+        // ── PC path: eikou.css + main.js ──
+        wp_enqueue_style('eikou-style',
+            get_template_directory_uri() . '/assets/css/eikou.css',
+            ['eikou-google-fonts'], '2.0.0'
+        );
+        wp_enqueue_style('eikou-theme', get_stylesheet_uri(), ['eikou-style'], '2.0.0');
+        wp_enqueue_script('eikou-main',
+            get_template_directory_uri() . '/assets/js/main.js',
+            [], '2.0.0', true
+        );
     }
 }
 add_action('wp_enqueue_scripts', 'eikou_scripts');
+
+/* ─── H5 Template Routing ─── */
+function eikou_h5_template_redirect($template) {
+    if (!eikou_is_mobile_device()) {
+        return $template;
+    }
+    $h5_template = get_template_directory() . '/h5/' . basename($template);
+    return file_exists($h5_template) ? $h5_template : $template;
+}
+add_filter('template_include', 'eikou_h5_template_redirect', 99);
+
+/* ─── Vary: User-Agent header for caching ─── */
+function eikou_vary_header() {
+    if (!is_admin()) {
+        header('Vary: User-Agent');
+    }
+}
+add_action('send_headers', 'eikou_vary_header');
 
 /* ─── Mobile Device Detection ─── */
 function eikou_is_mobile_device() {
@@ -418,8 +437,55 @@ function eikou_get_hero_slides() {
         }
     }
 
+    // Compress images for mobile
+    foreach ($slides as &$slide) {
+        $slide['image'] = eikou_mobile_img_url($slide['image']);
+    }
+    unset($slide);
+
     return $slides;
 }
+
+/* ─── Helper: Mobile-optimized image URL ─── */
+function eikou_mobile_img_url($url, $mobile_width = 800, $mobile_quality = 60) {
+    if (!eikou_is_mobile_device()) {
+        return $url;
+    }
+    // Unsplash URLs: replace w= and q= params
+    if (strpos($url, 'images.unsplash.com') !== false) {
+        $url = preg_replace('/([?&])w=\d+/', '${1}w=' . $mobile_width, $url);
+        $url = preg_replace('/([?&])q=\d+/', '${1}q=' . $mobile_quality, $url);
+    }
+    return $url;
+}
+
+/* ─── Mobile: Use smaller WordPress image sizes ─── */
+function eikou_mobile_thumbnail_size($size) {
+    if (!function_exists('eikou_is_mobile_device') || !eikou_is_mobile_device()) {
+        return $size;
+    }
+    // Downgrade large sizes to thumb sizes on mobile
+    $mobile_map = [
+        'work-large' => 'work-thumb',
+        'full'       => 'large',
+        'large'      => 'medium_large',
+    ];
+    if (is_string($size) && isset($mobile_map[$size])) {
+        return $mobile_map[$size];
+    }
+    return $size;
+}
+add_filter('post_thumbnail_size', 'eikou_mobile_thumbnail_size');
+
+/* ─── Mobile: Add loading=lazy to all images ─── */
+function eikou_mobile_lazy_load($attr) {
+    if (function_exists('eikou_is_mobile_device') && eikou_is_mobile_device()) {
+        $attr['loading'] = 'lazy';
+        $attr['decoding'] = 'async';
+    }
+    return $attr;
+}
+add_filter('wp_get_attachment_image_attributes', 'eikou_mobile_lazy_load');
 
 /* ─── Helper: Get Theme Mod ─── */
 function eikou_get($key, $default = '') {

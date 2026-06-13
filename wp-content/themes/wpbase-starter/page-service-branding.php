@@ -11,7 +11,7 @@ $items = array_filter($all_items, function($v) { return $v['category'] === 'serv
 
 <!-- ========== PAGE HERO ========== -->
 <section class="page-hero">
-    <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1920&q=80')"></div>
+    <div class="page-hero-bg" style="background-image: url('<?php echo esc_url(eikou_mobile_img_url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1920&q=80')); ?>')"></div>
     <div class="page-hero-overlay"></div>
     <div class="container page-hero-content">
         <span class="section-tag">Branding & Design</span>

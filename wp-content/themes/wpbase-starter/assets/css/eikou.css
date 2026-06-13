@@ -21,7 +21,7 @@
     --font-jp: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
     --font-en: "Inter", sans-serif;
     --container: 1200px;
-    --header-height: 80px;
+    --header-height: 100px;
 }
 
 /* ---------- Reset & Base ---------- */
@@ -1680,11 +1680,11 @@ img { max-width: 100%; display: block; }
 
 /* ========== LOGO IMAGE ========== */
 .logo-image {
-    height: 40px;
+    height: 80px;
     width: auto;
 }
 .footer-logo .logo-image {
-    height: 32px;
+    height: 52px;
 }
 
 /* ========== SERVICE HUB GRID (services overview) ========== */

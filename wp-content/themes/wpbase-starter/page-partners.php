@@ -8,7 +8,7 @@ get_header();
 
 <!-- ========== PAGE HERO ========== -->
 <section class="page-hero">
-    <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1920&q=80')"></div>
+    <div class="page-hero-bg" style="background-image: url('<?php echo esc_url(eikou_mobile_img_url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1920&q=80')); ?>')"></div>
     <div class="page-hero-overlay"></div>
     <div class="container page-hero-content">
         <span class="section-tag">Partners</span>
