@@ -68,6 +68,32 @@
     </a>
 </nav>
 
+<!-- ========== H5 联系浮窗（浮动按钮 + 快捷小表单）========== -->
+<div class="h5-fab-overlay" id="h5FabOverlay"></div>
+<div class="h5-fab-contact" id="h5FabContact">
+    <div class="h5-fab-panel" id="h5FabPanel">
+        <div class="h5-fab-panel-head">
+            <span>お気軽にお問い合わせ</span>
+            <button class="h5-fab-close" id="h5FabClose" aria-label="閉じる">&times;</button>
+        </div>
+        <?php $eikou_quick = eikou_render_contact_form('eikou_cf7_quick'); ?>
+        <?php if ($eikou_quick) : ?>
+        <div class="eikou-cf7-wrap"><?php echo $eikou_quick; ?></div>
+        <?php else : ?>
+        <form class="h5-fab-form">
+            <input type="text" name="name" placeholder="お名前 *" required>
+            <input type="text" name="contact" placeholder="電話番号 / メール *" required>
+            <button type="submit" class="btn btn-primary">送信する</button>
+        </form>
+        <p class="h5-fab-note">担当者より折り返しご連絡いたします</p>
+        <?php endif; ?>
+    </div>
+    <button class="h5-fab-btn" id="h5FabBtn" aria-label="お問い合わせ">
+        <svg class="h5-fab-icon-mail" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <svg class="h5-fab-icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+</div>
+
 <?php wp_footer(); ?>
 </body>
 </html>

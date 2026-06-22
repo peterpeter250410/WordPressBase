@@ -21,7 +21,7 @@
     --font-jp: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
     --font-en: "Inter", sans-serif;
     --container: 1200px;
-    --header-height: 100px;
+    --header-height: 72px;
 }
 
 /* ---------- Reset & Base ---------- */
@@ -279,19 +279,38 @@ img { max-width: 100%; display: block; }
 }
 
 .btn-contact {
-    font-family: var(--font-en);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    padding: 8px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
     border: 1px solid var(--color-gold);
     color: var(--color-gold);
-    border-radius: 3px;
+    border-radius: 50%;
     transition: all 0.3s;
+    animation: eikou-breathing 2.4s ease-in-out infinite;
+}
+
+.btn-contact svg {
+    display: block;
 }
 
 .btn-contact:hover {
     background: var(--color-gold);
     color: var(--color-bg);
+    animation: none;
+    box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.15);
+}
+
+@keyframes eikou-breathing {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.5);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(201, 168, 76, 0);
+        transform: scale(1.06);
+    }
 }
 
 .mobile-menu-btn {
@@ -1680,11 +1699,11 @@ img { max-width: 100%; display: block; }
 
 /* ========== LOGO IMAGE ========== */
 .logo-image {
-    height: 80px;
+    height: 44px;
     width: auto;
 }
 .footer-logo .logo-image {
-    height: 52px;
+    height: 48px;
 }
 
 /* ========== SERVICE HUB GRID (services overview) ========== */
@@ -2156,4 +2175,70 @@ a.service-detail-card-link:hover .service-detail-more {
     .service-features-grid { grid-template-columns: 1fr; }
     .service-points-grid { grid-template-columns: 1fr; }
     .service-item-number-bg { font-size: 100px; }
+}
+
+/* ========== Contact Form 7 样式适配（深色金色主题）========== */
+.eikou-cf7-wrap .wpcf7-form p {
+    margin-bottom: 18px;
+}
+
+.eikou-cf7-wrap input[type="text"],
+.eikou-cf7-wrap input[type="email"],
+.eikou-cf7-wrap input[type="tel"],
+.eikou-cf7-wrap input[type="url"],
+.eikou-cf7-wrap input[type="number"],
+.eikou-cf7-wrap select,
+.eikou-cf7-wrap textarea {
+    width: 100%;
+    padding: 13px 16px;
+    font-size: 15px;
+    font-family: var(--font-jp);
+    color: var(--color-text);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.eikou-cf7-wrap input:focus,
+.eikou-cf7-wrap select:focus,
+.eikou-cf7-wrap textarea:focus {
+    border-color: var(--color-gold);
+}
+
+.eikou-cf7-wrap input::placeholder,
+.eikou-cf7-wrap textarea::placeholder {
+    color: var(--color-text-dim);
+}
+
+.eikou-cf7-wrap .wpcf7-submit {
+    width: 100%;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--color-bg);
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.eikou-cf7-wrap .wpcf7-submit:hover {
+    opacity: 0.9;
+}
+
+.eikou-cf7-wrap .wpcf7-not-valid-tip {
+    color: #ff6b6b;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.eikou-cf7-wrap .wpcf7-response-output {
+    margin: 16px 0 0 !important;
+    padding: 14px 16px !important;
+    border-radius: 4px;
+    font-size: 13px;
 }

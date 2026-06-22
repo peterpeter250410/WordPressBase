@@ -42,7 +42,9 @@
                     <li><a href="#">English</a></li>
                 </ul>
             </div>
-            <a href="<?php echo esc_url(eikou_page_url('contact')); ?>" class="btn-contact">Contact</a>
+            <a href="<?php echo esc_url(eikou_page_url('contact')); ?>" class="btn-contact" aria-label="Contact" title="お問い合わせ">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
         </div>
         <button class="mobile-menu-btn" aria-label="Menu">
             <span></span><span></span><span></span>

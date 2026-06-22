@@ -376,6 +376,46 @@ function eikou_customizer($wp_customize) {
 }
 add_action('customize_register', 'eikou_customizer');
 
+/* ─── Customizer: Contact Forms (Contact Form 7) ─── */
+function eikou_contact_form_customizer($wp_customize) {
+    $wp_customize->add_section('eikou_contact_forms', [
+        'title'    => 'お問い合わせフォーム',
+        'priority' => 31,
+    ]);
+
+    $fields = [
+        'eikou_cf7_full'  => 'フルフォーム shortcode（お問い合わせページ）',
+        'eikou_cf7_quick' => 'クイックフォーム shortcode（H5フローティング）',
+    ];
+    foreach ($fields as $id => $label) {
+        $wp_customize->add_setting($id, [
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ]);
+        $wp_customize->add_control($id, [
+            'label'       => $label,
+            'section'     => 'eikou_contact_forms',
+            'type'        => 'text',
+            'description' => 'Contact Form 7 で作成したフォームの [contact-form-7 ...] を貼り付けてください。未入力の場合は静的フォームを表示します。',
+        ]);
+    }
+}
+add_action('customize_register', 'eikou_contact_form_customizer');
+
+/**
+ * CF7 フォームを描画。shortcode 未設定 or CF7 未導入なら空文字を返す（テンプレ側で静的フォールバック）。
+ *
+ * @param string $key  Customizer setting key（eikou_cf7_full / eikou_cf7_quick）
+ * @return string      レンダリング済み HTML、なければ ''
+ */
+function eikou_render_contact_form($key) {
+    $shortcode = eikou_get($key, '');
+    if (!empty($shortcode) && shortcode_exists('contact-form-7')) {
+        return do_shortcode($shortcode);
+    }
+    return '';
+}
+
 /* ─── Customizer: Hero Slideshow ─── */
 function eikou_hero_customizer($wp_customize) {
     $wp_customize->add_section('eikou_hero_slides', [

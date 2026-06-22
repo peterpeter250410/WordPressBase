@@ -145,6 +145,21 @@
         });
     }
 
+    /* ========== Language Switch (visual only) ========== */
+    function initLangSwitch() {
+        var langLinks = document.querySelectorAll('.h5-menu-lang a');
+        if (langLinks.length === 0) return;
+
+        langLinks.forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                langLinks.forEach(function (l) { l.classList.remove('active'); });
+                this.classList.add('active');
+                // 视觉切换占位：真实多语言后续接入
+            });
+        });
+    }
+
     /* ========== Header Scroll Effect ========== */
     function initHeaderScroll() {
         var header = document.getElementById('h5Header');
@@ -260,6 +275,35 @@
         });
     }
 
+    /* ========== Floating Contact Widget ========== */
+    function initFabContact() {
+        var fab = document.getElementById('h5FabContact');
+        var btn = document.getElementById('h5FabBtn');
+        var closeBtn = document.getElementById('h5FabClose');
+        var overlay = document.getElementById('h5FabOverlay');
+        if (!fab || !btn) return;
+
+        function openFab() {
+            fab.classList.add('open');
+            if (overlay) overlay.classList.add('active');
+        }
+        function closeFab() {
+            fab.classList.remove('open');
+            if (overlay) overlay.classList.remove('active');
+        }
+        function toggleFab() {
+            if (fab.classList.contains('open')) {
+                closeFab();
+            } else {
+                openFab();
+            }
+        }
+
+        btn.addEventListener('click', toggleFab);
+        if (closeBtn) closeBtn.addEventListener('click', closeFab);
+        if (overlay) overlay.addEventListener('click', closeFab);
+    }
+
     /* ========== Scroll Reveal ========== */
     function initScrollReveal() {
         var elements = document.querySelectorAll('.h5-section');
@@ -287,10 +331,12 @@
     function init() {
         initCarousel();
         initMenu();
+        initLangSwitch();
         initHeaderScroll();
         initTabBar();
         initVideoModal();
         initFilters();
+        initFabContact();
         initScrollReveal();
     }
 

@@ -27,6 +27,10 @@ include get_template_directory() . '/h5/header.php';
             </div>
         </div>
 
+        <?php $eikou_cf7 = eikou_render_contact_form('eikou_cf7_full'); ?>
+        <?php if ($eikou_cf7) : ?>
+        <div class="eikou-cf7-wrap"><?php echo $eikou_cf7; ?></div>
+        <?php else : ?>
         <form class="h5-contact-form">
             <div class="h5-form-group">
                 <label for="company">会社名 *</label>
@@ -61,6 +65,7 @@ include get_template_directory() . '/h5/header.php';
             </div>
             <button type="submit" class="btn btn-primary h5-submit-btn">送信する</button>
         </form>
+        <?php endif; ?>
     </div>
 </section>
 

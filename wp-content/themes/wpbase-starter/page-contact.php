@@ -25,6 +25,10 @@ get_header();
             <div class="contact-form-wrap">
                 <h2>お問い合わせフォーム</h2>
                 <p class="form-note">*は必須項目です</p>
+                <?php $eikou_cf7 = eikou_render_contact_form('eikou_cf7_full'); ?>
+                <?php if ($eikou_cf7) : ?>
+                    <div class="eikou-cf7-wrap"><?php echo $eikou_cf7; ?></div>
+                <?php else : ?>
                 <form class="contact-form">
                     <div class="form-row">
                         <div class="form-group">
@@ -63,6 +67,7 @@ get_header();
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">送信する</button>
                 </form>
+                <?php endif; ?>
             </div>
             <!-- Info -->
             <div class="contact-info-wrap">
