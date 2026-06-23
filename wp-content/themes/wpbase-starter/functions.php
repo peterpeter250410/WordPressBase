@@ -989,6 +989,16 @@ function eikou_get_service_items() {
     ];
 }
 
+add_filter('rest_url_prefix', function() {
+    return 'api';  // 改成你想要的路径，比如 'api' 或 'json-api'
+});
+
+add_action('init', function() {
+    if (defined('REST_REQUEST') && REST_REQUEST) {
+        error_log('REST API 请求进来啦！路径: ' . $_SERVER['REQUEST_URI']);
+    }
+});
+
 /* ─── Flush Rewrite Rules on Activation ─── */
 function eikou_rewrite_flush() {
     eikou_register_work_cpt();
