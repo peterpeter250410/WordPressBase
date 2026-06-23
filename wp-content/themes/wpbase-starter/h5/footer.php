@@ -80,7 +80,7 @@
         <?php if ($eikou_quick) : ?>
         <div class="eikou-cf7-wrap"><?php echo $eikou_quick; ?></div>
         <?php else : ?>
-        <form class="h5-fab-form">
+        <form class="h5-fab-form" onsubmit="return false;">
             <input type="text" name="name" placeholder="お名前 *" required>
             <input type="text" name="contact" placeholder="電話番号 / メール *" required>
             <button type="submit" class="btn btn-primary">送信する</button>

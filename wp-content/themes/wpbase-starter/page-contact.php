@@ -29,7 +29,7 @@ get_header();
                 <?php if ($eikou_cf7) : ?>
                     <div class="eikou-cf7-wrap"><?php echo $eikou_cf7; ?></div>
                 <?php else : ?>
-                <form class="contact-form">
+                <form class="contact-form" onsubmit="return false;">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="company">会社名 *</label>

@@ -31,7 +31,7 @@ include get_template_directory() . '/h5/header.php';
         <?php if ($eikou_cf7) : ?>
         <div class="eikou-cf7-wrap"><?php echo $eikou_cf7; ?></div>
         <?php else : ?>
-        <form class="h5-contact-form">
+        <form class="h5-contact-form" onsubmit="return false;">
             <div class="h5-form-group">
                 <label for="company">会社名 *</label>
                 <input type="text" id="company" name="company" required placeholder="株式会社XXXX">
