@@ -37,6 +37,12 @@ function eikou_setup() {
 }
 add_action('after_setup_theme', 'eikou_setup');
 
+/* ─── 资源版本号：用文件修改时间，文件一变即自动刷新缓存 ─── */
+function eikou_ver($rel) {
+    $path = get_template_directory() . $rel;
+    return file_exists($path) ? filemtime($path) : '2.0.0';
+}
+
 /* ─── Enqueue Styles & Scripts ─── */
 function eikou_scripts() {
     // Google Fonts (shared)
@@ -49,15 +55,15 @@ function eikou_scripts() {
         // ── H5 path: base.css + h5.css + h5.js ──
         wp_enqueue_style('eikou-base',
             get_template_directory_uri() . '/assets/css/base.css',
-            ['eikou-google-fonts'], '2.0.0'
+            ['eikou-google-fonts'], eikou_ver('/assets/css/base.css')
         );
         wp_enqueue_style('eikou-h5',
             get_template_directory_uri() . '/h5/assets/css/h5.css',
-            ['eikou-base'], '1.0.0'
+            ['eikou-base'], eikou_ver('/h5/assets/css/h5.css')
         );
         wp_enqueue_script('eikou-h5',
             get_template_directory_uri() . '/h5/assets/js/h5.js',
-            [], '1.0.0', true
+            [], eikou_ver('/h5/assets/js/h5.js'), true
         );
 
         // Pass current tab state to JS
@@ -78,12 +84,12 @@ function eikou_scripts() {
         // ── PC path: eikou.css + main.js ──
         wp_enqueue_style('eikou-style',
             get_template_directory_uri() . '/assets/css/eikou.css',
-            ['eikou-google-fonts'], '2.0.0'
+            ['eikou-google-fonts'], eikou_ver('/assets/css/eikou.css')
         );
-        wp_enqueue_style('eikou-theme', get_stylesheet_uri(), ['eikou-style'], '2.0.0');
+        wp_enqueue_style('eikou-theme', get_stylesheet_uri(), ['eikou-style'], eikou_ver('/style.css'));
         wp_enqueue_script('eikou-main',
             get_template_directory_uri() . '/assets/js/main.js',
-            [], '2.0.0', true
+            [], eikou_ver('/assets/js/main.js'), true
         );
     }
 }

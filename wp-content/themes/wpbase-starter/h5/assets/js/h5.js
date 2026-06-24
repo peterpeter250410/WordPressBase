@@ -88,60 +88,57 @@
         startAutoPlay();
     }
 
-    /* ========== Hamburger Menu ========== */
-    function initMenu() {
+    /* ========== Hamburger Menu (事件委托，避免首次加载绑定时机问题) ========== */
+    var menuScrollPos = 0;
+
+    function openMenu(hamburger, overlay) {
+        menuScrollPos = window.pageYOffset;
+        if (hamburger) hamburger.classList.add('active');
+        overlay.classList.add('active');
+        document.body.classList.add('h5-menu-open');
+        document.body.style.top = -menuScrollPos + 'px';
+    }
+
+    function closeMenu(overlay) {
         var hamburger = document.getElementById('h5Hamburger');
-        var overlay = document.getElementById('h5MenuOverlay');
-        if (!hamburger || !overlay) return;
+        if (hamburger) hamburger.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.classList.remove('h5-menu-open');
+        document.body.style.top = '';
+        window.scrollTo(0, menuScrollPos);
+    }
 
-        var scrollPos = 0;
-
-        hamburger.addEventListener('click', function () {
-            var isOpen = overlay.classList.contains('active');
-            if (isOpen) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
-        });
-
-        function openMenu() {
-            scrollPos = window.pageYOffset;
-            hamburger.classList.add('active');
-            overlay.classList.add('active');
-            document.body.classList.add('h5-menu-open');
-            document.body.style.top = -scrollPos + 'px';
-        }
-
-        function closeMenu() {
-            hamburger.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.classList.remove('h5-menu-open');
-            document.body.style.top = '';
-            window.scrollTo(0, scrollPos);
-        }
-
-        // Close on overlay background click
-        overlay.addEventListener('click', function (e) {
-            if (e.target === overlay) {
-                closeMenu();
-            }
-        });
-
-        // Sub-menu accordion
-        var parentItems = overlay.querySelectorAll('.menu-item-has-children');
-        parentItems.forEach(function (item) {
-            var link = item.querySelector(':scope > a');
-            if (!link) return;
-
-            link.addEventListener('click', function (e) {
-                var subMenu = item.querySelector('.sub-menu, .submenu');
-                if (!subMenu) return;
-
+    function initMenu() {
+        // 委托到 document：无论汉堡/覆盖层何时渲染完成都能响应点击
+        document.addEventListener('click', function (e) {
+            // 1) 汉堡按钮切换
+            if (e.target.closest('#h5Hamburger')) {
+                var overlay = document.getElementById('h5MenuOverlay');
+                if (!overlay) return;
                 e.preventDefault();
-                item.classList.toggle('open');
-                subMenu.classList.toggle('open');
-            });
+                if (overlay.classList.contains('active')) {
+                    closeMenu(overlay);
+                } else {
+                    openMenu(document.getElementById('h5Hamburger'), overlay);
+                }
+                return;
+            }
+            // 2) 点击覆盖层空白处关闭
+            if (e.target.id === 'h5MenuOverlay') {
+                closeMenu(e.target);
+                return;
+            }
+            // 3) 子菜单手风琴
+            var parentLink = e.target.closest('.h5-menu-nav .menu-item-has-children > a');
+            if (parentLink) {
+                var item = parentLink.parentElement;
+                var subMenu = item.querySelector('.sub-menu, .submenu');
+                if (subMenu) {
+                    e.preventDefault();
+                    item.classList.toggle('open');
+                    subMenu.classList.toggle('open');
+                }
+            }
         });
     }
 
@@ -275,33 +272,27 @@
         });
     }
 
-    /* ========== Floating Contact Widget ========== */
-    function initFabContact() {
+    /* ========== Floating Contact Widget (事件委托) ========== */
+    function setFab(open) {
         var fab = document.getElementById('h5FabContact');
-        var btn = document.getElementById('h5FabBtn');
-        var closeBtn = document.getElementById('h5FabClose');
         var overlay = document.getElementById('h5FabOverlay');
-        if (!fab || !btn) return;
+        if (!fab) return;
+        fab.classList.toggle('open', open);
+        if (overlay) overlay.classList.toggle('active', open);
+    }
 
-        function openFab() {
-            fab.classList.add('open');
-            if (overlay) overlay.classList.add('active');
-        }
-        function closeFab() {
-            fab.classList.remove('open');
-            if (overlay) overlay.classList.remove('active');
-        }
-        function toggleFab() {
-            if (fab.classList.contains('open')) {
-                closeFab();
-            } else {
-                openFab();
+    function initFabContact() {
+        document.addEventListener('click', function (e) {
+            var fab = document.getElementById('h5FabContact');
+            if (!fab) return;
+            if (e.target.closest('#h5FabBtn')) {
+                setFab(!fab.classList.contains('open'));
+                return;
             }
-        }
-
-        btn.addEventListener('click', toggleFab);
-        if (closeBtn) closeBtn.addEventListener('click', closeFab);
-        if (overlay) overlay.addEventListener('click', closeFab);
+            if (e.target.closest('#h5FabClose') || e.target.id === 'h5FabOverlay') {
+                setFab(false);
+            }
+        });
     }
 
     /* ========== Scroll Reveal ========== */
@@ -328,16 +319,23 @@
     }
 
     /* ========== Init All ========== */
+    // 每个模块独立 try/catch：单个模块报错不会中断后续（尤其是菜单）的初始化
+    function run(fn) {
+        try { fn(); } catch (err) {
+            if (window.console && console.error) console.error('[h5]', err);
+        }
+    }
+
     function init() {
-        initCarousel();
-        initMenu();
-        initLangSwitch();
-        initHeaderScroll();
-        initTabBar();
-        initVideoModal();
-        initFilters();
-        initFabContact();
-        initScrollReveal();
+        run(initMenu);        // 菜单优先，确保导航始终可用
+        run(initFabContact);
+        run(initCarousel);
+        run(initLangSwitch);
+        run(initHeaderScroll);
+        run(initTabBar);
+        run(initVideoModal);
+        run(initFilters);
+        run(initScrollReveal);
     }
 
     if (document.readyState === 'loading') {
