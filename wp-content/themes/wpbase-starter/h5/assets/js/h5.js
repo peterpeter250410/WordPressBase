@@ -123,7 +123,12 @@
                 }
                 return;
             }
-            // 2) 点击覆盖层空白处关闭
+            // 2) 关闭按钮 / 点击覆盖层空白处关闭
+            if (e.target.closest('#h5MenuClose')) {
+                var ov = document.getElementById('h5MenuOverlay');
+                if (ov) closeMenu(ov);
+                return;
+            }
             if (e.target.id === 'h5MenuOverlay') {
                 closeMenu(e.target);
                 return;

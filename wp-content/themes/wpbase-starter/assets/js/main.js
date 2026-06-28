@@ -187,38 +187,14 @@
         });
     }
 
-    // ========== Mobile Menu Toggle (右侧抽屉 + 蒙版) ==========
+    // ========== Mobile Menu Toggle ==========
     var mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     var mainNav = document.querySelector('.main-nav');
 
     if (mobileMenuBtn && mainNav && !document.body.classList.contains('is-mobile')) {
-        function closePcMenu() {
-            mainNav.classList.remove('open');
-            mobileMenuBtn.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        mobileMenuBtn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            var willOpen = !mainNav.classList.contains('open');
-            mainNav.classList.toggle('open', willOpen);
-            mobileMenuBtn.classList.toggle('active', willOpen);
-            document.body.style.overflow = willOpen ? 'hidden' : '';
-        });
-
-        // 点击蒙版空白处关闭（点到 nav 自身而非内部 ul/链接）
-        mainNav.addEventListener('click', function (e) {
-            if (e.target === mainNav) closePcMenu();
-        });
-
-        // 点击导航链接后关闭抽屉
-        mainNav.querySelectorAll('a').forEach(function (a) {
-            a.addEventListener('click', closePcMenu);
-        });
-
-        // Esc 关闭
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && mainNav.classList.contains('open')) closePcMenu();
+        mobileMenuBtn.addEventListener('click', function () {
+            mainNav.classList.toggle('open');
+            mobileMenuBtn.classList.toggle('active');
         });
     }
 
