@@ -3,10 +3,10 @@
 <section class="section cta-section">
     <div class="cta-bg"></div>
     <div class="container cta-content">
-        <h2>プロジェクトのご相談は<br>お気軽にお問い合わせください</h2>
-        <p>展示会出展、イベント企画、空間デザイン、Web制作、AIソリューションなど、<br>お客様のニーズに合わせた最適なプランをご提案いたします。</p>
+        <h2><?php esc_html_e('プロジェクトのご相談は', 'eikou'); ?><br><?php esc_html_e('お気軽にお問い合わせください', 'eikou'); ?></h2>
+        <p><?php esc_html_e('展示会出展、イベント企画、空間デザイン、Web制作、AIソリューションなど、', 'eikou'); ?><br><?php esc_html_e('お客様のニーズに合わせた最適なプランをご提案いたします。', 'eikou'); ?></p>
         <div class="cta-actions">
-            <a href="<?php echo esc_url(eikou_page_url('contact')); ?>" class="btn btn-primary btn-lg">お問い合わせ</a>
+            <a href="<?php echo esc_url(eikou_page_url('contact')); ?>" class="btn btn-primary btn-lg"><?php esc_html_e('お問い合わせ', 'eikou'); ?></a>
             <a href="tel:+81-3-XXXX-XXXX" class="btn btn-ghost"><?php echo esc_html(eikou_get('eikou_tel', '03-XXXX-XXXX')); ?></a>
         </div>
     </div>
@@ -21,12 +21,12 @@
                 <div class="footer-logo">
                     <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo-eikou.png'); ?>" alt="EIKOU" class="logo-image">
                 </div>
-                <p class="footer-tagline">光で、空間を未来へ導く</p>
+                <p class="footer-tagline"><?php esc_html_e('光で、空間を未来へ導く', 'eikou'); ?></p>
                 <p class="footer-company"><?php echo esc_html(eikou_get('eikou_company_name', '荣光株式会社｜EIKOU Co., Ltd.')); ?></p>
             </div>
             <div class="footer-nav">
                 <div class="footer-nav-group">
-                    <h4>ナビゲーション</h4>
+                    <h4><?php esc_html_e('ナビゲーション', 'eikou'); ?></h4>
                     <?php
                     wp_nav_menu([
                         'theme_location' => 'footer-nav',
@@ -37,7 +37,7 @@
                     ?>
                 </div>
                 <div class="footer-nav-group">
-                    <h4>その他</h4>
+                    <h4><?php esc_html_e('その他', 'eikou'); ?></h4>
                     <?php
                     wp_nav_menu([
                         'theme_location' => 'footer-other',
@@ -48,7 +48,7 @@
                     ?>
                 </div>
                 <div class="footer-nav-group">
-                    <h4>お問い合わせ</h4>
+                    <h4><?php esc_html_e('お問い合わせ', 'eikou'); ?></h4>
                     <ul>
                         <li><?php echo esc_html(eikou_get('eikou_zip', '〒XXX-XXXX')); ?></li>
                         <li><?php echo esc_html(eikou_get('eikou_address', '東京都XX区XX X-X-X')); ?></li>
@@ -61,8 +61,8 @@
         <div class="footer-bottom">
             <p>&copy; <?php echo esc_html(date('Y')); ?> EIKOU Co., Ltd. All Rights Reserved.</p>
             <div class="footer-links">
-                <a href="#">プライバシーポリシー</a>
-                <a href="#">利用規約</a>
+                <a href="#"><?php esc_html_e('プライバシーポリシー', 'eikou'); ?></a>
+                <a href="#"><?php esc_html_e('利用規約', 'eikou'); ?></a>
             </div>
         </div>
     </div>

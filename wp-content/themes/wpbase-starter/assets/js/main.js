@@ -98,17 +98,7 @@
             });
         }
 
-        // Language selection
-        var langLinks = document.querySelectorAll('.lang-menu a');
-        langLinks.forEach(function (link) {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                langLinks.forEach(function (l) { l.classList.remove('active'); });
-                this.classList.add('active');
-                document.querySelector('.lang-current span').textContent = this.textContent;
-                langDropdown.classList.remove('open');
-            });
-        });
+        // 语言切换：现由 Polylang 真实链接跳转，点击直接导航（不再拦截）
     }
 
     // ========== Header scroll effect ==========

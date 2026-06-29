@@ -33,13 +33,24 @@
             <div class="lang-dropdown">
                 <button class="lang-current">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
-                    <span>日本語</span>
+                    <span><?php echo esc_html(eikou_current_language_name()); ?></span>
                     <svg class="arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
                 <ul class="lang-menu">
-                    <li><a href="#" class="active">日本語</a></li>
-                    <li><a href="#">中文</a></li>
-                    <li><a href="#">English</a></li>
+                    <?php
+                    $eikou_langs = eikou_get_languages();
+                    if ($eikou_langs) :
+                        foreach ($eikou_langs as $l) :
+                            printf('<li><a href="%s" class="%s">%s</a></li>',
+                                esc_url($l['url']),
+                                !empty($l['current_lang']) ? 'active' : '',
+                                esc_html($l['name']));
+                        endforeach;
+                    else : ?>
+                        <li><a href="#" class="active">日本語</a></li>
+                        <li><a href="#">中文</a></li>
+                        <li><a href="#">English</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
             <a href="<?php echo esc_url(eikou_page_url('contact')); ?>" class="btn-contact" aria-label="Contact" title="お問い合わせ">

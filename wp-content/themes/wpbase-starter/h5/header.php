@@ -47,9 +47,20 @@
             <a href="<?php echo esc_url(eikou_page_url('contact')); ?>" class="btn btn-primary">お問い合わせ</a>
         </div>
         <div class="h5-menu-lang">
-            <a href="#" class="active">日本語</a>
-            <a href="#">中文</a>
-            <a href="#">English</a>
+            <?php
+            $eikou_langs = eikou_get_languages();
+            if ($eikou_langs) :
+                foreach ($eikou_langs as $l) :
+                    printf('<a href="%s" class="%s">%s</a>',
+                        esc_url($l['url']),
+                        !empty($l['current_lang']) ? 'active' : '',
+                        esc_html($l['name']));
+                endforeach;
+            else : ?>
+                <a href="#" class="active">日本語</a>
+                <a href="#">中文</a>
+                <a href="#">English</a>
+            <?php endif; ?>
         </div>
     </div>
 </div>

@@ -147,20 +147,7 @@
         });
     }
 
-    /* ========== Language Switch (visual only) ========== */
-    function initLangSwitch() {
-        var langLinks = document.querySelectorAll('.h5-menu-lang a');
-        if (langLinks.length === 0) return;
-
-        langLinks.forEach(function (link) {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                langLinks.forEach(function (l) { l.classList.remove('active'); });
-                this.classList.add('active');
-                // 视觉切换占位：真实多语言后续接入
-            });
-        });
-    }
+    /* 语言切换：现由 Polylang 真实链接跳转，无需 JS 拦截 */
 
     /* ========== Header Scroll Effect ========== */
     function initHeaderScroll() {
@@ -335,7 +322,6 @@
         run(initMenu);        // 菜单优先，确保导航始终可用
         run(initFabContact);
         run(initCarousel);
-        run(initLangSwitch);
         run(initHeaderScroll);
         run(initTabBar);
         run(initVideoModal);

@@ -11,6 +11,9 @@ if (!defined('ABSPATH')) {
 
 /* ─── Theme Setup ─── */
 function eikou_setup() {
+    // 多语言：加载主题翻译文件（languages/eikou-{locale}.mo）
+    load_theme_textdomain('eikou', get_template_directory() . '/languages');
+
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
     add_theme_support('html5', ['search-form', 'comment-form', 'comment-list', 'gallery', 'caption']);
@@ -420,6 +423,27 @@ function eikou_render_contact_form($key) {
         return do_shortcode($shortcode);
     }
     return '';
+}
+
+/* ─── 多语言：语言切换助手（接入 Polylang，未启用时回退占位）─── */
+function eikou_get_languages() {
+    if (function_exists('pll_the_languages')) {
+        $langs = pll_the_languages(['raw' => 1, 'hide_if_empty' => 0]);
+        if (is_array($langs) && $langs) {
+            return $langs;
+        }
+    }
+    return []; // Polylang 未启用 → 模板使用静态占位
+}
+
+function eikou_current_language_name() {
+    if (function_exists('pll_current_language')) {
+        $name = pll_current_language('name');
+        if ($name) {
+            return $name;
+        }
+    }
+    return '日本語';
 }
 
 /* ─── Customizer: Hero Slideshow ─── */
