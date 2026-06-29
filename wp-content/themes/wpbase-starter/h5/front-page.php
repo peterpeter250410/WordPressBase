@@ -18,7 +18,7 @@ include get_template_directory() . '/h5/header.php';
                 <?php if ($idx === 0) : ?>
                 <div class="h5-hero-card-content">
                     <span class="h5-hero-badge">EIKOU Co., Ltd.</span>
-                    <h2>光で、空間を<br><span class="h5-gold">未来へ導く</span></h2>
+                    <h2><?php esc_html_e('光で、空間を', 'eikou'); ?><br><span class="h5-gold"><?php esc_html_e('未来へ導く', 'eikou'); ?></span></h2>
                 </div>
                 <?php endif; ?>
             </div>
@@ -31,23 +31,23 @@ include get_template_directory() . '/h5/header.php';
         <?php endforeach; ?>
     </div>
     <div class="h5-hero-info">
-        <p class="h5-hero-desc">展示・イベント・商業空間の企画から施工・運営まで、日本市場におけるブランド体験をトータルプロデュース</p>
+        <p class="h5-hero-desc"><?php esc_html_e('展示・イベント・商業空間の企画から施工・運営まで、日本市場におけるブランド体験をトータルプロデュース', 'eikou'); ?></p>
         <div class="h5-hero-actions">
-            <a href="<?php echo esc_url(eikou_page_url('services')); ?>" class="btn btn-primary">サービスを見る</a>
-            <a href="<?php echo esc_url(eikou_page_url('works')); ?>" class="btn btn-outline">実績を見る</a>
+            <a href="<?php echo esc_url(eikou_page_url('services')); ?>" class="btn btn-primary"><?php esc_html_e('サービスを見る', 'eikou'); ?></a>
+            <a href="<?php echo esc_url(eikou_page_url('works')); ?>" class="btn btn-outline"><?php esc_html_e('実績を見る', 'eikou'); ?></a>
         </div>
         <div class="h5-hero-stats">
             <div class="h5-stat">
                 <span class="h5-stat-num">500<small>+</small></span>
-                <span class="h5-stat-label">プロジェクト実績</span>
+                <span class="h5-stat-label"><?php esc_html_e('プロジェクト実績', 'eikou'); ?></span>
             </div>
             <div class="h5-stat">
                 <span class="h5-stat-num">15<small>+</small></span>
-                <span class="h5-stat-label">年の業界経験</span>
+                <span class="h5-stat-label"><?php esc_html_e('年の業界経験', 'eikou'); ?></span>
             </div>
             <div class="h5-stat">
                 <span class="h5-stat-num">200<small>+</small></span>
-                <span class="h5-stat-label">グローバル企業</span>
+                <span class="h5-stat-label"><?php esc_html_e('グローバル企業', 'eikou'); ?></span>
             </div>
         </div>
     </div>
@@ -58,7 +58,7 @@ include get_template_directory() . '/h5/header.php';
     <div class="h5-container">
         <div class="h5-section-header">
             <span class="h5-tag">Core Business</span>
-            <h2 class="h5-section-title">主要事業</h2>
+            <h2 class="h5-section-title"><?php esc_html_e('主要事業', 'eikou'); ?></h2>
         </div>
         <div class="h5-service-grid">
             <a href="<?php echo esc_url(eikou_page_url('service-exhibition')); ?>" class="h5-service-card">
@@ -67,7 +67,7 @@ include get_template_directory() . '/h5/header.php';
                 </div>
                 <div class="h5-service-info">
                     <span class="h5-service-num">01</span>
-                    <h3>展示会・イベント</h3>
+                    <h3><?php esc_html_e('展示会・イベント', 'eikou'); ?></h3>
                 </div>
             </a>
             <a href="<?php echo esc_url(eikou_page_url('service-brand-event')); ?>" class="h5-service-card">
@@ -76,7 +76,7 @@ include get_template_directory() . '/h5/header.php';
                 </div>
                 <div class="h5-service-info">
                     <span class="h5-service-num">02</span>
-                    <h3>ブランドイベント</h3>
+                    <h3><?php esc_html_e('ブランドイベント', 'eikou'); ?></h3>
                 </div>
             </a>
             <a href="<?php echo esc_url(eikou_page_url('service-digital')); ?>" class="h5-service-card">
@@ -85,7 +85,7 @@ include get_template_directory() . '/h5/header.php';
                 </div>
                 <div class="h5-service-info">
                     <span class="h5-service-num">03</span>
-                    <h3>デジタル・Web</h3>
+                    <h3><?php esc_html_e('デジタル・Web', 'eikou'); ?></h3>
                 </div>
             </a>
             <a href="<?php echo esc_url(eikou_page_url('service-ai')); ?>" class="h5-service-card">
@@ -94,7 +94,7 @@ include get_template_directory() . '/h5/header.php';
                 </div>
                 <div class="h5-service-info">
                     <span class="h5-service-num">04</span>
-                    <h3>AIソリューション</h3>
+                    <h3><?php esc_html_e('AIソリューション', 'eikou'); ?></h3>
                 </div>
             </a>
             <a href="<?php echo esc_url(eikou_page_url('service-branding')); ?>" class="h5-service-card">
@@ -103,7 +103,7 @@ include get_template_directory() . '/h5/header.php';
                 </div>
                 <div class="h5-service-info">
                     <span class="h5-service-num">05</span>
-                    <h3>ブランディング</h3>
+                    <h3><?php esc_html_e('ブランディング', 'eikou'); ?></h3>
                 </div>
             </a>
             <a href="<?php echo esc_url(eikou_page_url('service-media')); ?>" class="h5-service-card">
@@ -112,7 +112,7 @@ include get_template_directory() . '/h5/header.php';
                 </div>
                 <div class="h5-service-info">
                     <span class="h5-service-num">06</span>
-                    <h3>メディア・映像</h3>
+                    <h3><?php esc_html_e('メディア・映像', 'eikou'); ?></h3>
                 </div>
             </a>
         </div>
@@ -124,7 +124,7 @@ include get_template_directory() . '/h5/header.php';
     <div class="h5-container">
         <div class="h5-section-header">
             <span class="h5-tag">Works</span>
-            <h2 class="h5-section-title">成功事例</h2>
+            <h2 class="h5-section-title"><?php esc_html_e('成功事例', 'eikou'); ?></h2>
         </div>
         <div class="h5-works-grid">
             <?php
@@ -159,24 +159,24 @@ include get_template_directory() . '/h5/header.php';
             ?>
             <div class="h5-work-card">
                 <div class="h5-work-img"><img src="<?php echo esc_url(eikou_mobile_img_url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80', 400, 50)); ?>" alt="Exhibition" loading="lazy"></div>
-                <div class="h5-work-info"><span class="h5-work-cat">展示会</span><h3>国際展示会ブースデザイン</h3></div>
+                <div class="h5-work-info"><span class="h5-work-cat"><?php esc_html_e('展示会', 'eikou'); ?></span><h3><?php esc_html_e('国際展示会ブースデザイン', 'eikou'); ?></h3></div>
             </div>
             <div class="h5-work-card">
                 <div class="h5-work-img"><img src="<?php echo esc_url(eikou_mobile_img_url('https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80', 400, 50)); ?>" alt="Event" loading="lazy"></div>
-                <div class="h5-work-info"><span class="h5-work-cat">イベント</span><h3>新製品発表会</h3></div>
+                <div class="h5-work-info"><span class="h5-work-cat"><?php esc_html_e('イベント', 'eikou'); ?></span><h3><?php esc_html_e('新製品発表会', 'eikou'); ?></h3></div>
             </div>
             <div class="h5-work-card">
                 <div class="h5-work-img"><img src="<?php echo esc_url(eikou_mobile_img_url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600&q=80', 400, 50)); ?>" alt="Showroom" loading="lazy"></div>
-                <div class="h5-work-info"><span class="h5-work-cat">商業空間</span><h3>企業ショールーム</h3></div>
+                <div class="h5-work-info"><span class="h5-work-cat"><?php esc_html_e('商業空間', 'eikou'); ?></span><h3><?php esc_html_e('企業ショールーム', 'eikou'); ?></h3></div>
             </div>
             <div class="h5-work-card">
                 <div class="h5-work-img"><img src="<?php echo esc_url(eikou_mobile_img_url('https://images.unsplash.com/photo-1531058020387-3be344556be6?w=600&q=80', 400, 50)); ?>" alt="Pop-up" loading="lazy"></div>
-                <div class="h5-work-info"><span class="h5-work-cat">ポップアップ</span><h3>ブランドポップアップ</h3></div>
+                <div class="h5-work-info"><span class="h5-work-cat"><?php esc_html_e('ポップアップ', 'eikou'); ?></span><h3><?php esc_html_e('ブランドポップアップ', 'eikou'); ?></h3></div>
             </div>
             <?php endif; ?>
         </div>
         <div class="h5-section-action">
-            <a href="<?php echo esc_url(eikou_page_url('works')); ?>" class="btn btn-outline">すべての実績を見る</a>
+            <a href="<?php echo esc_url(eikou_page_url('works')); ?>" class="btn btn-outline"><?php esc_html_e('すべての実績を見る', 'eikou'); ?></a>
         </div>
     </div>
 </section>
@@ -186,7 +186,7 @@ include get_template_directory() . '/h5/header.php';
     <div class="h5-container">
         <div class="h5-section-header">
             <span class="h5-tag">Video</span>
-            <h2 class="h5-section-title">動画センター</h2>
+            <h2 class="h5-section-title"><?php esc_html_e('動画センター', 'eikou'); ?></h2>
         </div>
         <div class="h5-video-list">
             <?php
@@ -223,12 +223,12 @@ include get_template_directory() . '/h5/header.php';
                     <div class="h5-video-play"><svg width="36" height="36" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" stroke="white" stroke-width="2"/><polygon points="20,16 34,24 20,32" fill="white"/></svg></div>
                     <span class="h5-video-duration">03:24</span>
                 </div>
-                <h3 class="h5-video-title">EIKOU プロジェクトハイライト 2024</h3>
+                <h3 class="h5-video-title"><?php esc_html_e('EIKOU プロジェクトハイライト 2024', 'eikou'); ?></h3>
             </div>
             <?php endif; ?>
         </div>
         <div class="h5-section-action">
-            <a href="<?php echo esc_url(eikou_page_url('video')); ?>" class="btn btn-outline">すべての動画を見る</a>
+            <a href="<?php echo esc_url(eikou_page_url('video')); ?>" class="btn btn-outline"><?php esc_html_e('すべての動画を見る', 'eikou'); ?></a>
         </div>
     </div>
 </section>
@@ -238,28 +238,28 @@ include get_template_directory() . '/h5/header.php';
     <div class="h5-container">
         <div class="h5-section-header">
             <span class="h5-tag">Why EIKOU</span>
-            <h2 class="h5-section-title">選ばれる理由</h2>
+            <h2 class="h5-section-title"><?php esc_html_e('選ばれる理由', 'eikou'); ?></h2>
         </div>
         <div class="h5-reasons-list">
             <div class="h5-reason-card">
                 <div class="h5-reason-num">01</div>
-                <h3>ワンストップサービス</h3>
-                <p>企画・デザインから制作・施工・運営まで一貫対応。窓口を一本化し、プロジェクト全体の品質とスケジュールを管理します。</p>
+                <h3><?php esc_html_e('ワンストップサービス', 'eikou'); ?></h3>
+                <p><?php esc_html_e('企画・デザインから制作・施工・運営まで一貫対応。窓口を一本化し、プロジェクト全体の品質とスケジュールを管理します。', 'eikou'); ?></p>
             </div>
             <div class="h5-reason-card">
                 <div class="h5-reason-num">02</div>
-                <h3>日本市場の深い理解</h3>
-                <p>15年以上の日本市場での実績。日本特有の品質基準、商習慣、法規制に精通したチームが対応します。</p>
+                <h3><?php esc_html_e('日本市場の深い理解', 'eikou'); ?></h3>
+                <p><?php esc_html_e('15年以上の日本市場での実績。日本特有の品質基準、商習慣、法規制に精通したチームが対応します。', 'eikou'); ?></p>
             </div>
             <div class="h5-reason-card">
                 <div class="h5-reason-num">03</div>
-                <h3>グローバル対応力</h3>
-                <p>日本語・中国語・英語のトリリンガル対応。海外企業の日本進出をシームレスにサポートします。</p>
+                <h3><?php esc_html_e('グローバル対応力', 'eikou'); ?></h3>
+                <p><?php esc_html_e('日本語・中国語・英語のトリリンガル対応。海外企業の日本進出をシームレスにサポートします。', 'eikou'); ?></p>
             </div>
             <div class="h5-reason-card">
                 <div class="h5-reason-num">04</div>
-                <h3>テクノロジー統合</h3>
-                <p>LED・インタラクティブ技術・AIソリューションを空間演出に統合。最先端の体験を創出します。</p>
+                <h3><?php esc_html_e('テクノロジー統合', 'eikou'); ?></h3>
+                <p><?php esc_html_e('LED・インタラクティブ技術・AIソリューションを空間演出に統合。最先端の体験を創出します。', 'eikou'); ?></p>
             </div>
         </div>
     </div>
@@ -270,7 +270,7 @@ include get_template_directory() . '/h5/header.php';
     <div class="h5-container">
         <div class="h5-section-header">
             <span class="h5-tag">Partners</span>
-            <h2 class="h5-section-title">パートナー企業</h2>
+            <h2 class="h5-section-title"><?php esc_html_e('パートナー企業', 'eikou'); ?></h2>
         </div>
         <div class="h5-partners-grid">
             <?php
