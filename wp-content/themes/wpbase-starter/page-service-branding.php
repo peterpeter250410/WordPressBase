@@ -15,8 +15,8 @@ $items = array_filter($all_items, function($v) { return $v['category'] === 'serv
     <div class="page-hero-overlay"></div>
     <div class="container page-hero-content">
         <span class="section-tag">Branding & Design</span>
-        <h1>ブランディング・デザイン</h1>
-        <p>ブランド価値を高めるビジュアルデザインとクリエイティブを提供します</p>
+        <h1><?php esc_html_e('ブランディング・デザイン', 'eikou'); ?></h1>
+        <p><?php esc_html_e('ブランド価値を高めるビジュアルデザインとクリエイティブを提供します', 'eikou'); ?></p>
     </div>
 </section>
 
@@ -24,7 +24,7 @@ $items = array_filter($all_items, function($v) { return $v['category'] === 'serv
 <section class="section">
     <div class="container">
         <div class="service-category-intro scroll-reveal">
-            <p>企業のブランドアイデンティティを構築し、あらゆる接点で一貫したブランド体験を創出します。パッケージデザイン、VI（ビジュアルアイデンティティ）設計、販促プロモーション、ポスター・カタログなどの印刷物デザインまで、ブランド価値を最大化するクリエイティブソリューションを提供します。</p>
+            <p><?php esc_html_e('企業のブランドアイデンティティを構築し、あらゆる接点で一貫したブランド体験を創出します。パッケージデザイン、VI（ビジュアルアイデンティティ）設計、販促プロモーション、ポスター・カタログなどの印刷物デザインまで、ブランド価値を最大化するクリエイティブソリューションを提供します。', 'eikou'); ?></p>
         </div>
     </div>
 </section>
@@ -34,25 +34,25 @@ $items = array_filter($all_items, function($v) { return $v['category'] === 'serv
     <div class="container">
         <div class="section-header">
             <span class="section-tag">Services</span>
-            <h2 class="section-title">サービス内容</h2>
+            <h2 class="section-title"><?php esc_html_e('サービス内容', 'eikou'); ?></h2>
         </div>
         <div class="service-detail-grid">
             <?php foreach ($items as $slug => $item) : ?>
             <a href="<?php echo esc_url(eikou_page_url($slug)); ?>" class="service-detail-card service-detail-card-link scroll-reveal">
                 <div class="service-detail-number"><?php echo esc_html($item['number']); ?></div>
-                <h3><?php echo esc_html($item['title']); ?></h3>
-                <p><?php echo mb_substr($item['description'], 0, 120) . '...'; ?></p>
+                <h3><?php echo esc_html(__($item['title'], 'eikou')); ?></h3>
+                <p><?php echo esc_html(mb_substr(__($item['description'], 'eikou'), 0, 120)) . '...'; ?></p>
                 <ul class="service-detail-list">
                     <?php foreach (array_slice($item['features'], 0, 4) as $f) : ?>
-                        <li><?php echo esc_html($f); ?></li>
+                        <li><?php echo esc_html(__($f, 'eikou')); ?></li>
                     <?php endforeach; ?>
                 </ul>
                 <ul class="business-tags">
                     <?php foreach (array_slice($item['tags'], 0, 3) as $tag) : ?>
-                        <li><?php echo esc_html($tag); ?></li>
+                        <li><?php echo esc_html(__($tag, 'eikou')); ?></li>
                     <?php endforeach; ?>
                 </ul>
-                <span class="service-detail-more">詳細を見る →</span>
+                <span class="service-detail-more"><?php esc_html_e('詳細を見る', 'eikou'); ?> →</span>
             </a>
             <?php endforeach; ?>
         </div>

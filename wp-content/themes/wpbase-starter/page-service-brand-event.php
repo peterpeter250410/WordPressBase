@@ -15,8 +15,8 @@ $items = array_filter($all_items, function($v) { return $v['category'] === 'serv
     <div class="page-hero-overlay"></div>
     <div class="container page-hero-content">
         <span class="section-tag">Brand Events</span>
-        <h1>ブランドイベント</h1>
-        <p>発表会・ポップアップ・プロモーションなど、ブランド体験を創出します</p>
+        <h1><?php esc_html_e('ブランドイベント', 'eikou'); ?></h1>
+        <p><?php esc_html_e('発表会・ポップアップ・プロモーションなど、ブランド体験を創出します', 'eikou'); ?></p>
     </div>
 </section>
 
@@ -24,7 +24,7 @@ $items = array_filter($all_items, function($v) { return $v['category'] === 'serv
 <section class="section">
     <div class="container">
         <div class="service-category-intro scroll-reveal">
-            <p>新製品発表会やプレスカンファレンス、ポップアップストア、ブランドプロモーション、全国巡回イベントなど、企業ブランドの価値を高めるイベントを企画・実行します。特に海外企業の日本市場参入を包括的にサポートし、日中英トリリンガルチームが文化・言語の壁を越えたブランド展開を実現します。</p>
+            <p><?php esc_html_e('新製品発表会やプレスカンファレンス、ポップアップストア、ブランドプロモーション、全国巡回イベントなど、企業ブランドの価値を高めるイベントを企画・実行します。特に海外企業の日本市場参入を包括的にサポートし、日中英トリリンガルチームが文化・言語の壁を越えたブランド展開を実現します。', 'eikou'); ?></p>
         </div>
     </div>
 </section>
@@ -34,25 +34,25 @@ $items = array_filter($all_items, function($v) { return $v['category'] === 'serv
     <div class="container">
         <div class="section-header">
             <span class="section-tag">Services</span>
-            <h2 class="section-title">サービス内容</h2>
+            <h2 class="section-title"><?php esc_html_e('サービス内容', 'eikou'); ?></h2>
         </div>
         <div class="service-detail-grid">
             <?php foreach ($items as $slug => $item) : ?>
             <a href="<?php echo esc_url(eikou_page_url($slug)); ?>" class="service-detail-card service-detail-card-link scroll-reveal">
                 <div class="service-detail-number"><?php echo esc_html($item['number']); ?></div>
-                <h3><?php echo esc_html($item['title']); ?></h3>
-                <p><?php echo mb_substr($item['description'], 0, 120) . '...'; ?></p>
+                <h3><?php echo esc_html(__($item['title'], 'eikou')); ?></h3>
+                <p><?php echo esc_html(mb_substr(__($item['description'], 'eikou'), 0, 120)) . '...'; ?></p>
                 <ul class="service-detail-list">
                     <?php foreach (array_slice($item['features'], 0, 4) as $f) : ?>
-                        <li><?php echo esc_html($f); ?></li>
+                        <li><?php echo esc_html(__($f, 'eikou')); ?></li>
                     <?php endforeach; ?>
                 </ul>
                 <ul class="business-tags">
                     <?php foreach (array_slice($item['tags'], 0, 3) as $tag) : ?>
-                        <li><?php echo esc_html($tag); ?></li>
+                        <li><?php echo esc_html(__($tag, 'eikou')); ?></li>
                     <?php endforeach; ?>
                 </ul>
-                <span class="service-detail-more">詳細を見る →</span>
+                <span class="service-detail-more"><?php esc_html_e('詳細を見る', 'eikou'); ?> →</span>
             </a>
             <?php endforeach; ?>
         </div>
@@ -64,7 +64,7 @@ $items = array_filter($all_items, function($v) { return $v['category'] === 'serv
     <div class="container">
         <div class="section-header">
             <span class="section-tag">Works</span>
-            <h2 class="section-title">関連実績</h2>
+            <h2 class="section-title"><?php esc_html_e('関連実績', 'eikou'); ?></h2>
         </div>
         <?php
         $works = new WP_Query([
@@ -98,7 +98,7 @@ $items = array_filter($all_items, function($v) { return $v['category'] === 'serv
             <?php endwhile; wp_reset_postdata(); ?>
         </div>
         <?php else : ?>
-        <p style="text-align:center; color: var(--color-text-muted);">関連実績は準備中です。</p>
+        <p style="text-align:center; color: var(--color-text-muted);"><?php esc_html_e('関連実績は準備中です。', 'eikou'); ?></p>
         <?php endif; ?>
     </div>
 </section>

@@ -70,8 +70,8 @@ $service_categories = [
     <div class="page-hero-overlay"></div>
     <div class="container page-hero-content">
         <span class="section-tag">Services</span>
-        <h1>サービス</h1>
-        <p>6つの事業領域で、お客様のビジネスをトータルサポート</p>
+        <h1><?php esc_html_e('サービス', 'eikou'); ?></h1>
+        <p><?php esc_html_e('6つの事業領域で、お客様のビジネスをトータルサポート', 'eikou'); ?></p>
     </div>
 </section>
 
@@ -80,22 +80,22 @@ $service_categories = [
     <div class="container">
         <div class="section-header">
             <span class="section-tag">Our Services</span>
-            <h2 class="section-title">サービス一覧</h2>
-            <p class="section-desc">展示空間の企画・施工からデジタル・AIソリューションまで、24のサービスでビジネスの成長を支援します</p>
+            <h2 class="section-title"><?php esc_html_e('サービス一覧', 'eikou'); ?></h2>
+            <p class="section-desc"><?php esc_html_e('展示空間の企画・施工からデジタル・AIソリューションまで、24のサービスでビジネスの成長を支援します', 'eikou'); ?></p>
         </div>
         <div class="service-hub-grid">
             <?php foreach ($service_categories as $cat) : ?>
             <a href="<?php echo esc_url(eikou_page_url($cat['slug'])); ?>" class="service-hub-card scroll-reveal">
                 <div class="service-hub-image">
-                    <img src="<?php echo esc_url($cat['image']); ?>" alt="<?php echo esc_attr($cat['title']); ?>">
+                    <img src="<?php echo esc_url($cat['image']); ?>" alt="<?php echo esc_attr(__($cat['title'], 'eikou')); ?>">
                     <div class="service-hub-overlay"></div>
                 </div>
                 <div class="service-hub-info">
                     <span class="business-number"><?php echo esc_html($cat['number']); ?></span>
                     <span class="section-tag"><?php echo esc_html($cat['en']); ?></span>
-                    <h3><?php echo esc_html($cat['title']); ?></h3>
-                    <p><?php echo esc_html($cat['desc']); ?></p>
-                    <span class="service-count"><?php echo esc_html($cat['count']); ?> サービス →</span>
+                    <h3><?php echo esc_html(__($cat['title'], 'eikou')); ?></h3>
+                    <p><?php echo esc_html(__($cat['desc'], 'eikou')); ?></p>
+                    <span class="service-count"><?php echo esc_html($cat['count']); ?> <?php esc_html_e('サービス', 'eikou'); ?> →</span>
                 </div>
             </a>
             <?php endforeach; ?>
@@ -108,39 +108,39 @@ $service_categories = [
     <div class="container">
         <div class="section-header">
             <span class="section-tag">Workflow</span>
-            <h2 class="section-title">プロジェクトの流れ</h2>
-            <p class="section-desc">お問い合わせからプロジェクト完了まで、6つのステップで進行します</p>
+            <h2 class="section-title"><?php esc_html_e('プロジェクトの流れ', 'eikou'); ?></h2>
+            <p class="section-desc"><?php esc_html_e('お問い合わせからプロジェクト完了まで、6つのステップで進行します', 'eikou'); ?></p>
         </div>
         <div class="workflow-grid">
             <div class="workflow-step scroll-reveal">
                 <div class="workflow-number">01</div>
-                <h3>ヒアリング</h3>
-                <p>ご要望・予算・スケジュールを丁寧にヒアリングし、プロジェクトの方向性を確認します。</p>
+                <h3><?php esc_html_e('ヒアリング', 'eikou'); ?></h3>
+                <p><?php esc_html_e('ご要望・予算・スケジュールを丁寧にヒアリングし、プロジェクトの方向性を確認します。', 'eikou'); ?></p>
             </div>
             <div class="workflow-step scroll-reveal">
                 <div class="workflow-number">02</div>
-                <h3>企画・提案</h3>
-                <p>コンセプト設計、デザイン案、見積もりをご提案。複数プランからお選びいただけます。</p>
+                <h3><?php esc_html_e('企画・提案', 'eikou'); ?></h3>
+                <p><?php esc_html_e('コンセプト設計、デザイン案、見積もりをご提案。複数プランからお選びいただけます。', 'eikou'); ?></p>
             </div>
             <div class="workflow-step scroll-reveal">
                 <div class="workflow-number">03</div>
-                <h3>デザイン</h3>
-                <p>3Dパース、CGシミュレーション等で完成イメージを可視化。細部まで確認いただけます。</p>
+                <h3><?php esc_html_e('デザイン', 'eikou'); ?></h3>
+                <p><?php esc_html_e('3Dパース、CGシミュレーション等で完成イメージを可視化。細部まで確認いただけます。', 'eikou'); ?></p>
             </div>
             <div class="workflow-step scroll-reveal">
                 <div class="workflow-number">04</div>
-                <h3>制作・施工</h3>
-                <p>自社工場での制作と現場施工を一貫管理。品質とスケジュールを厳密にコントロールします。</p>
+                <h3><?php esc_html_e('制作・施工', 'eikou'); ?></h3>
+                <p><?php esc_html_e('自社工場での制作と現場施工を一貫管理。品質とスケジュールを厳密にコントロールします。', 'eikou'); ?></p>
             </div>
             <div class="workflow-step scroll-reveal">
                 <div class="workflow-number">05</div>
-                <h3>運営・実施</h3>
-                <p>イベント当日の運営サポート、トラブル対応、来場者対応まで万全の体制で臨みます。</p>
+                <h3><?php esc_html_e('運営・実施', 'eikou'); ?></h3>
+                <p><?php esc_html_e('イベント当日の運営サポート、トラブル対応、来場者対応まで万全の体制で臨みます。', 'eikou'); ?></p>
             </div>
             <div class="workflow-step scroll-reveal">
                 <div class="workflow-number">06</div>
-                <h3>撤去・報告</h3>
-                <p>撤去作業、効果測定レポートの作成。次回プロジェクトへの改善提案も行います。</p>
+                <h3><?php esc_html_e('撤去・報告', 'eikou'); ?></h3>
+                <p><?php esc_html_e('撤去作業、効果測定レポートの作成。次回プロジェクトへの改善提案も行います。', 'eikou'); ?></p>
             </div>
         </div>
     </div>
