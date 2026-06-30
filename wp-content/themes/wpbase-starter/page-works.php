@@ -12,8 +12,8 @@ get_header();
     <div class="page-hero-overlay"></div>
     <div class="container page-hero-content">
         <span class="section-tag">Works</span>
-        <h1>成功事例</h1>
-        <p>これまでに手がけたプロジェクトをご紹介します</p>
+        <h1><?php esc_html_e('成功事例', 'eikou'); ?></h1>
+        <p><?php esc_html_e('これまでに手がけたプロジェクトをご紹介します', 'eikou'); ?></p>
     </div>
 </section>
 
@@ -22,7 +22,7 @@ get_header();
     <div class="container">
         <!-- Filter tabs -->
         <div class="works-filter">
-            <button class="filter-btn active" data-filter="all">すべて</button>
+            <button class="filter-btn active" data-filter="all"><?php esc_html_e('すべて', 'eikou'); ?></button>
             <?php
             $work_cats = get_terms(['taxonomy' => 'work_category', 'hide_empty' => false]);
             if ($work_cats && !is_wp_error($work_cats)) :
@@ -33,10 +33,10 @@ get_header();
                 endforeach;
             else :
             ?>
-            <button class="filter-btn">展示会</button>
-            <button class="filter-btn">イベント</button>
-            <button class="filter-btn">商業空間</button>
-            <button class="filter-btn">デジタル</button>
+            <button class="filter-btn"><?php esc_html_e('展示会', 'eikou'); ?></button>
+            <button class="filter-btn"><?php esc_html_e('イベント', 'eikou'); ?></button>
+            <button class="filter-btn"><?php esc_html_e('商業空間', 'eikou'); ?></button>
+            <button class="filter-btn"><?php esc_html_e('デジタル', 'eikou'); ?></button>
             <?php endif; ?>
         </div>
 
@@ -87,9 +87,9 @@ get_header();
                     <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Exhibition booth">
                 </div>
                 <div class="work-info">
-                    <span class="work-category">展示会</span>
-                    <h3>国際展示会ブースデザイン</h3>
-                    <p>東京ビッグサイト｜2024</p>
+                    <span class="work-category"><?php esc_html_e('展示会', 'eikou'); ?></span>
+                    <h3><?php esc_html_e('国際展示会ブースデザイン', 'eikou'); ?></h3>
+                    <p><?php esc_html_e('東京ビッグサイト｜2024', 'eikou'); ?></p>
                 </div>
             </div>
             <div class="work-card">
@@ -97,9 +97,9 @@ get_header();
                     <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80" alt="Brand event">
                 </div>
                 <div class="work-info">
-                    <span class="work-category">イベント</span>
-                    <h3>新製品発表会</h3>
-                    <p>六本木ヒルズ｜2024</p>
+                    <span class="work-category"><?php esc_html_e('イベント', 'eikou'); ?></span>
+                    <h3><?php esc_html_e('新製品発表会', 'eikou'); ?></h3>
+                    <p><?php esc_html_e('六本木ヒルズ｜2024', 'eikou'); ?></p>
                 </div>
             </div>
             <div class="work-card">
@@ -107,9 +107,9 @@ get_header();
                     <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600&q=80" alt="Showroom">
                 </div>
                 <div class="work-info">
-                    <span class="work-category">商業空間</span>
-                    <h3>企業ショールーム</h3>
-                    <p>銀座｜2023</p>
+                    <span class="work-category"><?php esc_html_e('商業空間', 'eikou'); ?></span>
+                    <h3><?php esc_html_e('企業ショールーム', 'eikou'); ?></h3>
+                    <p><?php esc_html_e('銀座｜2023', 'eikou'); ?></p>
                 </div>
             </div>
             <div class="work-card">
@@ -117,9 +117,9 @@ get_header();
                     <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?w=600&q=80" alt="Pop-up store">
                 </div>
                 <div class="work-info">
-                    <span class="work-category">イベント</span>
-                    <h3>ブランドポップアップ</h3>
-                    <p>表参道｜2024</p>
+                    <span class="work-category"><?php esc_html_e('イベント', 'eikou'); ?></span>
+                    <h3><?php esc_html_e('ブランドポップアップ', 'eikou'); ?></h3>
+                    <p><?php esc_html_e('表参道｜2024', 'eikou'); ?></p>
                 </div>
             </div>
             <div class="work-card">
@@ -127,9 +127,9 @@ get_header();
                     <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&q=80" alt="Conference">
                 </div>
                 <div class="work-info">
-                    <span class="work-category">イベント</span>
-                    <h3>年次カンファレンス</h3>
-                    <p>パシフィコ横浜｜2023</p>
+                    <span class="work-category"><?php esc_html_e('イベント', 'eikou'); ?></span>
+                    <h3><?php esc_html_e('年次カンファレンス', 'eikou'); ?></h3>
+                    <p><?php esc_html_e('パシフィコ横浜｜2023', 'eikou'); ?></p>
                 </div>
             </div>
             <div class="work-card">
@@ -137,9 +137,9 @@ get_header();
                     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Digital solution">
                 </div>
                 <div class="work-info">
-                    <span class="work-category">デジタル</span>
-                    <h3>AIダッシュボード開発</h3>
-                    <p>オンライン｜2024</p>
+                    <span class="work-category"><?php esc_html_e('デジタル', 'eikou'); ?></span>
+                    <h3><?php esc_html_e('AIダッシュボード開発', 'eikou'); ?></h3>
+                    <p><?php esc_html_e('オンライン｜2024', 'eikou'); ?></p>
                 </div>
             </div>
             <div class="work-card">
@@ -147,9 +147,9 @@ get_header();
                     <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&q=80" alt="Exhibition">
                 </div>
                 <div class="work-info">
-                    <span class="work-category">展示会</span>
-                    <h3>自動車技術展ブース</h3>
-                    <p>幕張メッセ｜2023</p>
+                    <span class="work-category"><?php esc_html_e('展示会', 'eikou'); ?></span>
+                    <h3><?php esc_html_e('自動車技術展ブース', 'eikou'); ?></h3>
+                    <p><?php esc_html_e('幕張メッセ｜2023', 'eikou'); ?></p>
                 </div>
             </div>
             <div class="work-card">
@@ -157,9 +157,9 @@ get_header();
                     <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80" alt="Corporate event">
                 </div>
                 <div class="work-info">
-                    <span class="work-category">商業空間</span>
-                    <h3>旗艦店リニューアル</h3>
-                    <p>青山｜2024</p>
+                    <span class="work-category"><?php esc_html_e('商業空間', 'eikou'); ?></span>
+                    <h3><?php esc_html_e('旗艦店リニューアル', 'eikou'); ?></h3>
+                    <p><?php esc_html_e('青山｜2024', 'eikou'); ?></p>
                 </div>
             </div>
             <?php endif; ?>

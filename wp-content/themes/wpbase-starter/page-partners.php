@@ -12,8 +12,8 @@ get_header();
     <div class="page-hero-overlay"></div>
     <div class="container page-hero-content">
         <span class="section-tag">Partners</span>
-        <h1>パートナー企業</h1>
-        <p>国内外の多くの企業様にご信頼いただいています</p>
+        <h1><?php esc_html_e('パートナー企業', 'eikou'); ?></h1>
+        <p><?php esc_html_e('国内外の多くの企業様にご信頼いただいています', 'eikou'); ?></p>
     </div>
 </section>
 
@@ -22,8 +22,8 @@ get_header();
     <div class="container">
         <div class="section-header">
             <span class="section-tag">Clients</span>
-            <h2 class="section-title">主要パートナー</h2>
-            <p class="section-desc">業界を代表する企業様とのパートナーシップ</p>
+            <h2 class="section-title"><?php esc_html_e('主要パートナー', 'eikou'); ?></h2>
+            <p class="section-desc"><?php esc_html_e('業界を代表する企業様とのパートナーシップ', 'eikou'); ?></p>
         </div>
         <div class="partners-grid">
             <?php
@@ -64,7 +64,7 @@ get_header();
     <div class="container">
         <div class="section-header">
             <span class="section-tag">Testimonials</span>
-            <h2 class="section-title">お客様の声</h2>
+            <h2 class="section-title"><?php esc_html_e('お客様の声', 'eikou'); ?></h2>
         </div>
         <div class="testimonials-grid">
             <?php
@@ -100,31 +100,31 @@ get_header();
             ?>
             <div class="testimonial-card">
                 <div class="testimonial-quote">"</div>
-                <p>展示会ブースのデザインから施工まで、すべてお任せできる安心感があります。毎回期待を超えるクオリティを提供していただいています。</p>
+                <p><?php esc_html_e('展示会ブースのデザインから施工まで、すべてお任せできる安心感があります。毎回期待を超えるクオリティを提供していただいています。', 'eikou'); ?></p>
                 <div class="testimonial-author">
                     <div>
-                        <strong>マーケティング部長</strong>
-                        <span>大手電機メーカー</span>
+                        <strong><?php esc_html_e('マーケティング部長', 'eikou'); ?></strong>
+                        <span><?php esc_html_e('大手電機メーカー', 'eikou'); ?></span>
                     </div>
                 </div>
             </div>
             <div class="testimonial-card">
                 <div class="testimonial-quote">"</div>
-                <p>日本市場への進出にあたり、言語・文化面でのサポートが非常に心強かったです。トリリンガル対応でコミュニケーションもスムーズでした。</p>
+                <p><?php esc_html_e('日本市場への進出にあたり、言語・文化面でのサポートが非常に心強かったです。トリリンガル対応でコミュニケーションもスムーズでした。', 'eikou'); ?></p>
                 <div class="testimonial-author">
                     <div>
-                        <strong>日本支社長</strong>
-                        <span>中国系テクノロジー企業</span>
+                        <strong><?php esc_html_e('日本支社長', 'eikou'); ?></strong>
+                        <span><?php esc_html_e('中国系テクノロジー企業', 'eikou'); ?></span>
                     </div>
                 </div>
             </div>
             <div class="testimonial-card">
                 <div class="testimonial-quote">"</div>
-                <p>ショールームのリニューアルプロジェクトでは、空間デザインだけでなくインタラクティブ技術の導入まで一貫して対応いただきました。</p>
+                <p><?php esc_html_e('ショールームのリニューアルプロジェクトでは、空間デザインだけでなくインタラクティブ技術の導入まで一貫して対応いただきました。', 'eikou'); ?></p>
                 <div class="testimonial-author">
                     <div>
-                        <strong>事業企画部</strong>
-                        <span>大手自動車メーカー</span>
+                        <strong><?php esc_html_e('事業企画部', 'eikou'); ?></strong>
+                        <span><?php esc_html_e('大手自動車メーカー', 'eikou'); ?></span>
                     </div>
                 </div>
             </div>
@@ -137,10 +137,10 @@ get_header();
 <section class="section cta-section">
     <div class="cta-bg"></div>
     <div class="container cta-content">
-        <h2>パートナーシップのご相談</h2>
-        <p>新規プロジェクトのご相談や、パートナーシップについてのお問い合わせを承っております。</p>
+        <h2><?php esc_html_e('パートナーシップのご相談', 'eikou'); ?></h2>
+        <p><?php esc_html_e('新規プロジェクトのご相談や、パートナーシップについてのお問い合わせを承っております。', 'eikou'); ?></p>
         <div class="cta-actions">
-            <a href="<?php echo esc_url(eikou_page_url('contact')); ?>" class="btn btn-primary btn-lg">お問い合わせ</a>
+            <a href="<?php echo esc_url(eikou_page_url('contact')); ?>" class="btn btn-primary btn-lg"><?php esc_html_e('お問い合わせ', 'eikou'); ?></a>
             <a href="tel:+81-3-XXXX-XXXX" class="btn btn-ghost"><?php echo esc_html(eikou_get('eikou_tel', '03-XXXX-XXXX')); ?></a>
         </div>
     </div>

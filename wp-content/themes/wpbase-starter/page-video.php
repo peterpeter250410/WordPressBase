@@ -12,8 +12,8 @@ get_header();
     <div class="page-hero-overlay"></div>
     <div class="container page-hero-content">
         <span class="section-tag">Video</span>
-        <h1>動画センター</h1>
-        <p>プロジェクトの舞台裏と成果をご覧ください</p>
+        <h1><?php esc_html_e('動画センター', 'eikou'); ?></h1>
+        <p><?php esc_html_e('プロジェクトの舞台裏と成果をご覧ください', 'eikou'); ?></p>
     </div>
 </section>
 
@@ -82,7 +82,7 @@ get_header();
                     </div>
                 </div>
                 <div class="video-info">
-                    <h3><?php echo esc_html($sv['title']); ?></h3>
+                    <h3><?php echo esc_html(__($sv['title'], 'eikou')); ?></h3>
                 </div>
             </div>
             <?php endforeach; ?>
