@@ -10,7 +10,7 @@ include get_template_directory() . '/h5/header.php';
     <div class="h5-page-hero-overlay"></div>
     <div class="h5-container h5-page-hero-content">
         <span class="h5-tag">Contact</span>
-        <h1>お問い合わせ</h1>
+        <h1><?php esc_html_e('お問い合わせ', 'eikou'); ?></h1>
     </div>
 </section>
 
@@ -33,37 +33,37 @@ include get_template_directory() . '/h5/header.php';
         <?php else : ?>
         <form class="h5-contact-form" onsubmit="return false;">
             <div class="h5-form-group">
-                <label for="company">会社名 *</label>
-                <input type="text" id="company" name="company" required placeholder="株式会社XXXX">
+                <label for="company"><?php esc_html_e('会社名 *', 'eikou'); ?></label>
+                <input type="text" id="company" name="company" required placeholder="<?php esc_attr_e('株式会社XXXX', 'eikou'); ?>">
             </div>
             <div class="h5-form-group">
-                <label for="name">ご担当者名 *</label>
-                <input type="text" id="name" name="name" required placeholder="山田 太郎">
+                <label for="name"><?php esc_html_e('ご担当者名 *', 'eikou'); ?></label>
+                <input type="text" id="name" name="name" required placeholder="<?php esc_attr_e('山田 太郎', 'eikou'); ?>">
             </div>
             <div class="h5-form-group">
-                <label for="email">メールアドレス *</label>
+                <label for="email"><?php esc_html_e('メールアドレス *', 'eikou'); ?></label>
                 <input type="email" id="email" name="email" required placeholder="example@company.com">
             </div>
             <div class="h5-form-group">
-                <label for="phone">電話番号</label>
+                <label for="phone"><?php esc_html_e('電話番号', 'eikou'); ?></label>
                 <input type="tel" id="phone" name="phone" placeholder="03-XXXX-XXXX">
             </div>
             <div class="h5-form-group">
-                <label for="service">ご相談内容 *</label>
+                <label for="service"><?php esc_html_e('ご相談内容 *', 'eikou'); ?></label>
                 <select id="service" name="service" required>
-                    <option value="">選択してください</option>
-                    <option value="exhibition">展示会・展覧会</option>
-                    <option value="event">ブランドイベント・発表会</option>
-                    <option value="space">商業空間・ショールーム</option>
-                    <option value="digital">デジタル・AI ソリューション</option>
-                    <option value="other">その他</option>
+                    <option value=""><?php esc_html_e('選択してください', 'eikou'); ?></option>
+                    <option value="exhibition"><?php esc_html_e('展示会・展覧会', 'eikou'); ?></option>
+                    <option value="event"><?php esc_html_e('ブランドイベント・発表会', 'eikou'); ?></option>
+                    <option value="space"><?php esc_html_e('商業空間・ショールーム', 'eikou'); ?></option>
+                    <option value="digital"><?php esc_html_e('デジタル・AI ソリューション', 'eikou'); ?></option>
+                    <option value="other"><?php esc_html_e('その他', 'eikou'); ?></option>
                 </select>
             </div>
             <div class="h5-form-group">
-                <label for="message">メッセージ *</label>
-                <textarea id="message" name="message" rows="5" required placeholder="プロジェクトの概要、ご予算、スケジュール等をお知らせください"></textarea>
+                <label for="message"><?php esc_html_e('メッセージ *', 'eikou'); ?></label>
+                <textarea id="message" name="message" rows="5" required placeholder="<?php esc_attr_e('プロジェクトの概要、ご予算、スケジュール等をお知らせください', 'eikou'); ?>"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary h5-submit-btn">送信する</button>
+            <button type="submit" class="btn btn-primary h5-submit-btn"><?php esc_html_e('送信する', 'eikou'); ?></button>
         </form>
         <?php endif; ?>
     </div>
