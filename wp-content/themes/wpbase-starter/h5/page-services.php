@@ -20,7 +20,7 @@ $service_categories = [
     <div class="h5-page-hero-overlay"></div>
     <div class="h5-container h5-page-hero-content">
         <span class="h5-tag">Services</span>
-        <h1>サービス</h1>
+        <h1><?php esc_html_e('サービス', 'eikou'); ?></h1>
     </div>
 </section>
 
@@ -28,19 +28,19 @@ $service_categories = [
     <div class="h5-container">
         <div class="h5-section-header">
             <span class="h5-tag">Our Services</span>
-            <h2 class="h5-section-title">サービス一覧</h2>
+            <h2 class="h5-section-title"><?php esc_html_e('サービス一覧', 'eikou'); ?></h2>
         </div>
         <div class="h5-service-hub-list">
             <?php foreach ($service_categories as $cat) : ?>
             <a href="<?php echo esc_url(eikou_page_url($cat['slug'])); ?>" class="h5-service-hub-card">
                 <div class="h5-service-hub-img">
-                    <img src="<?php echo esc_url($cat['image']); ?>" alt="<?php echo esc_attr($cat['title']); ?>" loading="lazy">
+                    <img src="<?php echo esc_url($cat['image']); ?>" alt="<?php echo esc_attr(__($cat['title'], 'eikou')); ?>" loading="lazy">
                 </div>
                 <div class="h5-service-hub-info">
                     <span class="h5-service-num"><?php echo esc_html($cat['number']); ?></span>
-                    <h3><?php echo esc_html($cat['title']); ?></h3>
-                    <p><?php echo esc_html($cat['desc']); ?></p>
-                    <span class="h5-service-count"><?php echo esc_html($cat['count']); ?> サービス →</span>
+                    <h3><?php echo esc_html(__($cat['title'], 'eikou')); ?></h3>
+                    <p><?php echo esc_html(__($cat['desc'], 'eikou')); ?></p>
+                    <span class="h5-service-count"><?php echo esc_html($cat['count']); ?> <?php esc_html_e('サービス', 'eikou'); ?> →</span>
                 </div>
             </a>
             <?php endforeach; ?>
@@ -52,7 +52,7 @@ $service_categories = [
     <div class="h5-container">
         <div class="h5-section-header">
             <span class="h5-tag">Workflow</span>
-            <h2 class="h5-section-title">プロジェクトの流れ</h2>
+            <h2 class="h5-section-title"><?php esc_html_e('プロジェクトの流れ', 'eikou'); ?></h2>
         </div>
         <div class="h5-workflow-list">
             <?php
@@ -68,8 +68,8 @@ $service_categories = [
             <div class="h5-workflow-step">
                 <div class="h5-workflow-num"><?php echo $step['num']; ?></div>
                 <div class="h5-workflow-body">
-                    <h3><?php echo $step['title']; ?></h3>
-                    <p><?php echo $step['desc']; ?></p>
+                    <h3><?php echo esc_html(__($step['title'], 'eikou')); ?></h3>
+                    <p><?php echo esc_html(__($step['desc'], 'eikou')); ?></p>
                 </div>
             </div>
             <?php endforeach; ?>
