@@ -10,23 +10,23 @@ include get_template_directory() . '/h5/header.php';
     <div class="h5-page-hero-overlay"></div>
     <div class="h5-container h5-page-hero-content">
         <span class="h5-tag">Works</span>
-        <h1>成功事例</h1>
+        <h1><?php esc_html_e('成功事例', 'eikou'); ?></h1>
     </div>
 </section>
 
 <section class="h5-section">
     <div class="h5-container">
         <div class="h5-filter-scroll">
-            <button class="h5-filter-btn active" data-filter="all">すべて</button>
+            <button class="h5-filter-btn active" data-filter="all"><?php esc_html_e('すべて', 'eikou'); ?></button>
             <?php
             $work_cats = get_terms(['taxonomy' => 'work_category', 'hide_empty' => false]);
             if ($work_cats && !is_wp_error($work_cats)) :
                 foreach ($work_cats as $cat) : ?>
             <button class="h5-filter-btn" data-filter="<?php echo esc_attr($cat->slug); ?>"><?php echo esc_html($cat->name); ?></button>
             <?php endforeach; else : ?>
-            <button class="h5-filter-btn">展示会</button>
-            <button class="h5-filter-btn">イベント</button>
-            <button class="h5-filter-btn">商業空間</button>
+            <button class="h5-filter-btn"><?php esc_html_e('展示会', 'eikou'); ?></button>
+            <button class="h5-filter-btn"><?php esc_html_e('イベント', 'eikou'); ?></button>
+            <button class="h5-filter-btn"><?php esc_html_e('商業空間', 'eikou'); ?></button>
             <?php endif; ?>
         </div>
 
@@ -59,8 +59,8 @@ include get_template_directory() . '/h5/header.php';
                 ];
                 foreach ($fallbacks as $fb) : ?>
             <div class="h5-work-card">
-                <div class="h5-work-img"><img src="<?php echo esc_url(eikou_mobile_img_url('https://images.unsplash.com/' . $fb['img'] . '?w=600&q=80', 400, 50)); ?>" alt="<?php echo esc_attr($fb['title']); ?>" loading="lazy"></div>
-                <div class="h5-work-info"><span class="h5-work-cat"><?php echo $fb['cat']; ?></span><h3><?php echo $fb['title']; ?></h3></div>
+                <div class="h5-work-img"><img src="<?php echo esc_url(eikou_mobile_img_url('https://images.unsplash.com/' . $fb['img'] . '?w=600&q=80', 400, 50)); ?>" alt="<?php echo esc_attr(__($fb['title'], 'eikou')); ?>" loading="lazy"></div>
+                <div class="h5-work-info"><span class="h5-work-cat"><?php echo esc_html(__($fb['cat'], 'eikou')); ?></span><h3><?php echo esc_html(__($fb['title'], 'eikou')); ?></h3></div>
             </div>
             <?php endforeach; endif; ?>
         </div>

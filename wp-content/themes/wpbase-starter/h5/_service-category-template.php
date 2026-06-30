@@ -9,13 +9,13 @@
     <div class="h5-page-hero-overlay"></div>
     <div class="h5-container h5-page-hero-content">
         <span class="h5-tag"><?php echo esc_html($cat_en); ?></span>
-        <h1><?php echo esc_html($cat_jp); ?></h1>
+        <h1><?php echo esc_html(__($cat_jp, 'eikou')); ?></h1>
     </div>
 </section>
 
 <section class="h5-section">
     <div class="h5-container">
-        <p class="h5-intro-text"><?php echo esc_html($cat_desc); ?></p>
+        <p class="h5-intro-text"><?php echo esc_html(__($cat_desc, 'eikou')); ?></p>
     </div>
 </section>
 
@@ -23,21 +23,21 @@
     <div class="h5-container">
         <div class="h5-section-header">
             <span class="h5-tag">Services</span>
-            <h2 class="h5-section-title">サービス内容</h2>
+            <h2 class="h5-section-title"><?php esc_html_e('サービス内容', 'eikou'); ?></h2>
         </div>
         <div class="h5-detail-list">
             <?php foreach ($items as $slug => $item) : ?>
             <a href="<?php echo esc_url(eikou_page_url($slug)); ?>" class="h5-detail-card">
                 <div class="h5-detail-num"><?php echo esc_html($item['number']); ?></div>
                 <div class="h5-detail-body">
-                    <h3><?php echo esc_html($item['title']); ?></h3>
-                    <p><?php echo mb_substr($item['description'], 0, 80) . '...'; ?></p>
+                    <h3><?php echo esc_html(__($item['title'], 'eikou')); ?></h3>
+                    <p><?php echo esc_html(mb_substr(__($item['description'], 'eikou'), 0, 80)) . '...'; ?></p>
                     <div class="h5-detail-tags">
                         <?php foreach (array_slice($item['tags'], 0, 3) as $tag) : ?>
-                        <span><?php echo esc_html($tag); ?></span>
+                        <span><?php echo esc_html(__($tag, 'eikou')); ?></span>
                         <?php endforeach; ?>
                     </div>
-                    <span class="h5-detail-more">詳細を見る →</span>
+                    <span class="h5-detail-more"><?php esc_html_e('詳細を見る', 'eikou'); ?> →</span>
                 </div>
             </a>
             <?php endforeach; ?>
@@ -49,7 +49,7 @@
     <div class="h5-container">
         <div class="h5-section-header">
             <span class="h5-tag">Works</span>
-            <h2 class="h5-section-title">関連実績</h2>
+            <h2 class="h5-section-title"><?php esc_html_e('関連実績', 'eikou'); ?></h2>
         </div>
         <?php
         $works = new WP_Query([
@@ -69,7 +69,7 @@
             <?php endwhile; wp_reset_postdata(); ?>
         </div>
         <?php else : ?>
-        <p class="h5-empty-text">関連実績は準備中です。</p>
+        <p class="h5-empty-text"><?php esc_html_e('関連実績は準備中です。', 'eikou'); ?></p>
         <?php endif; ?>
     </div>
 </section>
