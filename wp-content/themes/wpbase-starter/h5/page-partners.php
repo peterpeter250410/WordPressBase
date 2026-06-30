@@ -10,7 +10,7 @@ include get_template_directory() . '/h5/header.php';
     <div class="h5-page-hero-overlay"></div>
     <div class="h5-container h5-page-hero-content">
         <span class="h5-tag">Partners</span>
-        <h1>パートナー企業</h1>
+        <h1><?php esc_html_e('パートナー企業', 'eikou'); ?></h1>
     </div>
 </section>
 
@@ -18,7 +18,7 @@ include get_template_directory() . '/h5/header.php';
     <div class="h5-container">
         <div class="h5-section-header">
             <span class="h5-tag">Clients</span>
-            <h2 class="h5-section-title">主要パートナー</h2>
+            <h2 class="h5-section-title"><?php esc_html_e('主要パートナー', 'eikou'); ?></h2>
         </div>
         <div class="h5-partners-grid">
             <?php
@@ -39,7 +39,7 @@ include get_template_directory() . '/h5/header.php';
     <div class="h5-container">
         <div class="h5-section-header">
             <span class="h5-tag">Testimonials</span>
-            <h2 class="h5-section-title">お客様の声</h2>
+            <h2 class="h5-section-title"><?php esc_html_e('お客様の声', 'eikou'); ?></h2>
         </div>
         <div class="h5-testimonials-list">
             <?php
@@ -60,13 +60,13 @@ include get_template_directory() . '/h5/header.php';
             <?php endwhile; wp_reset_postdata(); else : ?>
             <div class="h5-testimonial-card">
                 <div class="h5-quote">"</div>
-                <p>展示会ブースのデザインから施工まで、すべてお任せできる安心感があります。毎回期待を超えるクオリティを提供していただいています。</p>
-                <div class="h5-testimonial-author"><strong>マーケティング部長</strong><span>大手電機メーカー</span></div>
+                <p><?php esc_html_e('展示会ブースのデザインから施工まで、すべてお任せできる安心感があります。毎回期待を超えるクオリティを提供していただいています。', 'eikou'); ?></p>
+                <div class="h5-testimonial-author"><strong><?php esc_html_e('マーケティング部長', 'eikou'); ?></strong><span><?php esc_html_e('大手電機メーカー', 'eikou'); ?></span></div>
             </div>
             <div class="h5-testimonial-card">
                 <div class="h5-quote">"</div>
-                <p>日本市場への進出にあたり、言語・文化面でのサポートが非常に心強かったです。トリリンガル対応でコミュニケーションもスムーズでした。</p>
-                <div class="h5-testimonial-author"><strong>日本支社長</strong><span>中国系テクノロジー企業</span></div>
+                <p><?php esc_html_e('日本市場への進出にあたり、言語・文化面でのサポートが非常に心強かったです。トリリンガル対応でコミュニケーションもスムーズでした。', 'eikou'); ?></p>
+                <div class="h5-testimonial-author"><strong><?php esc_html_e('日本支社長', 'eikou'); ?></strong><span><?php esc_html_e('中国系テクノロジー企業', 'eikou'); ?></span></div>
             </div>
             <?php endif; ?>
         </div>

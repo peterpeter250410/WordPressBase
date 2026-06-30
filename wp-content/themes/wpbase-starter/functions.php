@@ -576,22 +576,22 @@ function eikou_page_url($slug) {
 function eikou_fallback_menu() {
     ?>
     <ul>
-        <li><a href="<?php echo esc_url(home_url('/')); ?>"<?php if (is_front_page()) echo ' class="active"'; ?>>ホーム</a></li>
+        <li><a href="<?php echo esc_url(home_url('/')); ?>"<?php if (is_front_page()) echo ' class="active"'; ?>><?php esc_html_e('ホーム', 'eikou'); ?></a></li>
         <li>
-            <a href="<?php echo esc_url(eikou_page_url('services')); ?>"<?php if (is_page('services') || (is_page() && strpos(get_post_field('post_name'), 'service-') === 0)) echo ' class="active"'; ?>>サービス</a>
+            <a href="<?php echo esc_url(eikou_page_url('services')); ?>"<?php if (is_page('services') || (is_page() && strpos(get_post_field('post_name'), 'service-') === 0)) echo ' class="active"'; ?>><?php esc_html_e('サービス', 'eikou'); ?></a>
             <ul class="submenu">
-                <li><a href="<?php echo esc_url(eikou_page_url('service-exhibition')); ?>">展示会・イベント</a></li>
-                <li><a href="<?php echo esc_url(eikou_page_url('service-brand-event')); ?>">ブランドイベント</a></li>
-                <li><a href="<?php echo esc_url(eikou_page_url('service-digital')); ?>">デジタル・Web</a></li>
-                <li><a href="<?php echo esc_url(eikou_page_url('service-ai')); ?>">AIソリューション</a></li>
-                <li><a href="<?php echo esc_url(eikou_page_url('service-branding')); ?>">ブランディング・デザイン</a></li>
-                <li><a href="<?php echo esc_url(eikou_page_url('service-media')); ?>">メディア・映像</a></li>
+                <li><a href="<?php echo esc_url(eikou_page_url('service-exhibition')); ?>"><?php esc_html_e('展示会・イベント', 'eikou'); ?></a></li>
+                <li><a href="<?php echo esc_url(eikou_page_url('service-brand-event')); ?>"><?php esc_html_e('ブランドイベント', 'eikou'); ?></a></li>
+                <li><a href="<?php echo esc_url(eikou_page_url('service-digital')); ?>"><?php esc_html_e('デジタル・Web', 'eikou'); ?></a></li>
+                <li><a href="<?php echo esc_url(eikou_page_url('service-ai')); ?>"><?php esc_html_e('AIソリューション', 'eikou'); ?></a></li>
+                <li><a href="<?php echo esc_url(eikou_page_url('service-branding')); ?>"><?php esc_html_e('ブランディング・デザイン', 'eikou'); ?></a></li>
+                <li><a href="<?php echo esc_url(eikou_page_url('service-media')); ?>"><?php esc_html_e('メディア・映像', 'eikou'); ?></a></li>
             </ul>
         </li>
-        <li><a href="<?php echo esc_url(eikou_page_url('works')); ?>"<?php if (is_page('works') || is_singular('work')) echo ' class="active"'; ?>>成功事例</a></li>
-        <li><a href="<?php echo esc_url(eikou_page_url('video')); ?>"<?php if (is_page('video')) echo ' class="active"'; ?>>動画</a></li>
-        <li><a href="<?php echo esc_url(eikou_page_url('partners')); ?>"<?php if (is_page('partners')) echo ' class="active"'; ?>>パートナー</a></li>
-        <li><a href="<?php echo esc_url(eikou_page_url('contact')); ?>"<?php if (is_page('contact')) echo ' class="active"'; ?>>お問い合わせ</a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('works')); ?>"<?php if (is_page('works') || is_singular('work')) echo ' class="active"'; ?>><?php esc_html_e('成功事例', 'eikou'); ?></a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('video')); ?>"<?php if (is_page('video')) echo ' class="active"'; ?>><?php esc_html_e('動画', 'eikou'); ?></a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('partners')); ?>"<?php if (is_page('partners')) echo ' class="active"'; ?>><?php esc_html_e('パートナー', 'eikou'); ?></a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('contact')); ?>"<?php if (is_page('contact')) echo ' class="active"'; ?>><?php esc_html_e('お問い合わせ', 'eikou'); ?></a></li>
     </ul>
     <?php
 }
@@ -599,12 +599,12 @@ function eikou_fallback_menu() {
 function eikou_footer_nav_fallback() {
     ?>
     <ul>
-        <li><a href="<?php echo esc_url(home_url('/')); ?>">ホーム</a></li>
-        <li><a href="<?php echo esc_url(eikou_page_url('about')); ?>">荣光について</a></li>
-        <li><a href="<?php echo esc_url(eikou_page_url('services')); ?>">サービス</a></li>
-        <li><a href="<?php echo esc_url(eikou_page_url('works')); ?>">成功事例</a></li>
-        <li><a href="<?php echo esc_url(eikou_page_url('service-exhibition')); ?>">展示会・イベント</a></li>
-        <li><a href="<?php echo esc_url(eikou_page_url('service-brand-event')); ?>">ブランドイベント</a></li>
+        <li><a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('ホーム', 'eikou'); ?></a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('about')); ?>"><?php esc_html_e('荣光について', 'eikou'); ?></a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('services')); ?>"><?php esc_html_e('サービス', 'eikou'); ?></a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('works')); ?>"><?php esc_html_e('成功事例', 'eikou'); ?></a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('service-exhibition')); ?>"><?php esc_html_e('展示会・イベント', 'eikou'); ?></a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('service-brand-event')); ?>"><?php esc_html_e('ブランドイベント', 'eikou'); ?></a></li>
     </ul>
     <?php
 }
@@ -612,11 +612,11 @@ function eikou_footer_nav_fallback() {
 function eikou_footer_other_fallback() {
     ?>
     <ul>
-        <li><a href="<?php echo esc_url(eikou_page_url('service-digital')); ?>">デジタル・Web</a></li>
-        <li><a href="<?php echo esc_url(eikou_page_url('service-ai')); ?>">AIソリューション</a></li>
-        <li><a href="<?php echo esc_url(eikou_page_url('video')); ?>">動画センター</a></li>
-        <li><a href="<?php echo esc_url(eikou_page_url('partners')); ?>">パートナー</a></li>
-        <li><a href="<?php echo esc_url(eikou_page_url('contact')); ?>">お問い合わせ</a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('service-digital')); ?>"><?php esc_html_e('デジタル・Web', 'eikou'); ?></a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('service-ai')); ?>"><?php esc_html_e('AIソリューション', 'eikou'); ?></a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('video')); ?>"><?php esc_html_e('動画センター', 'eikou'); ?></a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('partners')); ?>"><?php esc_html_e('パートナー', 'eikou'); ?></a></li>
+        <li><a href="<?php echo esc_url(eikou_page_url('contact')); ?>"><?php esc_html_e('お問い合わせ', 'eikou'); ?></a></li>
     </ul>
     <?php
 }

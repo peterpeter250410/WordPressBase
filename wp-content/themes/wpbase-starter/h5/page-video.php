@@ -10,7 +10,7 @@ include get_template_directory() . '/h5/header.php';
     <div class="h5-page-hero-overlay"></div>
     <div class="h5-container h5-page-hero-content">
         <span class="h5-tag">Video</span>
-        <h1>動画センター</h1>
+        <h1><?php esc_html_e('動画センター', 'eikou'); ?></h1>
     </div>
 </section>
 
@@ -53,10 +53,10 @@ include get_template_directory() . '/h5/header.php';
             ?>
             <div class="h5-video-card" data-video-url="<?php echo esc_attr($full_url); ?>">
                 <div class="h5-video-thumb">
-                    <img src="<?php echo esc_url(eikou_mobile_img_url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80', 400, 50)); ?>" alt="<?php echo esc_attr($sv['title']); ?>" loading="lazy">
+                    <img src="<?php echo esc_url(eikou_mobile_img_url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80', 400, 50)); ?>" alt="<?php echo esc_attr(__($sv['title'], 'eikou')); ?>" loading="lazy">
                     <div class="h5-video-play"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" stroke="white" stroke-width="2"/><polygon points="20,16 34,24 20,32" fill="white"/></svg></div>
                 </div>
-                <h3 class="h5-video-title"><?php echo esc_html($sv['title']); ?></h3>
+                <h3 class="h5-video-title"><?php echo esc_html(__($sv['title'], 'eikou')); ?></h3>
             </div>
             <?php endforeach; endif; ?>
         </div>
