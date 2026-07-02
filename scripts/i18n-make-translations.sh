@@ -43,7 +43,19 @@ php "$SCRIPT_DIR/i18n-translate-po.php" "$LANG_DIR/eikou-zh_CN.po" ZH
 php "$SCRIPT_DIR/i18n-translate-po.php" "$LANG_DIR/eikou-en_US.po" EN-US
 
 echo "[4/4] 编译 .mo ..."
-$WP i18n make-mo "$LANG_DIR"
+if $WP i18n make-mo "$LANG_DIR" 2>/dev/null; then
+    echo "  (wp i18n make-mo 完成)"
+elif command -v msgfmt >/dev/null 2>&1; then
+    echo "  (改用 msgfmt 编译)"
+    for po in "$LANG_DIR"/eikou-*.po; do
+        [ -f "$po" ] && msgfmt "$po" -o "${po%.po}.mo"
+    done
+else
+    echo "[WARN] 未找到 wp i18n 命令，也没有 msgfmt。请任选其一："
+    echo "       wp package install wp-cli/i18n-command --allow-root"
+    echo "       或安装 gettext： yum install -y gettext  /  apt-get install -y gettext"
+    echo "       然后重跑本脚本。"
+fi
 
 echo "=============================="
 echo "[OK] 已生成 eikou-zh_CN.mo / eikou-en_US.mo"
