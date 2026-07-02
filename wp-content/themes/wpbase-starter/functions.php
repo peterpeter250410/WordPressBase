@@ -150,15 +150,15 @@ add_filter('body_class', 'eikou_mobile_body_class');
 function eikou_register_work_cpt() {
     register_post_type('work', [
         'labels' => [
-            'name'               => '成功事例',
-            'singular_name'      => '成功事例',
-            'add_new'            => '新規追加',
-            'add_new_item'       => '新しい事例を追加',
-            'edit_item'          => '事例を編集',
-            'view_item'          => '事例を表示',
-            'all_items'          => 'すべての事例',
-            'search_items'       => '事例を検索',
-            'not_found'          => '事例が見つかりません',
+            'name'               => __('成功事例', 'eikou'),
+            'singular_name'      => __('成功事例', 'eikou'),
+            'add_new'            => __('新規追加', 'eikou'),
+            'add_new_item'       => __('新しい事例を追加', 'eikou'),
+            'edit_item'          => __('事例を編集', 'eikou'),
+            'view_item'          => __('事例を表示', 'eikou'),
+            'all_items'          => __('すべての事例', 'eikou'),
+            'search_items'       => __('事例を検索', 'eikou'),
+            'not_found'          => __('事例が見つかりません', 'eikou'),
         ],
         'public'       => true,
         'has_archive'  => false,
@@ -170,9 +170,9 @@ function eikou_register_work_cpt() {
 
     register_taxonomy('work_category', 'work', [
         'labels' => [
-            'name'          => '事例カテゴリ',
-            'singular_name' => '事例カテゴリ',
-            'add_new_item'  => '新しいカテゴリを追加',
+            'name'          => __('事例カテゴリ', 'eikou'),
+            'singular_name' => __('事例カテゴリ', 'eikou'),
+            'add_new_item'  => __('新しいカテゴリを追加', 'eikou'),
         ],
         'public'       => true,
         'hierarchical' => true,
@@ -186,15 +186,15 @@ add_action('init', 'eikou_register_work_cpt');
 function eikou_register_video_cpt() {
     register_post_type('eikou_video', [
         'labels' => [
-            'name'               => '動画',
-            'singular_name'      => '動画',
-            'add_new'            => '新規追加',
-            'add_new_item'       => '新しい動画を追加',
-            'edit_item'          => '動画を編集',
-            'view_item'          => '動画を表示',
-            'all_items'          => 'すべての動画',
-            'search_items'       => '動画を検索',
-            'not_found'          => '動画が見つかりません',
+            'name'               => __('動画', 'eikou'),
+            'singular_name'      => __('動画', 'eikou'),
+            'add_new'            => __('新規追加', 'eikou'),
+            'add_new_item'       => __('新しい動画を追加', 'eikou'),
+            'edit_item'          => __('動画を編集', 'eikou'),
+            'view_item'          => __('動画を表示', 'eikou'),
+            'all_items'          => __('すべての動画', 'eikou'),
+            'search_items'       => __('動画を検索', 'eikou'),
+            'not_found'          => __('動画が見つかりません', 'eikou'),
         ],
         'public'       => true,
         'has_archive'  => false,
@@ -210,12 +210,12 @@ add_action('init', 'eikou_register_video_cpt');
 function eikou_register_partner_cpt() {
     register_post_type('partner', [
         'labels' => [
-            'name'               => 'パートナー',
-            'singular_name'      => 'パートナー',
-            'add_new'            => '新規追加',
-            'add_new_item'       => '新しいパートナーを追加',
-            'edit_item'          => 'パートナーを編集',
-            'all_items'          => 'すべてのパートナー',
+            'name'               => __('パートナー', 'eikou'),
+            'singular_name'      => __('パートナー', 'eikou'),
+            'add_new'            => __('新規追加', 'eikou'),
+            'add_new_item'       => __('新しいパートナーを追加', 'eikou'),
+            'edit_item'          => __('パートナーを編集', 'eikou'),
+            'all_items'          => __('すべてのパートナー', 'eikou'),
         ],
         'public'       => true,
         'has_archive'  => false,
@@ -231,12 +231,12 @@ add_action('init', 'eikou_register_partner_cpt');
 function eikou_register_testimonial_cpt() {
     register_post_type('testimonial', [
         'labels' => [
-            'name'               => 'お客様の声',
-            'singular_name'      => 'お客様の声',
-            'add_new'            => '新規追加',
-            'add_new_item'       => '新しい声を追加',
-            'edit_item'          => '声を編集',
-            'all_items'          => 'すべてのお客様の声',
+            'name'               => __('お客様の声', 'eikou'),
+            'singular_name'      => __('お客様の声', 'eikou'),
+            'add_new'            => __('新規追加', 'eikou'),
+            'add_new_item'       => __('新しい声を追加', 'eikou'),
+            'edit_item'          => __('声を編集', 'eikou'),
+            'all_items'          => __('すべてのお客様の声', 'eikou'),
         ],
         'public'       => false,
         'show_ui'      => true,
