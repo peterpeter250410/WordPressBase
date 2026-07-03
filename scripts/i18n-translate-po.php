@@ -62,7 +62,8 @@ $keys = array_keys($pending);
 $batch = 40;
 for ($b = 0; $b < count($keys); $b += $batch) {
     $slice = array_slice($keys, $b, $batch);
-    $post = http_build_query(['auth_key' => $key, 'source_lang' => 'JA', 'target_lang' => $target]);
+    // DeepL 2025-11 起弃用 body 里的 auth_key，改用请求头 Authorization
+    $post = http_build_query(['source_lang' => 'JA', 'target_lang' => $target]);
     foreach ($slice as $k) { $post .= '&text=' . urlencode($pending[$k]); }
 
     $ch = curl_init($endpoint);
@@ -71,6 +72,10 @@ for ($b = 0; $b < count($keys); $b += $batch) {
         CURLOPT_POST => true,
         CURLOPT_POSTFIELDS => $post,
         CURLOPT_TIMEOUT => 60,
+        CURLOPT_HTTPHEADER => [
+            'Authorization: DeepL-Auth-Key ' . $key,
+            'Content-Type: application/x-www-form-urlencoded',
+        ],
     ]);
     $resp = curl_exec($ch);
     $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);

@@ -7,6 +7,9 @@
 #   bash scripts/i18n-setup.sh
 # ============================================
 set -e
+
+# 切到 WordPress 根目录（scripts 的上一级），避免在别的目录运行时 wp 找不到站点
+cd "$(cd "$(dirname "$0")/.." && pwd)"
 WP="wp --allow-root"
 
 echo "[1/4] 安装并启用 Polylang..."
