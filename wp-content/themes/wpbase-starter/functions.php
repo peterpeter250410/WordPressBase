@@ -9,6 +9,76 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+/* ============================================================
+   轻量多语言路由：/zh /en 前缀，日文根目录
+   同一套模板，按 locale 加载对应 .mo 实现日/中/英
+   ============================================================ */
+
+// 次级语言 => WordPress locale（日文为默认，无前缀）
+function eikou_lang_map() {
+    return ['zh' => 'zh_CN', 'en' => 'en_US'];
+}
+
+// 当前语言（从 URL 前缀判断）
+function eikou_current_lang() {
+    static $lang = null;
+    if ($lang !== null) return $lang;
+    $lang = 'ja';
+    $uri  = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
+    $path = parse_url($uri, PHP_URL_PATH);
+    $keys = implode('|', array_keys(eikou_lang_map()));
+    if ($path && preg_match('#^/(' . $keys . ')(/|$)#', $path, $m)) {
+        $lang = $m[1];
+    }
+    return $lang;
+}
+
+// 尽早剥离 URL 的语言前缀，让 WordPress 正常路由其余路径
+(function () {
+    if (empty($_SERVER['REQUEST_URI'])) return;
+    $keys = implode('|', array_keys(eikou_lang_map()));
+    $uri = $_SERVER['REQUEST_URI'];
+    $q = '';
+    if (($pos = strpos($uri, '?')) !== false) { $q = substr($uri, $pos); $uri = substr($uri, 0, $pos); }
+    if (preg_match('#^/(' . $keys . ')(/.*)?$#', $uri, $m)) {
+        $rest = (isset($m[2]) && $m[2] !== '') ? $m[2] : '/';
+        $_SERVER['REQUEST_URI'] = $rest . $q;
+    }
+})();
+
+// locale 过滤：按当前语言切换（驱动 .mo 翻译）
+add_filter('locale', function ($locale) {
+    $map = eikou_lang_map();
+    $l = eikou_current_lang();
+    return isset($map[$l]) ? $map[$l] : $locale;
+});
+
+// 次级语言页面禁用 canonical 重定向（前缀已剥离，避免重定向死循环）
+add_filter('redirect_canonical', function ($redirect_url) {
+    return (eikou_current_lang() !== 'ja') ? false : $redirect_url;
+});
+
+// 给本站前端 URL 加当前语言前缀，保持导航停留在当前语言
+function eikou_localize_url($url) {
+    $l = eikou_current_lang();
+    if ($l === 'ja' || is_admin()) return $url;
+    if (!is_string($url) || $url === '') return $url;
+    $home = untrailingslashit(get_option('home'));
+    if (strpos($url, $home) !== 0) return $url;                 // 非本站 URL
+    $rest = substr($url, strlen($home));
+    $path = parse_url($rest, PHP_URL_PATH);
+    if ($path === null || $path === false) $path = '/';
+    // 排除后台/接口/资源/feed 等
+    if (preg_match('#^/(wp-admin|wp-login|wp-json|wp-content|wp-includes|xmlrpc|feed)#', $path)) return $url;
+    $keys = implode('|', array_keys(eikou_lang_map()));
+    if (preg_match('#^/(' . $keys . ')(/|$)#', $path)) return $url;   // 已带前缀
+    if ($rest === '') $rest = '/';
+    return $home . '/' . $l . $rest;
+}
+add_filter('page_link', 'eikou_localize_url', 20, 1);
+add_filter('post_link', 'eikou_localize_url', 20, 1);
+add_filter('post_type_link', 'eikou_localize_url', 20, 1);
+
 /* ─── Theme Setup ─── */
 function eikou_setup() {
     // 多语言：加载主题翻译文件（languages/eikou-{locale}.mo）
