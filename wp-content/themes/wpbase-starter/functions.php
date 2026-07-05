@@ -19,28 +19,21 @@ function eikou_lang_map() {
     return ['zh' => 'zh_CN', 'en' => 'en_US'];
 }
 
-// 当前语言（从 URL 前缀判断）
+// 当前语言（在剥离前缀前已存入全局）
 function eikou_current_lang() {
-    static $lang = null;
-    if ($lang !== null) return $lang;
-    $lang = 'ja';
-    $uri  = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
-    $path = parse_url($uri, PHP_URL_PATH);
-    $keys = implode('|', array_keys(eikou_lang_map()));
-    if ($path && preg_match('#^/(' . $keys . ')(/|$)#', $path, $m)) {
-        $lang = $m[1];
-    }
-    return $lang;
+    return isset($GLOBALS['eikou_lang']) ? $GLOBALS['eikou_lang'] : 'ja';
 }
 
-// 尽早剥离 URL 的语言前缀，让 WordPress 正常路由其余路径
+// 尽早：先识别语言存入全局，再剥离 URL 前缀让 WordPress 正常路由其余路径
 (function () {
+    $GLOBALS['eikou_lang'] = 'ja';
     if (empty($_SERVER['REQUEST_URI'])) return;
     $keys = implode('|', array_keys(eikou_lang_map()));
     $uri = $_SERVER['REQUEST_URI'];
     $q = '';
     if (($pos = strpos($uri, '?')) !== false) { $q = substr($uri, $pos); $uri = substr($uri, 0, $pos); }
     if (preg_match('#^/(' . $keys . ')(/.*)?$#', $uri, $m)) {
+        $GLOBALS['eikou_lang'] = $m[1];
         $rest = (isset($m[2]) && $m[2] !== '') ? $m[2] : '/';
         $_SERVER['REQUEST_URI'] = $rest . $q;
     }
@@ -68,8 +61,8 @@ function eikou_localize_url($url) {
     $rest = substr($url, strlen($home));
     $path = parse_url($rest, PHP_URL_PATH);
     if ($path === null || $path === false) $path = '/';
-    // 排除后台/接口/资源/feed 等
-    if (preg_match('#^/(wp-admin|wp-login|wp-json|wp-content|wp-includes|xmlrpc|feed)#', $path)) return $url;
+    // 排除后台/接口/资源/feed/站点地图 等
+    if (preg_match('#^/(wp-admin|wp-login|wp-json|wp-content|wp-includes|xmlrpc|feed|wp-sitemap|robots|wp-cron)#', $path)) return $url;
     $keys = implode('|', array_keys(eikou_lang_map()));
     if (preg_match('#^/(' . $keys . ')(/|$)#', $path)) return $url;   // 已带前缀
     if ($rest === '') $rest = '/';
@@ -78,6 +71,11 @@ function eikou_localize_url($url) {
 add_filter('page_link', 'eikou_localize_url', 20, 1);
 add_filter('post_link', 'eikou_localize_url', 20, 1);
 add_filter('post_type_link', 'eikou_localize_url', 20, 1);
+// home_url 加前缀，覆盖 logo/首页等链接（敏感路径已在 eikou_localize_url 内排除）
+add_filter('home_url', function ($url, $path, $scheme) {
+    if ($scheme === 'rest') return $url;
+    return eikou_localize_url($url);
+}, 20, 3);
 
 /* ─── Theme Setup ─── */
 function eikou_setup() {
@@ -495,25 +493,29 @@ function eikou_render_contact_form($key) {
     return '';
 }
 
-/* ─── 多语言：语言切换助手（接入 Polylang，未启用时回退占位）─── */
+/* ─── 多语言：语言切换助手（内置轻量路由，日/中/英）─── */
 function eikou_get_languages() {
-    if (function_exists('pll_the_languages')) {
-        $langs = pll_the_languages(['raw' => 1, 'hide_if_empty' => 0]);
-        if (is_array($langs) && $langs) {
-            return $langs;
-        }
+    $names = ['ja' => '日本語', 'zh' => '中文', 'en' => 'English'];
+    $cur   = eikou_current_lang();
+    $base  = untrailingslashit(get_option('home'));
+    // 当前请求路径（语言前缀已被剥离），用于构建各语言的对应 URL
+    $path = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
+    if (($pos = strpos($path, '?')) !== false) $path = substr($path, 0, $pos);
+    if ($path === '') $path = '/';
+
+    $out = [];
+    // 日文（根目录，无前缀）
+    $out[] = ['slug' => 'ja', 'name' => $names['ja'], 'url' => $base . $path, 'current_lang' => ($cur === 'ja')];
+    foreach (array_keys(eikou_lang_map()) as $slug) {
+        $out[] = ['slug' => $slug, 'name' => $names[$slug], 'url' => $base . '/' . $slug . $path, 'current_lang' => ($cur === $slug)];
     }
-    return []; // Polylang 未启用 → 模板使用静态占位
+    return $out;
 }
 
 function eikou_current_language_name() {
-    if (function_exists('pll_current_language')) {
-        $name = pll_current_language('name');
-        if ($name) {
-            return $name;
-        }
-    }
-    return '日本語';
+    $names = ['ja' => '日本語', 'zh' => '中文', 'en' => 'English'];
+    $cur = eikou_current_lang();
+    return isset($names[$cur]) ? $names[$cur] : '日本語';
 }
 
 /* ─── Customizer: Hero Slideshow ─── */
@@ -638,8 +640,8 @@ function eikou_page_url($slug) {
     if ($page) {
         return get_permalink($page);
     }
-    // Fallback: try home_url with slug
-    return home_url('/' . $slug . '/');
+    // Fallback: try home_url with slug（本地化，保持当前语言）
+    return eikou_localize_url(home_url('/' . $slug . '/'));
 }
 
 /* ─── Menu Fallback Callbacks ─── */
