@@ -20,6 +20,9 @@ git clone --depth 1 "$REPO" "$TMP"
 echo "[2/4] 同步主题目录（仅主题）..."
 if command -v rsync >/dev/null 2>&1; then
     rsync -a --delete --exclude '.git' \
+        --exclude 'languages/eikou-*.mo' \
+        --exclude 'languages/eikou-*.po' \
+        --exclude 'languages/eikou.pot' \
         "$TMP/wp-content/themes/wpbase-starter/" "$SITE_THEME/"
 else
     cp -a "$TMP/wp-content/themes/wpbase-starter/." "$SITE_THEME/"
