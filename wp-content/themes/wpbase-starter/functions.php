@@ -40,11 +40,24 @@ function eikou_current_lang() {
 })();
 
 // locale 过滤：按当前语言切换（驱动 .mo 翻译）
-add_filter('locale', function ($locale) {
+// 现代 WordPress 翻译加载用 determine_locale，两者都要挂
+function eikou_apply_locale($locale) {
     $map = eikou_lang_map();
     $l = eikou_current_lang();
     return isset($map[$l]) ? $map[$l] : $locale;
-});
+}
+add_filter('locale', 'eikou_apply_locale');
+add_filter('determine_locale', 'eikou_apply_locale');
+
+// 显式为当前语言加载主题 .mo（兜底，确保翻译一定生效）
+add_action('after_setup_theme', function () {
+    $map = eikou_lang_map();
+    $l = eikou_current_lang();
+    if (isset($map[$l])) {
+        $locale = $map[$l];
+        load_textdomain('eikou', get_template_directory() . "/languages/eikou-{$locale}.mo", $locale);
+    }
+}, 20);
 
 // 次级语言页面禁用 canonical 重定向（前缀已剥离，避免重定向死循环）
 add_filter('redirect_canonical', function ($redirect_url) {
