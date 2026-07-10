@@ -549,7 +549,14 @@ function eikou_render_contact_form($key) {
         $shortcode = eikou_get($key, '');
     }
     if (!empty($shortcode) && shortcode_exists('contact-form-7')) {
-        return do_shortcode($shortcode);
+        $html = do_shortcode($shortcode);
+        // CF7 渲染时可能切换过 locale，重新按当前语言加载主题翻译，
+        // 确保表单之后的内容（联系信息卡、页脚）仍用正确语种
+        $map = eikou_lang_map();
+        if (isset($map[$lang])) {
+            load_textdomain('eikou', get_template_directory() . "/languages/eikou-{$map[$lang]}.mo", $map[$lang]);
+        }
+        return $html;
     }
     return '';
 }

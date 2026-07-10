@@ -93,6 +93,11 @@ foreach ($langs as $L => $label) {
     ];
     $quick_id = eikou_cf7_upsert("快捷表单-{$label}", $quick[$L], $quick_mail);
 
+    // 设定表单自身 locale，避免 CF7 渲染时切换全局 locale 影响其余内容
+    $loc_map = ['ja' => 'ja_JP', 'zh' => 'zh_CN', 'en' => 'en_US'];
+    update_post_meta($full_id,  '_locale', $loc_map[$L]);
+    update_post_meta($quick_id, '_locale', $loc_map[$L]);
+
     // 写入定制器（ja 无后缀，zh/en 带后缀）
     $suffix = ($L === 'ja') ? '' : '_' . $L;
     set_theme_mod('eikou_cf7_full'  . $suffix, sprintf('[contact-form-7 id="%d" title="完整表单-%s"]', $full_id, $label));
