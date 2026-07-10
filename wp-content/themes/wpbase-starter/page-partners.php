@@ -81,14 +81,14 @@ get_header();
             ?>
             <div class="testimonial-card">
                 <div class="testimonial-quote">"</div>
-                <p><?php echo esc_html(get_the_content()); ?></p>
+                <p><?php echo esc_html(__(get_the_content(), 'eikou')); ?></p>
                 <div class="testimonial-author">
                     <div>
                         <?php if ($author_title) : ?>
-                            <strong><?php echo esc_html($author_title); ?></strong>
+                            <strong><?php echo esc_html(__($author_title, 'eikou')); ?></strong>
                         <?php endif; ?>
                         <?php if ($author_company) : ?>
-                            <span><?php echo esc_html($author_company); ?></span>
+                            <span><?php echo esc_html(__($author_company, 'eikou')); ?></span>
                         <?php endif; ?>
                     </div>
                 </div>

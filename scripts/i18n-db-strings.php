@@ -20,9 +20,13 @@ foreach ($posts as $p) {
     if (trim($p->post_title) !== '') $strings[$p->post_title] = 1;
     $loc = get_post_meta($p->ID, '_work_location', true);
     if ($loc) $strings[$loc] = 1;
-    // testimonial 正文（客户评价）也纳入
-    if ($p->post_type === 'testimonial' && trim($p->post_content) !== '') {
-        $strings[wp_strip_all_tags($p->post_content)] = 1;
+    // testimonial 正文 + 职衔/公司
+    if ($p->post_type === 'testimonial') {
+        if (trim($p->post_content) !== '') $strings[wp_strip_all_tags($p->post_content)] = 1;
+        $at = get_post_meta($p->ID, '_testimonial_author_title', true);
+        $ac = get_post_meta($p->ID, '_testimonial_author_company', true);
+        if ($at) $strings[$at] = 1;
+        if ($ac) $strings[$ac] = 1;
     }
 }
 

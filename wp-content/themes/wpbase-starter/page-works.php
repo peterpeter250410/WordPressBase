@@ -28,7 +28,7 @@ get_header();
             if ($work_cats && !is_wp_error($work_cats)) :
                 foreach ($work_cats as $cat) :
             ?>
-            <button class="filter-btn" data-filter="<?php echo esc_attr($cat->slug); ?>"><?php echo esc_html($cat->name); ?></button>
+            <button class="filter-btn" data-filter="<?php echo esc_attr($cat->slug); ?>"><?php echo esc_html(__($cat->name, 'eikou')); ?></button>
             <?php
                 endforeach;
             else :

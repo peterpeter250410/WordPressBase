@@ -51,10 +51,10 @@ include get_template_directory() . '/h5/header.php';
             ?>
             <div class="h5-testimonial-card">
                 <div class="h5-quote">"</div>
-                <p><?php echo esc_html(get_the_content()); ?></p>
+                <p><?php echo esc_html(__(get_the_content(), 'eikou')); ?></p>
                 <div class="h5-testimonial-author">
-                    <?php if ($author_title) : ?><strong><?php echo esc_html($author_title); ?></strong><?php endif; ?>
-                    <?php if ($author_company) : ?><span><?php echo esc_html($author_company); ?></span><?php endif; ?>
+                    <?php if ($author_title) : ?><strong><?php echo esc_html(__($author_title, 'eikou')); ?></strong><?php endif; ?>
+                    <?php if ($author_company) : ?><span><?php echo esc_html(__($author_company, 'eikou')); ?></span><?php endif; ?>
                 </div>
             </div>
             <?php endwhile; wp_reset_postdata(); else : ?>

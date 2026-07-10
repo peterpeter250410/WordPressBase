@@ -22,7 +22,7 @@ include get_template_directory() . '/h5/header.php';
             $work_cats = get_terms(['taxonomy' => 'work_category', 'hide_empty' => false]);
             if ($work_cats && !is_wp_error($work_cats)) :
                 foreach ($work_cats as $cat) : ?>
-            <button class="h5-filter-btn" data-filter="<?php echo esc_attr($cat->slug); ?>"><?php echo esc_html($cat->name); ?></button>
+            <button class="h5-filter-btn" data-filter="<?php echo esc_attr($cat->slug); ?>"><?php echo esc_html(__($cat->name, 'eikou')); ?></button>
             <?php endforeach; else : ?>
             <button class="h5-filter-btn"><?php esc_html_e('展示会', 'eikou'); ?></button>
             <button class="h5-filter-btn"><?php esc_html_e('イベント', 'eikou'); ?></button>
