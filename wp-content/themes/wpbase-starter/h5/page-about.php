@@ -70,10 +70,10 @@ include get_template_directory() . '/h5/header.php';
         </div>
         <div class="h5-company-table">
             <table>
-                <tr><th><?php esc_html_e('会社名', 'eikou'); ?></th><td><?php echo esc_html(eikou_get('eikou_company_name', '荣光株式会社（EIKOU Co., Ltd.）')); ?></td></tr>
+                <tr><th><?php esc_html_e('会社名', 'eikou'); ?></th><td><?php echo esc_html(__(eikou_get('eikou_company_name', '荣光株式会社（EIKOU Co., Ltd.）'), 'eikou')); ?></td></tr>
                 <tr><th><?php esc_html_e('設立', 'eikou'); ?></th><td><?php esc_html_e('2009年', 'eikou'); ?></td></tr>
                 <tr><th><?php esc_html_e('代表者', 'eikou'); ?></th><td><?php esc_html_e('代表取締役社長 XXX', 'eikou'); ?></td></tr>
-                <tr><th><?php esc_html_e('所在地', 'eikou'); ?></th><td><?php echo esc_html(eikou_get('eikou_zip', '〒XXX-XXXX')); ?> <?php echo esc_html(eikou_get('eikou_address', '東京都XX区XX X-X-X')); ?></td></tr>
+                <tr><th><?php esc_html_e('所在地', 'eikou'); ?></th><td><?php echo esc_html(__(eikou_get('eikou_zip', '〒XXX-XXXX'), 'eikou')); ?> <?php echo esc_html(__(eikou_get('eikou_address', '東京都XX区XX X-X-X'), 'eikou')); ?></td></tr>
                 <tr><th><?php esc_html_e('事業内容', 'eikou'); ?></th><td><?php esc_html_e('展示会・イベント企画運営、商業空間デザイン・施工、Web/システム開発、AIソリューション', 'eikou'); ?></td></tr>
             </table>
         </div>

@@ -18,7 +18,7 @@
         <div class="h5-footer-brand">
             <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo-eikou.png'); ?>" alt="EIKOU" class="h5-footer-logo">
             <p class="h5-footer-tagline"><?php esc_html_e('光で、空間を未来へ導く', 'eikou'); ?></p>
-            <p class="h5-footer-company"><?php echo esc_html(eikou_get('eikou_company_name', '荣光株式会社｜EIKOU Co., Ltd.')); ?></p>
+            <p class="h5-footer-company"><?php echo esc_html(__(eikou_get('eikou_company_name', '荣光株式会社｜EIKOU Co., Ltd.'), 'eikou')); ?></p>
         </div>
         <div class="h5-footer-bottom">
             <p>&copy; <?php echo esc_html(date('Y')); ?> EIKOU Co., Ltd. All Rights Reserved.</p>

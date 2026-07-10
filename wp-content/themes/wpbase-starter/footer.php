@@ -22,7 +22,7 @@
                     <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo-eikou.png'); ?>" alt="EIKOU" class="logo-image">
                 </div>
                 <p class="footer-tagline"><?php esc_html_e('光で、空間を未来へ導く', 'eikou'); ?></p>
-                <p class="footer-company"><?php echo esc_html(eikou_get('eikou_company_name', '荣光株式会社｜EIKOU Co., Ltd.')); ?></p>
+                <p class="footer-company"><?php echo esc_html(__(eikou_get('eikou_company_name', '荣光株式会社｜EIKOU Co., Ltd.'), 'eikou')); ?></p>
             </div>
             <div class="footer-nav">
                 <div class="footer-nav-group">
@@ -50,8 +50,8 @@
                 <div class="footer-nav-group">
                     <h4><?php esc_html_e('お問い合わせ', 'eikou'); ?></h4>
                     <ul>
-                        <li><?php echo esc_html(eikou_get('eikou_zip', '〒XXX-XXXX')); ?></li>
-                        <li><?php echo esc_html(eikou_get('eikou_address', '東京都XX区XX X-X-X')); ?></li>
+                        <li><?php echo esc_html(__(eikou_get('eikou_zip', '〒XXX-XXXX'), 'eikou')); ?></li>
+                        <li><?php echo esc_html(__(eikou_get('eikou_address', '東京都XX区XX X-X-X'), 'eikou')); ?></li>
                         <li>TEL: <?php echo esc_html(eikou_get('eikou_tel', '03-XXXX-XXXX')); ?></li>
                         <li><?php echo esc_html(eikou_get('eikou_email', 'info@eikou.co.jp')); ?></li>
                     </ul>

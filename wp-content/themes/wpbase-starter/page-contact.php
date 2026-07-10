@@ -78,7 +78,7 @@ get_header();
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                             <div>
                                 <strong><?php esc_html_e('所在地', 'eikou'); ?></strong>
-                                <p><?php echo esc_html(eikou_get('eikou_zip', '〒XXX-XXXX')); ?><br><?php echo esc_html(eikou_get('eikou_address', '東京都XX区XX X-X-X')); ?></p>
+                                <p><?php echo esc_html(__(eikou_get('eikou_zip', '〒XXX-XXXX'), 'eikou')); ?><br><?php echo esc_html(__(eikou_get('eikou_address', '東京都XX区XX X-X-X'), 'eikou')); ?></p>
                             </div>
                         </li>
                         <li>
