@@ -90,6 +90,11 @@ add_filter('home_url', function ($url, $path, $scheme) {
     return eikou_localize_url($url);
 }, 20, 3);
 
+// 后台真实菜单的项目文字随语种翻译（顶部导航/页脚/H5 均走 wp_nav_menu，一次覆盖）
+add_filter('nav_menu_item_title', function ($title) {
+    return __($title, 'eikou');
+}, 10, 1);
+
 /* ─── Theme Setup ─── */
 function eikou_setup() {
     // 多语言：加载主题翻译文件（languages/eikou-{locale}.mo）
