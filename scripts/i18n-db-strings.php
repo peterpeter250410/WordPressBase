@@ -20,6 +20,11 @@ foreach ($posts as $p) {
     if (trim($p->post_title) !== '') $strings[$p->post_title] = 1;
     $loc = get_post_meta($p->ID, '_work_location', true);
     if ($loc) $strings[$loc] = 1;
+    // 作品摘要（相关实绩里以 wp_trim_words 显示，需整段先翻译）
+    if ($p->post_type === 'work') {
+        $ex = get_the_excerpt($p);
+        if (trim($ex) !== '') $strings[$ex] = 1;
+    }
     // testimonial 正文 + 职衔/公司
     if ($p->post_type === 'testimonial') {
         if (trim($p->post_content) !== '') $strings[wp_strip_all_tags($p->post_content)] = 1;

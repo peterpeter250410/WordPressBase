@@ -92,7 +92,7 @@ $items = array_filter($all_items, function($v) { return $v['category'] === 'serv
                 </div>
                 <div class="work-info">
                     <h3><?php the_title(); ?></h3>
-                    <p><?php echo wp_trim_words(get_the_excerpt(), 30); ?></p>
+                    <p><?php echo wp_trim_words(__(get_the_excerpt(), 'eikou'), 30); ?></p>
                 </div>
             </a>
             <?php endwhile; wp_reset_postdata(); ?>
