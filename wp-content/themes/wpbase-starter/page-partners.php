@@ -80,7 +80,7 @@ get_header();
                     $author_company = get_post_meta(get_the_ID(), '_testimonial_author_company', true);
             ?>
             <div class="testimonial-card">
-                <div class="testimonial-quote">"</div>
+                <div class="testimonial-quote">&ldquo;</div>
                 <p><?php echo esc_html(__(get_the_content(), 'eikou')); ?></p>
                 <div class="testimonial-author">
                     <div>
@@ -99,7 +99,7 @@ get_header();
             else :
             ?>
             <div class="testimonial-card">
-                <div class="testimonial-quote">"</div>
+                <div class="testimonial-quote">&ldquo;</div>
                 <p><?php esc_html_e('展示会ブースのデザインから施工まで、すべてお任せできる安心感があります。毎回期待を超えるクオリティを提供していただいています。', 'eikou'); ?></p>
                 <div class="testimonial-author">
                     <div>
@@ -109,7 +109,7 @@ get_header();
                 </div>
             </div>
             <div class="testimonial-card">
-                <div class="testimonial-quote">"</div>
+                <div class="testimonial-quote">&ldquo;</div>
                 <p><?php esc_html_e('日本市場への進出にあたり、言語・文化面でのサポートが非常に心強かったです。トリリンガル対応でコミュニケーションもスムーズでした。', 'eikou'); ?></p>
                 <div class="testimonial-author">
                     <div>
@@ -119,7 +119,7 @@ get_header();
                 </div>
             </div>
             <div class="testimonial-card">
-                <div class="testimonial-quote">"</div>
+                <div class="testimonial-quote">&ldquo;</div>
                 <p><?php esc_html_e('ショールームのリニューアルプロジェクトでは、空間デザインだけでなくインタラクティブ技術の導入まで一貫して対応いただきました。', 'eikou'); ?></p>
                 <div class="testimonial-author">
                     <div>

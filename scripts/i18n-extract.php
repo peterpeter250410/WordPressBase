@@ -37,6 +37,9 @@ foreach ($rii as $file) {
             $val = $raw;
             // 只要含平假名/片假名/CJK 汉字
             if (!preg_match('/[\x{3040}-\x{30ff}\x{4e00}-\x{9fff}]/u', $val)) continue;
+            // 跳过明显是源码片段的（裸引号导致跨越 PHP/HTML 抓取）
+            if (strpos($val, '<?php') !== false || strpos($val, '?>') !== false) continue;
+            if (strpos($val, '</') !== false || strpos($val, '/>') !== false) continue;
             // 过滤明显非文案：纯URL、含 .jpg/.png/.php 等
             if (preg_match('#https?://#', $val)) continue;
             if (preg_match('/\.(jpg|jpeg|png|gif|webp|svg|mp4|php|css|js)\b/i', $val)) continue;
