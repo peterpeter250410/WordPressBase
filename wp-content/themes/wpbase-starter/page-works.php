@@ -73,7 +73,7 @@ get_header();
                     <?php endif; ?>
                     <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
                     <?php if ($location || $year) : ?>
-                        <p><?php echo esc_html($location); ?><?php if ($location && $year) echo '｜'; ?><?php echo esc_html($year); ?></p>
+                        <p><?php echo esc_html(__($location, 'eikou')); ?><?php if ($location && $year) echo '｜'; ?><?php echo esc_html($year); ?></p>
                     <?php endif; ?>
                 </div>
             </div>

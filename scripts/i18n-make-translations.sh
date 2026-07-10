@@ -27,15 +27,12 @@ mkdir -p "$LANG_DIR"
 
 echo "[1/4] 提取源字符串 -> eikou.pot（自定义提取器，含数组日文）..."
 php "$SCRIPT_DIR/i18n-extract.php" "$THEME_DIR" "$LANG_DIR/eikou.pot"
+echo "     追加数据库内容（作品/视频/分类/地点/评价）..."
+$WP eval-file "$SCRIPT_DIR/i18n-db-strings.php" "$LANG_DIR/eikou.pot" 2>/dev/null || echo "     (跳过数据库内容采集)"
 
-echo "[2/4] 由 pot 生成/合并 zh_CN、en_US 的 .po ..."
+echo "[2/4] 合并 pot -> zh_CN、en_US 的 .po（保留已译，补入新增）..."
 for loc in zh_CN en_US; do
-    PO="$LANG_DIR/eikou-$loc.po"
-    if [ ! -f "$PO" ]; then
-        cp "$LANG_DIR/eikou.pot" "$PO"
-    elif command -v msgmerge >/dev/null 2>&1; then
-        msgmerge -U --backup=none "$PO" "$LANG_DIR/eikou.pot" || true
-    fi
+    php "$SCRIPT_DIR/i18n-merge-po.php" "$LANG_DIR/eikou.pot" "$LANG_DIR/eikou-$loc.po"
 done
 
 echo "[3/4] DeepL 机器翻译（只翻译未翻译条目，可重复运行）..."

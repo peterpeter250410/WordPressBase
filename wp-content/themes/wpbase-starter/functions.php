@@ -111,6 +111,24 @@ function eikou_i18n_string_registry() {
     ];
 }
 
+// 前端：动态内容（作品/视频等文章标题）随语种翻译（仅翻译库中有的串）
+add_filter('the_title', function ($title) {
+    return is_admin() ? $title : __($title, 'eikou');
+}, 10, 1);
+
+// 前端：分类/标签名（如 商業空間/デジタル/イベント）随语种翻译
+// __() 幂等：已翻译串再过一次仍返回自身，故就地改 name 安全
+add_filter('get_the_terms', function ($terms) {
+    if (!is_admin() && is_array($terms)) {
+        foreach ($terms as $t) {
+            if (is_object($t) && isset($t->name)) {
+                $t->name = __($t->name, 'eikou');
+            }
+        }
+    }
+    return $terms;
+});
+
 /* ─── Theme Setup ─── */
 function eikou_setup() {
     // 多语言：加载主题翻译文件（languages/eikou-{locale}.mo）
@@ -520,7 +538,15 @@ add_action('customize_register', 'eikou_contact_form_customizer');
  * @return string      レンダリング済み HTML、なければ ''
  */
 function eikou_render_contact_form($key) {
-    $shortcode = eikou_get($key, '');
+    // 按当前语言选用对应表单：<key> / <key>_zh / <key>_en，缺失回退默认(日)
+    $lang = function_exists('eikou_current_lang') ? eikou_current_lang() : 'ja';
+    $shortcode = '';
+    if ($lang !== 'ja') {
+        $shortcode = eikou_get($key . '_' . $lang, '');
+    }
+    if (empty($shortcode)) {
+        $shortcode = eikou_get($key, '');
+    }
     if (!empty($shortcode) && shortcode_exists('contact-form-7')) {
         return do_shortcode($shortcode);
     }
