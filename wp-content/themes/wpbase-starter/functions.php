@@ -95,6 +95,22 @@ add_filter('nav_menu_item_title', function ($title) {
     return __($title, 'eikou');
 }, 10, 1);
 
+// 页面 <title> 各部分也过一遍翻译（页面标题来自数据库；品牌名不在库中会原样保留）
+add_filter('document_title_parts', function ($parts) {
+    foreach ($parts as $k => $v) {
+        if (is_string($v) && $v !== '') $parts[$k] = __($v, 'eikou');
+    }
+    return $parts;
+});
+
+// i18n 注册：数据库内容（菜单项/页面标题）用到、但模板正文未出现的日文串，
+// 放这里确保被提取器收录并翻译（提取器只扫源码字面量）
+function eikou_i18n_string_registry() {
+    return [
+        __('パートナー', 'eikou'),
+    ];
+}
+
 /* ─── Theme Setup ─── */
 function eikou_setup() {
     // 多语言：加载主题翻译文件（languages/eikou-{locale}.mo）
