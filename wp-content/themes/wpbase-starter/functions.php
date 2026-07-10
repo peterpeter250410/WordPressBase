@@ -112,9 +112,10 @@ function eikou_i18n_string_registry() {
 }
 
 // 前端：动态内容（作品/视频等文章标题）随语种翻译（仅翻译库中有的串）
+// 优先级 9：在 wptexturize(10) 之前拿到原始标题，避免 ' - ' 等被转义后对不上译库
 add_filter('the_title', function ($title) {
     return is_admin() ? $title : __($title, 'eikou');
-}, 10, 1);
+}, 9, 1);
 
 // 前端：分类/标签名（如 商業空間/デジタル/イベント）随语种翻译
 // __() 幂等：已翻译串再过一次仍返回自身，故就地改 name 安全

@@ -1,9 +1,8 @@
 <?php
 /**
- * EIKOU — 自定义字符串提取器
- * 扫描主题 PHP 中所有「含日文的带引号字面量」，生成 eikou.pot。
- * 这样 functions.php 的服务数据数组等无需逐条包裹 __()，
- * 只要运行时输出点经过 __($var,'eikou')，即可按 .mo 翻译。
+ * EIKOU — 字符串提取器（基于 PHP 分词器，稳健）
+ * 用 token_get_all 精确抓取所有「单/双引号字符串字面量」中含日文的串，生成 eikou.pot。
+ * 优点：不受裸引号/HTML/大文件/正则回溯影响；自动跳过含变量插值的双引号串。
  *
  * 用法: php i18n-extract.php <主题目录> <输出pot路径>
  */
@@ -26,25 +25,28 @@ foreach ($rii as $file) {
     if (strpos($path, DIRECTORY_SEPARATOR . 'node_modules') !== false) continue;
 
     $code = file_get_contents($path);
-    // 匹配单引号 '...' 和双引号 "..." 字面量
-    if (preg_match_all('/\'((?:[^\'\\\\]|\\\\.)*)\'|"((?:[^"\\\\]|\\\\.)*)"/', $code, $m, PREG_SET_ORDER)) {
-        foreach ($m as $set) {
-            $raw = isset($set[2]) && $set[2] !== '' ? $set[2] : (isset($set[1]) ? $set[1] : '');
-            if ($raw === '') {
-                // 也可能是空字符串匹配，跳过
-                if (!isset($set[1]) && !isset($set[2])) continue;
-            }
-            $val = $raw;
-            // 只要含平假名/片假名/CJK 汉字
-            if (!preg_match('/[\x{3040}-\x{30ff}\x{4e00}-\x{9fff}]/u', $val)) continue;
-            // 跳过明显是源码片段的（裸引号导致跨越 PHP/HTML 抓取）
-            if (strpos($val, '<?php') !== false || strpos($val, '?>') !== false) continue;
-            if (strpos($val, '</') !== false || strpos($val, '/>') !== false) continue;
-            // 过滤明显非文案：纯URL、含 .jpg/.png/.php 等
-            if (preg_match('#https?://#', $val)) continue;
-            if (preg_match('/\.(jpg|jpeg|png|gif|webp|svg|mp4|php|css|js)\b/i', $val)) continue;
-            $msgids[$val] = true;
+    $tokens = @token_get_all($code);
+    if (!is_array($tokens)) continue;
+
+    foreach ($tokens as $t) {
+        if (!is_array($t) || $t[0] !== T_CONSTANT_ENCAPSED_STRING) continue;
+        $raw = $t[1];
+        $quote = $raw[0];
+        $inner = substr($raw, 1, -1);
+        // 还原字面量到真实字符串
+        if ($quote === "'") {
+            $val = strtr($inner, ["\\'" => "'", "\\\\" => "\\"]);
+        } else {
+            $val = stripcslashes($inner); // 双引号
         }
+
+        // 只要含平假名/片假名/CJK 汉字
+        if (!preg_match('/[\x{3040}-\x{30ff}\x{4e00}-\x{9fff}]/u', $val)) continue;
+        // 过滤明显非文案
+        if (preg_match('#https?://#', $val)) continue;
+        if (preg_match('/\.(jpg|jpeg|png|gif|webp|svg|mp4|php|css|js)\b/i', $val)) continue;
+
+        $msgids[$val] = true;
     }
 }
 
@@ -57,12 +59,10 @@ $pot .= "\"Content-Transfer-Encoding: 8bit\\n\"\n";
 $pot .= "\"Language: ja\\n\"\n\n";
 
 foreach (array_keys($msgids) as $id) {
-    // id 已是源码中的转义形式（单/双引号内），统一规整为 PO 转义
-    $unescaped = stripcslashes($id);
-    $escaped   = addcslashes($unescaped, "\"\\");
-    $escaped   = str_replace("\n", '\n', $escaped);
-    $pot .= "msgid \"$escaped\"\nmsgstr \"\"\n\n";
+    $escaped = addcslashes($id, "\"\\");
+    $escaped = str_replace("\n", '\n', $escaped);
+    $pot .= "msgid \"{$escaped}\"\nmsgstr \"\"\n\n";
 }
 
 file_put_contents($outPot, $pot);
-echo "提取完成: " . count($msgids) . " 条 -> $outPot\n";
+echo "提取完成: " . count($msgids) . " 条 -> {$outPot}\n";
