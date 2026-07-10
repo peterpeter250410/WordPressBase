@@ -25,7 +25,7 @@
 
 <!-- ========== H5 FULL-SCREEN MENU OVERLAY ========== -->
 <div class="h5-menu-overlay" id="h5MenuOverlay">
-    <button class="h5-menu-close" id="h5MenuClose" aria-label="閉じる">
+    <button class="h5-menu-close" id="h5MenuClose" aria-label="<?php esc_attr_e('閉じる', 'eikou'); ?>">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <div class="h5-menu-inner">
