@@ -7,7 +7,7 @@
         <p><?php esc_html_e('展示会出展、イベント企画、空間デザイン、Web制作、AIソリューションなど、', 'eikou'); ?><br><?php esc_html_e('お客様のニーズに合わせた最適なプランをご提案いたします。', 'eikou'); ?></p>
         <div class="cta-actions">
             <a href="<?php echo esc_url(eikou_page_url('contact')); ?>" class="btn btn-primary btn-lg"><?php esc_html_e('お問い合わせ', 'eikou'); ?></a>
-            <a href="tel:+81-3-XXXX-XXXX" class="btn btn-ghost"><?php echo esc_html(eikou_get('eikou_tel', '03-XXXX-XXXX')); ?></a>
+            <a href="tel:<?php echo esc_attr(preg_replace('/[^0-9+]/', '', eikou_get('eikou_tel', '03-5876-9273'))); ?>" class="btn btn-ghost"><?php echo esc_html(eikou_get('eikou_tel', '03-5876-9273')); ?></a>
         </div>
     </div>
 </section>
@@ -52,8 +52,10 @@
                     <ul>
                         <li><?php echo esc_html(__(eikou_get('eikou_zip', '〒XXX-XXXX'), 'eikou')); ?></li>
                         <li><?php echo esc_html(__(eikou_get('eikou_address', '東京都XX区XX X-X-X'), 'eikou')); ?></li>
-                        <li>TEL: <?php echo esc_html(eikou_get('eikou_tel', '03-XXXX-XXXX')); ?></li>
-                        <li><?php echo esc_html(eikou_get('eikou_email', 'info@eikou.co.jp')); ?></li>
+                        <li><?php esc_html_e('TEL', 'eikou'); ?>: <?php echo esc_html(eikou_get('eikou_tel', '03-5876-9273')); ?></li>
+                        <li><?php esc_html_e('LINE', 'eikou'); ?>: <?php echo esc_html(eikou_get('eikou_line', 'eikoten')); ?></li>
+                        <li><?php esc_html_e('WeChat', 'eikou'); ?>: <?php echo esc_html(eikou_get('eikou_wechat', 'zhanlan896')); ?></li>
+                        <li><?php echo esc_html(eikou_get('eikou_email', 'liulin@eikoujp.net')); ?></li>
                     </ul>
                 </div>
             </div>

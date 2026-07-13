@@ -6,7 +6,7 @@
         <p><?php esc_html_e('展示会出展、イベント企画、空間デザインなど、お客様のニーズに合わせた最適なプランをご提案いたします。', 'eikou'); ?></p>
         <div class="h5-cta-actions">
             <a href="<?php echo esc_url(eikou_page_url('contact')); ?>" class="btn btn-primary"><?php esc_html_e('お問い合わせ', 'eikou'); ?></a>
-            <a href="tel:<?php echo esc_attr(eikou_get('eikou_tel', '03-XXXX-XXXX')); ?>" class="btn btn-ghost"><?php echo esc_html(eikou_get('eikou_tel', '03-XXXX-XXXX')); ?></a>
+            <a href="tel:<?php echo esc_attr(preg_replace('/[^0-9+]/', '', eikou_get('eikou_tel', '03-5876-9273'))); ?>" class="btn btn-ghost"><?php echo esc_html(eikou_get('eikou_tel', '03-5876-9273')); ?></a>
         </div>
     </div>
 </section>

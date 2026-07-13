@@ -488,8 +488,10 @@ function eikou_customizer($wp_customize) {
         'eikou_company_name' => ['label' => '会社名', 'default' => '荣光株式会社｜EIKOU Co., Ltd.'],
         'eikou_zip'          => ['label' => '郵便番号', 'default' => '〒XXX-XXXX'],
         'eikou_address'      => ['label' => '住所', 'default' => '東京都XX区XX X-X-X'],
-        'eikou_tel'          => ['label' => '電話番号', 'default' => '03-XXXX-XXXX'],
-        'eikou_email'        => ['label' => 'メールアドレス', 'default' => 'info@eikou.co.jp'],
+        'eikou_tel'          => ['label' => '電話番号', 'default' => '03-5876-9273'],
+        'eikou_line'         => ['label' => 'LINE', 'default' => 'eikoten'],
+        'eikou_wechat'       => ['label' => 'WeChat', 'default' => 'zhanlan896'],
+        'eikou_email'        => ['label' => 'メールアドレス', 'default' => 'liulin@eikoujp.net'],
     ];
 
     foreach ($fields as $id => $args) {

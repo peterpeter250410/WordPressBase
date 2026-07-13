@@ -141,7 +141,7 @@ get_header();
         <p><?php esc_html_e('新規プロジェクトのご相談や、パートナーシップについてのお問い合わせを承っております。', 'eikou'); ?></p>
         <div class="cta-actions">
             <a href="<?php echo esc_url(eikou_page_url('contact')); ?>" class="btn btn-primary btn-lg"><?php esc_html_e('お問い合わせ', 'eikou'); ?></a>
-            <a href="tel:+81-3-XXXX-XXXX" class="btn btn-ghost"><?php echo esc_html(eikou_get('eikou_tel', '03-XXXX-XXXX')); ?></a>
+            <a href="tel:<?php echo esc_attr(preg_replace('/[^0-9+]/', '', eikou_get('eikou_tel', '03-5876-9273'))); ?>" class="btn btn-ghost"><?php echo esc_html(eikou_get('eikou_tel', '03-5876-9273')); ?></a>
         </div>
     </div>
 </section>
