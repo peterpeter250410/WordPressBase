@@ -50,12 +50,12 @@
                 <div class="footer-nav-group">
                     <h4><?php esc_html_e('お問い合わせ', 'eikou'); ?></h4>
                     <ul>
-                        <li><?php echo esc_html(__(eikou_get('eikou_zip', '〒XXX-XXXX'), 'eikou')); ?></li>
-                        <li><?php echo esc_html(__(eikou_get('eikou_address', '東京都XX区XX X-X-X'), 'eikou')); ?></li>
+                        <li><?php echo esc_html(__(eikou_get('eikou_zip', '〒125-0052'), 'eikou')); ?></li>
+                        <li><?php echo esc_html(__(eikou_get('eikou_address', '東京都葛飾区柴又1丁目43-6MAC柴又コート 102'), 'eikou')); ?></li>
                         <li><?php esc_html_e('TEL', 'eikou'); ?>: <?php echo esc_html(eikou_get('eikou_tel', '03-5876-9273')); ?></li>
                         <li><?php esc_html_e('LINE', 'eikou'); ?>: <?php echo esc_html(eikou_get('eikou_line', 'eikoten')); ?></li>
                         <li><?php esc_html_e('WeChat', 'eikou'); ?>: <?php echo esc_html(eikou_get('eikou_wechat', 'zhanlan896')); ?></li>
-                        <li><?php echo esc_html(eikou_get('eikou_email', 'liulin@eikoujp.net')); ?></li>
+                        <li><?php echo esc_html(eikou_get('eikou_email', 'info@eikoujp.net')); ?></li>
                     </ul>
                 </div>
             </div>

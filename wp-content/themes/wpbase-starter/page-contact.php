@@ -78,7 +78,7 @@ get_header();
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                             <div>
                                 <strong><?php esc_html_e('所在地', 'eikou'); ?></strong>
-                                <p><?php echo esc_html(__(eikou_get('eikou_zip', '〒XXX-XXXX'), 'eikou')); ?><br><?php echo esc_html(__(eikou_get('eikou_address', '東京都XX区XX X-X-X'), 'eikou')); ?></p>
+                                <p><?php echo esc_html(__(eikou_get('eikou_zip', '〒125-0052'), 'eikou')); ?><br><?php echo esc_html(__(eikou_get('eikou_address', '東京都葛飾区柴又1丁目43-6MAC柴又コート 102'), 'eikou')); ?></p>
                             </div>
                         </li>
                         <li>
@@ -106,7 +106,7 @@ get_header();
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                             <div>
                                 <strong><?php esc_html_e('メール', 'eikou'); ?></strong>
-                                <p><?php echo esc_html(eikou_get('eikou_email', 'liulin@eikoujp.net')); ?></p>
+                                <p><?php echo esc_html(eikou_get('eikou_email', 'info@eikoujp.net')); ?></p>
                             </div>
                         </li>
                         <li>
