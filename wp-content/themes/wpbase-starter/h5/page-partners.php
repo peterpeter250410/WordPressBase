@@ -27,9 +27,9 @@ include get_template_directory() . '/h5/header.php';
                 while ($partners->have_posts()) : $partners->the_post(); ?>
             <div class="h5-partner-item"><span><?php the_title(); ?></span></div>
             <?php endwhile; wp_reset_postdata(); else :
-                $names = ['SONY','TOYOTA','PANASONIC','HITACHI','NEC','FUJITSU','TOSHIBA','MITSUBISHI','SHARP','CANON','EPSON','RICOH'];
+                $names = ['三菱', 'ホンダ', '日産自動車', 'トヨタ', 'マツダ', '寧徳時代', 'ハイチェン・エナジー', 'ゼロ・エラー', 'ディリジン・フォトニクス', 'カストン', 'ヘリックス ゴルフ', '高景太陽能'];
                 foreach ($names as $n) : ?>
-            <div class="h5-partner-item"><span><?php echo $n; ?></span></div>
+            <div class="h5-partner-item"><span><?php echo esc_html(__($n, 'eikou')); ?></span></div>
             <?php endforeach; endif; ?>
         </div>
     </div>

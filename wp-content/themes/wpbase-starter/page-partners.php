@@ -41,20 +41,13 @@ get_header();
                 endwhile;
                 wp_reset_postdata();
             else :
+                $eikou_partners = ['三菱', 'ホンダ', '日産自動車', 'トヨタ', 'マツダ', '寧徳時代', 'ハイチェン・エナジー', 'ゼロ・エラー', 'ディリジン・フォトニクス', 'カストン', 'ヘリックス ゴルフ', '高景太陽能'];
+                foreach ($eikou_partners as $eikou_partner) :
             ?>
-            <div class="partner-card"><span>SONY</span></div>
-            <div class="partner-card"><span>TOYOTA</span></div>
-            <div class="partner-card"><span>PANASONIC</span></div>
-            <div class="partner-card"><span>HITACHI</span></div>
-            <div class="partner-card"><span>NEC</span></div>
-            <div class="partner-card"><span>FUJITSU</span></div>
-            <div class="partner-card"><span>TOSHIBA</span></div>
-            <div class="partner-card"><span>MITSUBISHI</span></div>
-            <div class="partner-card"><span>SHARP</span></div>
-            <div class="partner-card"><span>CANON</span></div>
-            <div class="partner-card"><span>EPSON</span></div>
-            <div class="partner-card"><span>RICOH</span></div>
-            <?php endif; ?>
+            <div class="partner-card"><span><?php echo esc_html(__($eikou_partner, 'eikou')); ?></span></div>
+            <?php
+                endforeach;
+            endif; ?>
         </div>
     </div>
 </section>
