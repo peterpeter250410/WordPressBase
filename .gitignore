@@ -17,7 +17,9 @@
 # Third-party plugins (track via docs/plugins.md)
 /wp-content/plugins/*
 !/wp-content/plugins/.gitkeep
-# For custom plugins: git add -f wp-content/plugins/your-plugin
+# Custom plugins (whitelist for version control)
+!/wp-content/plugins/study-abroad-core/
+!/wp-content/plugins/study-abroad-core/**
 
 # Default themes (keep only custom themes)
 /wp-content/themes/twenty*/
