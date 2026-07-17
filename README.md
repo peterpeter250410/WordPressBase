@@ -1,93 +1,72 @@
-# WordPressBase
+# SakuraRyugaku — 日本留学中介平台
 
-WordPress 企业官网基础版本，包含安全加固、部署脚本和运维工具。适用于企业官网/展示站的二次开发。
+> 品牌：**桜留学 / SakuraRyugaku**　主域：`sakuraryugaku.com`（日本主域 `sakuraryugaku.jp` 后补）
+> 技术栈：WordPress（自定义主题 + 自定义插件）　支持终端：PC + H5
 
-## 特性
+面向赴日留学生的中介平台。学生填写意向信息 → 系统自动匹配院校 → 选校 → 加密上传申请资料 → 顾问后台跟进。
+当前处于**市场验证阶段**：以落地页 + 白帽 SEO 投入市场，用数据判断项目是否值得继续投入。
 
-- 安全加固的 wp-config 配置模板
-- Must-Use 安全插件（版本隐藏、XML-RPC 禁用、登录限制、安全头等）
-- .htaccess 安全与性能优化模板
-- 自动化部署、备份、安全检查脚本
-- 宝塔面板部署支持
-- 兼容 PHP 7.4+
+> 本仓库为留学项目独立代码库，已与旧的荣光/EIKOU 会展项目物理隔离（仅复用 WordPress 安全加固与通用运维脚本作为基座）。
 
-## 项目结构
+## 组成
 
-```
-WordPressBase/
-├── config/                        # 配置模板
-│   ├── wp-config-sample.php       # wp-config 安全配置模板
-│   └── .htaccess-sample           # .htaccess 安全+性能模板
-├── scripts/                       # 运维脚本
-│   ├── deploy.sh                  # 部署脚本
-│   ├── backup.sh                  # 备份脚本
-│   └── security-check.sh          # 安全审计检查脚本
-├── docs/                          # 文档
-│   ├── deployment.md              # 宝塔面板部署指南
-│   └── plugins.md                 # 推荐插件清单
-└── wp-content/
-    └── mu-plugins/                # Must-Use 安全加固插件
-        └── security-hardening.php
-```
+| 组件 | 路径 | 说明 |
+|------|------|------|
+| 核心插件 | `wp-content/plugins/study-abroad-core/` | 落地页留资、埋点、院校匹配、加密资料、后台看板、权限/审计 |
+| 前端主题 | `wp-content/themes/study-abroad-theme/` | 落地页（PC+H5）、SEO、多语言底座 |
+| 安全加固 | `wp-content/mu-plugins/security-hardening.php` | 通用安全基座（版本隐藏、XML-RPC 禁用、登录限制等） |
+| 配置模板 | `config/` | wp-config / .htaccess 安全模板 |
+| 运维脚本 | `scripts/` | 通用部署 / 备份 / 安全检查 |
+| 项目文档 | `docs/study-abroad/` | 规划、功能、架构、数据库、匹配算法、SEO、数据分析、安全 |
 
-> WordPress 核心文件不纳入版本控制，通过部署脚本下载。
+## 文档导航
+
+设计文档见 [`docs/study-abroad/`](docs/study-abroad/README.md)：
+
+- `PROJECT-PLAN.md` — 项目计划与市场验证阶段
+- `FEATURES.md` — 产品功能清单（含落地页 L、SEO/数据分析 M 模块）
+- `TECH-ARCHITECTURE.md` — 技术架构
+- `DATABASE-DESIGN.md` — 数据库设计
+- `MATCHING-ALGORITHM.md` — 自动匹配算法
+- `I18N-DESIGN.md` — 多语言架构
+- `SEO-DEPLOYMENT.md` — 白帽 SEO 部署与测试
+- `ANALYTICS.md` — 数据分析与指标体系
+- `SECURITY-DESIGN.md` — 安全与合规
 
 ## 快速开始
 
 ```bash
-# 1. 克隆仓库到站点目录
-git clone https://github.com/你的用户名/WordPressBase.git /www/wwwroot/yourdomain.com
+# 1. 克隆到站点目录
+git clone <本仓库地址> /www/wwwroot/sakuraryugaku.com
+cd /www/wwwroot/sakuraryugaku.com
 
-# 2. 运行部署脚本（下载 WordPress 核心）
-cd /www/wwwroot/yourdomain.com
+# 2. 下载 WordPress 核心
 bash scripts/deploy.sh
 
 # 3. 配置
 cp config/wp-config-sample.php wp-config.php
 cp config/.htaccess-sample .htaccess
-# 编辑 wp-config.php 填入数据库信息和密钥
+# 编辑 wp-config.php：数据库、密钥，并建议设置文档加密密钥：
+#   define( 'SA_DOC_ENC_KEY', '高强度随机字符串' );
 
-# 4. 安全检查
+# 4. 后台启用「Study Abroad Core」插件与「Study Abroad Theme」主题
+#    激活插件时自动建表、创建角色、初始化匹配规则、准备加密目录
+
+# 5. 后台「留学中介 → 设置」填入 GA4 测量 ID（可选）
+
+# 6. 上线前安全检查
 bash scripts/security-check.sh
 ```
 
-详细部署步骤见 [docs/deployment.md](docs/deployment.md)。
+> WordPress 核心文件不纳入版本控制，通过 `scripts/deploy.sh` 下载。
 
-## 安全加固清单
+## 上线要点（市场验证阶段）
 
-mu-plugins/security-hardening.php 已包含：
-
-- [x] WordPress 版本号隐藏
-- [x] XML-RPC 完全禁用
-- [x] REST API 用户枚举防护
-- [x] ?author=N 枚举防护
-- [x] 安全 HTTP 头（X-Frame-Options 等）
-- [x] 登录尝试限制（5次/15分钟）
-- [x] 移除不必要的 wp_head 输出
-- [x] 禁用 WordPress Emoji
-
-wp-config 模板已包含：
-
-- [x] 非默认表前缀
-- [x] 禁用后台文件编辑器
-- [x] 强制 SSL 后台
-- [x] 生产环境调试关闭
-- [x] 内存限制和修订版本限制
-
-## 二次开发
-
-基于此项目创建新项目：
-
-```bash
-# Fork 或复制此仓库
-git clone https://github.com/你的用户名/WordPressBase.git 新项目名
-cd 新项目名
-git remote set-url origin 新项目的git地址
-
-# 在 wp-content/themes/ 下开发自定义主题
-# 在 wp-content/mu-plugins/ 下添加项目特定的功能
-```
+- 域名 `sakuraryugaku.com` 免备案，配境外/港台服务器可快速上线。
+- SEO：提交 sitemap 至 Google Search Console；面向中国可提交百度搜索资源平台。
+- 埋点：GA4 + Search Console + 自建埋点（后台数据看板查看 UV/PV/线索/转化率）。
+- 详见 `docs/study-abroad/SEO-DEPLOYMENT.md` 与 `ANALYTICS.md`。
 
 ## 许可证
 
-WordPress 遵循 GPLv2 许可证。本项目中的自定义代码同样遵循 GPLv2。
+WordPress 遵循 GPLv2。本项目自定义代码同样遵循 GPLv2。
