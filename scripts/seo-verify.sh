@@ -38,8 +38,10 @@ echo ""
 echo "── A. 三语页面基础标签 ──"
 
 declare -A ALT_SETS
-for lang in "" "zh" "en"; do
-    if [ -z "$lang" ]; then URL="$SITE_URL/"; LABEL="日本語  /"; else URL="$SITE_URL/$lang/"; LABEL="$lang     /$lang/"; fi
+# 注意：数组下标不能为空字符串，bash 会报 bad array subscript 并中断整个循环。
+# 日文用 "ja" 作键，URL 路径另行推导。
+for lang in ja zh en; do
+    if [ "$lang" = "ja" ]; then URL="$SITE_URL/"; LABEL="日本語  /"; else URL="$SITE_URL/$lang/"; LABEL="$lang     /$lang/"; fi
 
     echo ""
     echo "  ▼ $LABEL"
@@ -53,13 +55,31 @@ for lang in "" "zh" "en"; do
 
     HTML=$(fetch "$PC_UA" "$URL")
 
-    # html lang 属性（应随语种变化）
+    # html lang 属性（应随语种变化，且必须与该语言一致）
+    RAW_HTML_TAG=$(grep -oP '<html[^>]*>' <<<"$HTML" | head -1)
     HTMLLANG=$(tagval "$HTML" '<html[^>]*lang="\K[^"]*')
-    if [ -n "$HTMLLANG" ]; then
+    case "$lang" in
+        ja) WANT='ja' ;;
+        zh) WANT='zh' ;;
+        en) WANT='en' ;;
+    esac
+    if [ -z "$HTMLLANG" ]; then
+        warn "缺少 html lang 属性"
+    elif [[ "$HTMLLANG" == ${WANT}* ]]; then
         ok "html lang=\"$HTMLLANG\""
     else
-        warn "缺少 html lang 属性"
+        bad "html lang=\"$HTMLLANG\" 与页面语言($lang)不符 —— 会误导搜索引擎判定页面语种"
+        echo "         原始标签: $RAW_HTML_TAG"
+        echo "         页面中所有 <html> 标签数: $(grep -c '<html' <<<"$HTML")"
     fi
+
+    # 重复标签检测（多个 SEO 来源同时输出时 Google 会忽略整组）
+    N_CANON=$(grep -c 'rel="canonical"' <<<"$HTML" || echo 0)
+    N_DESC=$(grep -c 'name="description"' <<<"$HTML" || echo 0)
+    N_OGT=$(grep -c 'property="og:title"' <<<"$HTML" || echo 0)
+    [ "$N_CANON" -gt 1 ] && bad "canonical 重复 $N_CANON 条 —— 多半有 SEO 插件在同时输出"
+    [ "$N_DESC"  -gt 1 ] && bad "meta description 重复 $N_DESC 条"
+    [ "$N_OGT"   -gt 1 ] && bad "og:title 重复 $N_OGT 条"
 
     # canonical 必须指向自己
     CANON=$(tagval "$HTML" 'rel="canonical" href="\K[^"]*')
@@ -131,7 +151,7 @@ done
 echo ""
 echo "── B. hreflang 互指一致性 ──"
 echo "   （三语页面的 alternate 组必须完全相同，否则整组失效）"
-SET_JA="${ALT_SETS[""]:-}"
+SET_JA="${ALT_SETS["ja"]:-}"
 SET_ZH="${ALT_SETS["zh"]:-}"
 SET_EN="${ALT_SETS["en"]:-}"
 
