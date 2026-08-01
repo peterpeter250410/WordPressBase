@@ -43,8 +43,16 @@ function eikou_current_lang() {
 // 现代 WordPress 翻译加载用 determine_locale，两者都要挂
 function eikou_apply_locale($locale) {
     $map = eikou_lang_map();
-    $l = eikou_current_lang();
-    return isset($map[$l]) ? $map[$l] : $locale;
+    $l   = eikou_current_lang();
+    if (isset($map[$l])) {
+        return $map[$l];
+    }
+    // 日文根目录：必须显式锁定 ja，不能原样返回 $locale。
+    // 站点默认语言（WPLANG）若非 ja，日文页会继承它，导致：
+    //   1) <html lang> 声明成错误语种，误导搜索引擎判定页面语言；
+    //   2) load_theme_textdomain 加载错误的 .mo，日文原文被翻译成其他语言渲染。
+    // 后台不介入：站点语言通常是为后台界面设置的，改了会让管理界面变日文。
+    return is_admin() ? $locale : 'ja';
 }
 add_filter('locale', 'eikou_apply_locale');
 add_filter('determine_locale', 'eikou_apply_locale');
