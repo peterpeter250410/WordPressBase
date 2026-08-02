@@ -37,19 +37,29 @@ echo "============================================================"
 echo ""
 echo "── 1. sitemap ──"
 
-CODE=$(curl -sS -o /dev/null -w '%{http_code}' -L --max-time 30 "$SITEMAP" 2>/dev/null)
-if [ "$CODE" != "200" ]; then
-    bad "sitemap 返回 HTTP $CODE — 先修好再提交"
+# 不跟随重定向：robots.txt 声明的就是这个地址，它必须直接 200
+DIRECT=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 "$SITEMAP" 2>/dev/null)
+if [ "$DIRECT" = "301" ] || [ "$DIRECT" = "302" ]; then
+    LOC=$(curl -sSI --max-time 20 "$SITEMAP" 2>/dev/null | grep -i '^location:' | tr -d '\r' | sed 's/^[Ll]ocation: *//')
+    bad "sitemap 被 $DIRECT 重定向到：$LOC"
+    echo "       robots.txt 声明的是不带斜杠的地址，每次抓取都要多跳一次，"
+    echo "       且部分 sitemap 校验工具会直接拒绝会跳转的地址。"
+    echo "       修复：inc/seo-sitemap.php 里的 redirect_canonical 过滤器（需部署最新主题）"
+elif [ "$DIRECT" != "200" ]; then
+    bad "sitemap 返回 HTTP $DIRECT — 先修好再提交"
     echo "       wp rewrite flush --hard --allow-root"
     exit 1
+else
+    ok "sitemap 直接可访问（HTTP 200，无重定向）"
 fi
-ok "sitemap 可访问（HTTP 200）"
 
 SM=$(curl -sS -L --max-time 30 "$SITEMAP" 2>/dev/null)
 
-CT=$(curl -sSI -L --max-time 20 "$SITEMAP" 2>/dev/null | grep -i '^content-type:' | tr -d '\r')
+# 只取最终响应的 Content-Type：加 -L 会把重定向链上每一跳的头都打出来，
+# 用 grep 匹配会被中间那跳的 text/html 干扰，反而盖住问题
+CT=$(curl -sS -o /dev/null -L --max-time 20 -w '%{content_type}' "$SITEMAP" 2>/dev/null)
 if grep -qi 'xml' <<<"$CT"; then
-    ok "Content-Type 正确（${CT#*: }）"
+    ok "Content-Type 正确（$CT）"
 else
     bad "Content-Type 不是 XML：${CT:-未返回} — GSC 会拒绝解析"
 fi
