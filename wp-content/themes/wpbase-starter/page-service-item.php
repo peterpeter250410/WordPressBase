@@ -95,6 +95,9 @@ if (!$item) {
     </div>
 </section>
 
+<!-- ========== RELATED SERVICES（内链权重雕刻）========== -->
+<?php eikou_render_related_services($slug, false); ?>
+
 <!-- ========== BACK TO CATEGORY ========== -->
 <section class="section" style="background: var(--color-bg-alt);">
     <div class="container" style="text-align: center;">
