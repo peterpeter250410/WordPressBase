@@ -108,6 +108,20 @@ function eikou_sitemap_collect_paths() {
     return $paths;
 }
 
+/**
+ * 关闭 sitemap 的规范化重定向
+ *
+ * 固定链接结构是 /%postname%/，WordPress 的 redirect_canonical 会给所有
+ * URL 补尾斜杠，导致 /sitemap-i18n.xml 被 301 到 /sitemap-i18n.xml/。
+ * robots.txt 声明的是不带斜杠的地址，每次抓取都要多跳一次，且部分
+ * sitemap 校验工具会直接拒绝会跳转的地址。
+ *
+ * 优先级 5：必须早于核心的 redirect_canonical（template_redirect 上默认 10）。
+ */
+add_filter('redirect_canonical', function ($redirect_url) {
+    return (get_query_var('eikou_sitemap') === 'i18n') ? false : $redirect_url;
+}, 5);
+
 /* ─── 输出 ─── */
 
 add_action('template_redirect', function () {
