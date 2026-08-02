@@ -1177,9 +1177,11 @@ add_filter('rest_url_prefix', function() {
    canonical / hreflang / title / description / OG / robots.txt
    JSON-LD 结构化数据 / 多语言 sitemap
    均适配 /zh/ /en/ 语言前缀，三语共用同一套模板 */
+require_once get_template_directory() . '/inc/seo-keywords.php';
 require_once get_template_directory() . '/inc/seo-core.php';
 require_once get_template_directory() . '/inc/seo-schema.php';
 require_once get_template_directory() . '/inc/seo-sitemap.php';
+require_once get_template_directory() . '/inc/seo-internal-link.php';
 
 /* ─── Flush Rewrite Rules on Activation ─── */
 function eikou_rewrite_flush() {

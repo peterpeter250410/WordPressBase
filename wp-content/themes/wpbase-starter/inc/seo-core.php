@@ -163,15 +163,17 @@ add_action('wp_head', 'eikou_seo_hreflang', 2);
  * 确保这里设置的值不被再次覆盖。
  */
 add_filter('document_title_parts', function ($parts) {
-    if (is_front_page()) {
-        // 首页标题是全站最重要的关键词位
-        $parts['title']   = __('展示会ブース制作・イベント企画・商業空間デザイン', 'eikou');
-        $parts['tagline'] = __('荣光株式会社', 'eikou');
-        unset($parts['site']);
-    } elseif (is_singular('work')) {
-        $parts['title'] = get_the_title() . __('｜施工事例', 'eikou');
-    } elseif ($item = eikou_seo_current_service_item()) {
-        $parts['title'] = __($item['title'], 'eikou') . '｜' . __($item['category_name'], 'eikou');
+    $lang = eikou_current_lang();
+
+    // 首页与 24 个服务页：走逐语种关键词表（不经过 .mo，见 seo-keywords.php）
+    if ($entry = eikou_seo_current_keyword_entry()) {
+        // 自行拼接完整标题并丢弃其余部分，避免 WordPress 再追加一次站点名
+        return ['title' => $entry['t'] . eikou_seo_brand_suffix($lang)];
+    }
+
+    if (is_singular('work')) {
+        $suffix = ['ja' => '｜施工事例', 'zh' => '｜施工案例', 'en' => ' | Case Study'];
+        $parts['title'] = get_the_title() . (isset($suffix[$lang]) ? $suffix[$lang] : $suffix['ja']);
     }
     return $parts;
 }, 20);
@@ -208,10 +210,11 @@ function eikou_seo_get_description() {
     }
 
     if ($desc === '') {
-        if (is_front_page()) {
-            // 82 字符：控制在日文搜索结果显示上限内，避免被 Google 二次截断
-            $desc = __('展示会ブース制作・イベント企画・商業空間デザインをワンストップで提供。東京ビッグサイト・幕張メッセなど主要会場で豊富な実績。日中英の三言語対応で海外出展も支援します。', 'eikou');
+        // 首页与 24 个服务页：走逐语种关键词表
+        if ($entry = eikou_seo_current_keyword_entry()) {
+            $desc = $entry['d'];
         } elseif ($item = eikou_seo_current_service_item()) {
+            // 关键词表未覆盖时回退到服务数据里的日文简介（经 .mo 翻译）
             $desc = __($item['description'], 'eikou');
         } elseif (is_singular()) {
             $post = get_queried_object();
@@ -302,6 +305,27 @@ function eikou_seo_og() {
     printf('<meta name="twitter:image" content="%s">' . "\n", esc_url(eikou_seo_share_image()));
 }
 add_action('wp_head', 'eikou_seo_og', 4);
+
+/* ============================================================
+   资源提示（Core Web Vitals）
+   ============================================================ */
+
+/**
+ * 为外部图床预建连接。
+ *
+ * 全站仍有大量图片指向 images.unsplash.com，首屏 LCP 图片走第三方域名时
+ * 要额外付 DNS + TCP + TLS 三次往返。preconnect 能把这部分省掉。
+ *
+ * 注意：这只是缓解，不是修复。根治办法是把图片换成自有素材
+ * （既是性能问题，也是内容原创性问题——见 docs/seo-p1-changes.md）。
+ */
+add_filter('wp_resource_hints', function ($urls, $relation_type) {
+    if ('preconnect' === $relation_type) {
+        $urls[] = ['href' => 'https://images.unsplash.com', 'crossorigin' => ''];
+        $urls[] = ['href' => 'https://fonts.gstatic.com', 'crossorigin' => ''];
+    }
+    return $urls;
+}, 10, 2);
 
 /* ============================================================
    robots.txt

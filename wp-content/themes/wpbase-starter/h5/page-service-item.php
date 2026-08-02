@@ -78,4 +78,7 @@ if (!$item) { ?>
     </div>
 </section>
 
+<!-- ========== RELATED SERVICES（内链权重雕刻）========== -->
+<?php eikou_render_related_services($slug, true); ?>
+
 <?php include get_template_directory() . '/h5/footer.php'; ?>
