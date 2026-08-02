@@ -49,3 +49,7 @@ Thumbs.db
 # ============================================
 .user.ini
 .well-known/
+
+# IndexNow 密钥（服务器本地状态，不入库）
+.indexnow-key
+/[0-9a-f][0-9a-f]*.txt

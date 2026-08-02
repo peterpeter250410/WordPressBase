@@ -1,4 +1,0 @@
- wp-content/themes/wpbase-starter/functions.php     | 26 ++++++++++++++++------
- .../themes/wpbase-starter/h5/page-service-item.php |  3 +++
- .../themes/wpbase-starter/page-service-item.php    |  3 +++
- 3 files changed, 25 insertions(+), 7 deletions(-)
